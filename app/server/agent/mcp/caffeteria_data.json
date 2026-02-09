@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Marte",
+        "detail": "Bubble tea and Asian-inspired drinks.",
+        "imageUrl": "http://localhost:10002/static/classic tiramasu.png",
+        "rating": "★★★★☆",
+        "infoLink": "[More Info](https://www.martecafe.com/)",
+        "address": "3868 Broadway, New York, NY 10032"
+    },
+    {
+        "name": "Starbucks",
+        "detail": "Global coffee chain with various beverages and snacks.",
+        "imageUrl": "http://localhost:10002/static/italian2.png",
+        "rating": "★★★★☆",
+        "infoLink": "[More Info](https://www.starbucks.com/)",
+        "address": "200 Lafayette St, New York, NY 10012"
+    },
+    {
+        "name": "ItalianCoffe",
+        "detail": "Bubble tea and Asian-inspired drinks.",
+        "imageUrl": "http://localhost:10002/static/italian3.png",
+        "rating": "★★★★☆",
+        "infoLink": "[More Info](https://www.italiancoffee.com/)",
+        "address": "23 Pell St, New York, NY 10013"
+    }
+]

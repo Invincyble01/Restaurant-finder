@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Lombardi's",
+        "detail": "Famous coal-fired pizza since 1905.",
+        "imageUrl": "http://localhost:10002/static/margharita.png",
+        "rating": "★★★★★",
+        "infoLink": "[More Info](https://www.firstpizza.com/)",
+        "address": "32 Spring St, New York, NY 10012"
+    },
+    {
+        "name": "Di Fara",
+        "detail": "Authentic Neapolitan pizza with fresh ingredients.",
+        "imageUrl": "http://localhost:10002/static/lasagna.png",
+        "rating": "★★★★★",
+        "infoLink": "[More Info](https://www.difara.com/)",
+        "address": "1424 Avenue J, Brooklyn, NY 11230"
+    },
+    {
+        "name": "Joe's Pizza",
+        "detail": "Classic New York-style pizza slices.",
+        "imageUrl": "http://localhost:10002/static/Spaghetti Carbonara.png",
+        "rating": "★★★★☆",
+        "infoLink": "[More Info](https://www.joespizzanyc.com/)",
+        "address": "757 Broadway, New York, NY 10003"
+    },
+    {
+        "name": "L'Artusi",
+        "detail": "Creative Italian-American cuisine.",
+        "imageUrl": "http://localhost:10002/static/saffron risotto.png",
+        "rating": "★★★★★",
+        "infoLink": "[More Info](https://www.lartusibarnyc.com/)",
+        "address": "228 W 10th St, New York, NY 10014"
+    },
+    {
+        "name": "Carbone",
+        "detail": "Upscale Italian-American with classic dishes.",
+        "imageUrl": "http://localhost:10002/static/italian restaurant1.png",
+        "rating": "★★★★★",
+        "infoLink": "[More Info](https://www.carbonenewyork.com/)",
+        "address": "181 Thompson St, New York, NY 10012"
+    }
+]

@@ -5,8 +5,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, AnyMessage, ToolMessage
 from langchain_core.runnables import RunnableConfig
 
-from agent.graph.food_place_agent import RestaurantFinderAgent
-from agent.graph.data_agent import DataAgent
+from agent.graph.apify_places_agent import ApifyPlacesAgent
+from agent.graph.formatter_agent import FormatterAgent
 from agent.graph.presenter_agent import PresenterAgent
 from agent.graph.struct import AgentConfig, RestaurantGraphException
 
@@ -23,25 +23,24 @@ class RestaurantGraph:
         if not graph_configuration:
             raise RestaurantGraphException()
 
-        self._place_finder = RestaurantFinderAgent(graph_configuration["place_finder_agent"])
-        self._data_finder = DataAgent(graph_configuration["data_finder_agent"])
+        self._apify_places = ApifyPlacesAgent(graph_configuration["apify_places_agent"])
+        self._formatter = FormatterAgent()
         self._presenter_agent = PresenterAgent(base_url, use_ui, graph_configuration["presenter_agent"])
 
     async def build_graph(self):
-        await self._place_finder.initialize()
-        await self._data_finder.initialize()
+        await self._apify_places.initialize()
 
         checkpointer = InMemorySaver()
 
         graph_builder = StateGraph(MessagesState)
 
-        graph_builder.add_node("place_finder_agent",self._place_finder)
-        graph_builder.add_node("place_data_agent",self._data_finder)
+        graph_builder.add_node("apify_places_agent", self._apify_places)
+        graph_builder.add_node("formatter_agent", self._formatter)
         graph_builder.add_node("presenter_agent", self._presenter_agent)
 
-        graph_builder.add_edge(START, "place_finder_agent")
-        graph_builder.add_edge("place_finder_agent","place_data_agent")
-        graph_builder.add_edge("place_data_agent", "presenter_agent")
+        graph_builder.add_edge(START, "apify_places_agent")
+        graph_builder.add_edge("apify_places_agent", "formatter_agent")
+        graph_builder.add_edge("formatter_agent", "presenter_agent")
         graph_builder.add_edge("presenter_agent", END)
 
         self._restaurant_graph = graph_builder.compile(checkpointer=checkpointer)

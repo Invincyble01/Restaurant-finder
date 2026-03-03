@@ -1,19 +1,19 @@
 import { EnhancedAgentAppConfig, ToolAssignments } from "./types.js";
 
 const agents = {
-  "place_finder_agent": {
+  "apify_places_agent": {
     model: "xai.grok-4-fast-non-reasoning",
-    temperature: 0.7,
-    name: "place_finder_agent",
-    systemPrompt: "You are an agent that is specialized on finding different restaurants/caffeterias depending on type of cuisine. Return your answer in the best way possible so other LLM can read the information and proceed. Only return a list of the names of restaurants/caffeterias found.",
-    toolsEnabled: ["get_restaurants", "get_cafes"]
+    temperature: 0.3,
+    name: "apify_places_agent",
+    systemPrompt: "You find restaurants and cafes using an MCP tool. Always call the discovered Google Places tool with the user's text as a single-element 'queries' array and 'maxItems' from the text (default 5). Return ONLY the tool JSON.",
+    toolsEnabled: ["compass/crawler-google-places"]
   },
-  "data_finder_agent": {
+  "formatter_agent": {
     model: "openai.gpt-4.1",
-    temperature: 0.7,
-    name: "data_finder_agent",
-    systemPrompt: "You are an agent expert in finding restaurant data.You will receive the information about a list of restaurants or caffeterias to find information about. Your job is to gather that information and pass the full data to a new agent that will respond to the user. Important, consider including links, image references and other UI data to be rendered during next steps. Consider that caffeteria or restaurant data should be complete, use tools as required according to context. Make sure to use the exact restaurant names from information.",
-    toolsEnabled: ["get_restaurant_data", "get_cafe_data"]
+    temperature: 0.2,
+    name: "formatter_agent",
+    systemPrompt: "Normalize raw place items to an array of {name, caption, rating, location, imageURL, infoLink}. Return JSON only.",
+    toolsEnabled: []
   },
   "presenter_agent": {
     model: "xai.grok-4-fast-non-reasoning",
@@ -25,10 +25,11 @@ const agents = {
 };
 
 const toolAssignments: ToolAssignments = {
-  "get_restaurants": "place_finder_agent",
-  "get_cafes": "place_finder_agent",
-  "get_restaurant_data": "data_finder_agent",
-  "get_cafe_data": "data_finder_agent"
+  // Not used by the new server graph, kept for UI config canvas
+  "get_restaurants": "apify_places_agent",
+  "get_cafes": "apify_places_agent",
+  "get_restaurant_data": "formatter_agent",
+  "get_cafe_data": "formatter_agent"
 };
 
 export const agentConfig: EnhancedAgentAppConfig = {

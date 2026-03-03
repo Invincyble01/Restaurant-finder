@@ -20,6 +20,7 @@ import {
 import { type Snackbar } from "../ui/snackbar.js";
 import { repeat } from "lit/directives/repeat.js";
 import { v0_8 } from "@a2ui/lit";
+import "./reservation-form.js";
 import * as UI from "@a2ui/lit/ui";
 
 // App elements.
@@ -50,7 +51,7 @@ export class DynamicModule extends LitElement {
   accessor color = "#334155"
 
   @property({ type: Object })
-  accessor config: AppConfig = restaurantConfig; 
+  accessor config: AppConfig = restaurantConfig;
 
   @state()
   accessor response = ""
@@ -535,6 +536,7 @@ export class DynamicModule extends LitElement {
               }
             }}
                 .surfaceId=${surfaceId}
+                .enableCustomElements=${true}
                 .surface=${surface}
                 .processor=${this.#processor}
               ></a2-uisurface>`;

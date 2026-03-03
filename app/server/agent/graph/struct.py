@@ -27,43 +27,41 @@ AGENT_CONFIG_SCHEMA = {
 CONFIG_SCHEMA = {
     "type": "object",
     "properties": {
-        "place_finder_agent": AGENT_CONFIG_SCHEMA,
-        "data_finder_agent": AGENT_CONFIG_SCHEMA,
-        "presenter_agent": AGENT_CONFIG_SCHEMA
+        "apify_places_agent": AGENT_CONFIG_SCHEMA,
+        "formatter_agent": AGENT_CONFIG_SCHEMA,
+        "presenter_agent": AGENT_CONFIG_SCHEMA,
     },
-    "additionalProperties": False
+    "additionalProperties": False,
 }
 
 # Default agent config
 DEFAULT_CONFIG = {
-    "place_finder_agent": AgentConfig(
+    "apify_places_agent": AgentConfig(
         model="xai.grok-4-fast-non-reasoning",
-        temperature=0.7,
-        name="place_finder_agent",
-        system_prompt="""You are and agent that is specialized on finding different restaurants/caffeterias depending on type of cuisine. 
-            Return your answer in the best way possible so other LLM can read the information and proceed. 
-            Only return a list of the names of restaurants/caffeterias found.""",
-        tools_enabled=["get_restaurants", "get_caffeterias"]
+        temperature=0.3,
+        name="apify_places_agent",
+        system_prompt=(
+            "You find restaurants and cafes using the MCP tool from Apify.\n"
+            "- Always call the discovered Google Places tool with the user's natural-language query.\n"
+            "- Extract numeric count from the query; default 5.\n"
+            "- Return ONLY the JSON array string produced by the tool without extra commentary."
+        ),
+        tools_enabled=["compass/crawler-google-places"],
     ),
-    "data_finder_agent": AgentConfig(
-        model="xai.grok-4-fast-non-reasoning",
-        temperature=0.7,
-        name="data_finder_agent",
-        system_prompt="""You are an agent expert in finding restaurant data.
-            You will receive the information about a list of restaurants or caffeterias to find information about.
-            Your job is to gather that information and pass the full data to a new agent that will respond to the user.
-            Important, consider including links, image references and other UI data to be rendered during next steps.
-            Consider that caffeteria or restaurant data should be complete, use tools as required according to context.
-            Make sure to use the exact restaurant names from information.""",
-        tools_enabled=["get_restaurant_data", "get_cafe_data"]
+    "formatter_agent": AgentConfig(
+        model="openai.gpt-4.1",
+        temperature=0.2,
+        name="formatter_agent",
+        system_prompt=None,
+        tools_enabled=[],
     ),
     "presenter_agent": AgentConfig(
         model="xai.grok-4",
         temperature=0.7,
         name="presenter_agent",
         system_prompt=None,
-        tools_enabled=[]
-    )
+        tools_enabled=[],
+    ),
 }
 
 # Exception for the config graph

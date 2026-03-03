@@ -86,6 +86,22 @@ class PresenterAgent:
         """Call the presenter agent to generate and validate UI from restaurant data."""
         data = state['messages'][-1].content
 
+        # Try to parse the formatter's normalized array so we can ensure `/items` exists.
+        formatter_items = None
+        try:
+            parsed = json.loads(data)
+            if isinstance(parsed, list):
+                # Shallow aliasing for UI compatibility: imageURL -> imageUrl
+                normalized_list = []
+                for it in parsed:
+                    if isinstance(it, dict):
+                        if "imageURL" in it and "imageUrl" not in it:
+                            it = {**it, "imageUrl": it.get("imageURL")}
+                    normalized_list.append(it)
+                formatter_items = normalized_list
+        except Exception:
+            formatter_items = None
+
         # UI Validation and Retry Logic (adapted from oci_agent.py)
         max_retries = 1  # Total 2 attempts
         attempt = 0
@@ -178,6 +194,63 @@ class PresenterAgent:
                 # Update the response with validated content
                 validated_response = response.copy()
                 validated_response['messages'][-1] = AIMessage(content=final_response_content)
+
+                # Best-effort: Inject a dataModelUpdate to ensure `/items` is populated
+                # for components like the Map that read from that path.
+                try:
+                    if formatter_items is not None:
+                        # Extract the JSON list of messages from the validated content.
+                        _text_part, json_string = final_response_content.split("---a2ui_JSON---", 1)
+                        json_string_cleaned = json_string.strip().lstrip("```json").rstrip("```").strip()
+                        ui_msgs = json.loads(json_string_cleaned)
+                        if isinstance(ui_msgs, list):
+                            # Find surfaceId from any existing message; fallback to "default".
+                            surface_id = "default"
+                            for m in ui_msgs:
+                                sid = (
+                                    (m.get("beginRendering") or {}).get("surfaceId")
+                                    or (m.get("surfaceUpdate") or {}).get("surfaceId")
+                                    or (m.get("dataModelUpdate") or {}).get("surfaceId")
+                                )
+                                if isinstance(sid, str) and sid:
+                                    surface_id = sid
+                                    break
+
+                            # Create a dataModelUpdate that writes the raw items array at `/items`.
+                            # We use the special `{ key: '.', valueString: JSON }` convention at a non-root path
+                            # so the client sets the primitive value at that exact location.
+                            ensure_items_msg = {
+                                "dataModelUpdate": {
+                                    "surfaceId": surface_id,
+                                    "path": "/items",
+                                    "contents": [
+                                        {
+                                            "key": ".",
+                                            "valueString": json.dumps(formatter_items, ensure_ascii=False),
+                                        }
+                                    ],
+                                }
+                            }
+
+                            # Append our injection just after the LLM messages in the same assistant turn.
+                            # The client collects all parts from this message stream already, so we can
+                            # return the validated messages and rely on the router to send `ensure_items_msg`
+                            # as an additional part.
+                            # We encode both messages into the final assistant content expected by the client
+                            # by concatenating another JSON list element.
+                            try:
+                                # Merge by materializing both messages back into the `---a2ui_JSON---` payload.
+                                ui_msgs.append(ensure_items_msg)
+                                merged = json.dumps(ui_msgs, ensure_ascii=False)
+                                validated_response['messages'][-1] = AIMessage(
+                                    content=f"{_text_part}\n---a2ui_JSON---\n{merged}"
+                                )
+                            except Exception:
+                                # If merging fails, we still return the validated response.
+                                pass
+                except Exception as e:
+                    logger.warning(f"--- PresenterAgent: Failed to inject /items dataModelUpdate: {e} ---")
+
                 return validated_response
 
             # If here, validation failed

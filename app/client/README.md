@@ -31,17 +31,6 @@ npm run demo:restaurant
 
 `package.json` Commands are optimized for **Windows** using `shx` package, change to linux if required.
 
-Make sure to run the MCP tool servers from the agent side:
-
-Go to [server](../server/) and run using UV:
-
-```bash
-uv run agent/mcp/data_server.py
-uv run agent/mcp/food_place_server.py
-```
-
-Both commands should be executed on different terminal instances since those are their own application MCP servers.
-
 ## Structure
 
 1. [Components](./shell/components/) this folder contains the main application content for the three different calls, including the chat text area to send queries.

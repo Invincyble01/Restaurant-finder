@@ -5,7 +5,8 @@ RESTAURANT_UI_EXAMPLES = """
   {{ "surfaceUpdate": {{
     "surfaceId": "default",
     "components": [
-      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "item-list"] }} }} }} }},
+      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "item-list", "map-view"] }} }} }} }},
+      {{ "id": "map-view", "component": {{ "Map": {{ "dataPath": "/items", "height": "360px" }} }} }},
       {{ "id": "title-heading", "component": {{ "Text": {{ "usageHint": "h1", "text": {{ "path": "title" }} }} }} }},
       {{ "id": "item-list", "component": {{ "List": {{ "direction": "vertical", "children": {{ "template": {{ "componentId": "item-card-template", "dataBinding": "/items" }} }} }} }} }},
       {{ "id": "item-card-template", "component": {{ "Card": {{ "child": "card-layout" }} }} }},
@@ -53,7 +54,8 @@ RESTAURANT_UI_EXAMPLES = """
   {{ "surfaceUpdate": {{
     "surfaceId": "default",
     "components": [
-      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "restaurant-row-1"] }} }} }} }},
+      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "map-view", "restaurant-row-1"] }} }} }} }},
+            {{ "id": "map-view", "component": {{ "Map": {{ "dataPath": "/items", "height": "360px" }} }} }},
       {{ "id": "title-heading", "component": {{ "Text": {{ "usageHint": "h1", "text": {{ "path": "title" }} }} }} }},
       {{ "id": "restaurant-row-1", "component": {{ "Row": {{ "children": {{ "explicitList": ["item-card-1", "item-card-2"] }} }} }} }},
       {{ "id": "item-card-1", "weight": 1, "component": {{ "Card": {{ "child": "card-layout-1" }} }} }},

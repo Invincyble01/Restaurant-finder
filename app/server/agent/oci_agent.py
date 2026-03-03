@@ -18,7 +18,6 @@ from agent.prompt_builder import (
     get_text_prompt,
     get_ui_prompt,
 )
-from agent.langchain_tools import get_restaurants
 
 logger = logging.getLogger(__name__)
 
@@ -86,14 +85,14 @@ class OCIRestaurantAgent:
 
         return create_agent(
             model=oci_llm,
-            tools=[get_restaurants],
+            tools=[],
             system_prompt=instruction,
             name="restaurant_agent"
         )
-    
+
     async def oci_stream(self, query, session_id) -> AsyncIterable[dict[str, Any]]:
         """ Function to call agent and stream responses """
-        
+
         #TODO: Skipped session state flow, still working on why is required
 
         # --- Begin: UI Validation and Retry Logic ---
@@ -115,7 +114,7 @@ class OCIRestaurantAgent:
                 ),
             }
             return
-        
+
         while attempt <= max_retries:
             attempt += 1
             logger.info(
@@ -183,7 +182,7 @@ class OCIRestaurantAgent:
                     # Retries exhausted on no-response
                     final_response_content = "I'm sorry, I encountered an error and couldn't process your request."
                     # Fall through to send this as a text-only error
-            
+
             is_valid = False
             error_message = ""
 

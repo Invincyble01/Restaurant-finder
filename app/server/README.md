@@ -1,33 +1,34 @@
-Set up. Requires UV manager to run.
+Setup (requires `uv`)
 
-1. Create .env file and set up GenAI credentials as the example [.env.example](./.env.example)
+1. Create `.env` from [`./.env.example`](./.env.example).
+2. Fill required OCI variables:
+   - `COMPARTMENT_ID`
+   - `AUTH_PROFILE`
+   - `SERVICE_ENDPOINT`
+3. Fill required Apify variables:
+   - `APIFY_TOKEN`
+   - `APIFY_ACTOR` (default: `compass/crawler-google-places`)
+   - `APIFY_BASE_URL` (default: `https://api.apify.com`)
+   - `APIFY_DATA_MODE` (default: `live`)
+   - `DEFAULT_LOCATION` (fallback location for search queries without a place)
 
-2. To confirm set up is ready you can run [oci_agent.py](./agent/oci_agent.py) using
-```bash
-uv run ./agent/oci_agent.py
-```
+Mode behavior
 
-3. Confirm LLM setup is ready wunning [oci_llm.py](./chat/oci_llm.py) using
-```bash
-uv run ./chat/oci_llm.py
-```
+- `APIFY_DATA_MODE=live`:
+  - Calls Apify actor endpoint directly with schema-aligned input.
+  - If `APIFY_TOKEN` is missing/placeholder, the server logs an error and returns empty results.
+- `APIFY_DATA_MODE=static` (debug only):
+  - Loads local fixture data from `APIFY_STATIC_DIR` / `APIFY_STATIC_FILE` (or default fixture).
 
-3. Run the server with
+Run the server
+
 ```bash
 uv run __main__.py
 ```
 
-In case the project lock or toml file is broken, can reset using
+Optional reset if environment metadata is broken:
+
 ```bash
 uv init
 uv sync
 ```
-Add the dependencies from toml
-
-Run server to test right setup. Make sure to have API key and also the toml file dependencies.
-Path to a2ui tool.uv is required, if the default project is untouched no need to modify toml file.
-```bash
-uv run .
-```
-
-Add your OCI data on the ```.env``` file.

@@ -25,6 +25,7 @@ AGENT_INSTRUCTION = """
     - Determine the number of restaurants from the data.
     - If 5 or fewer restaurants, use the SINGLE_COLUMN_LIST_EXAMPLE template.
     - If more than 5 restaurants, use the TWO_COLUMN_LIST_EXAMPLE template.
+    - Render the `tags` text in each restaurant card when present.
     - Populate the dataModelUpdate.contents with the restaurant information.
 
     Output in the format: conversational text ---a2ui_JSON--- JSON list of A2UI messages
@@ -81,6 +82,51 @@ class PresenterAgent:
             system_prompt=instruction,
             name=self.agent_name
         )
+
+    @staticmethod
+    def _as_non_empty_string(value):
+        if value is None:
+            return None
+        if isinstance(value, str):
+            text = value.strip()
+            return text if text else None
+        text = str(value).strip()
+        return text if text else None
+
+    @classmethod
+    def _coalesce(cls, *values):
+        for value in values:
+            text = cls._as_non_empty_string(value)
+            if text:
+                return text
+        return None
+
+    @classmethod
+    def _canonicalize_formatter_item(cls, item):
+        if not isinstance(item, dict):
+            return item
+
+        normalized = dict(item)
+        location_value = normalized.get("location")
+        location_as_text = location_value if isinstance(location_value, str) else None
+
+        detail = cls._coalesce(normalized.get("detail"), normalized.get("caption"))
+        address = cls._coalesce(normalized.get("address"), location_as_text)
+        image_url = cls._coalesce(normalized.get("imageUrl"), normalized.get("imageURL"))
+        tags = cls._coalesce(normalized.get("tags"))
+        info_link = cls._coalesce(normalized.get("infoLink"))
+        info_link_markdown = cls._coalesce(
+            normalized.get("infoLinkMarkdown"),
+            f"[{info_link}]({info_link})" if info_link else None,
+        )
+
+        normalized["detail"] = detail or ""
+        normalized["address"] = address or ""
+        normalized["imageUrl"] = image_url or ""
+        normalized["tags"] = tags or ""
+        normalized["infoLink"] = info_link or ""
+        normalized["infoLinkMarkdown"] = info_link_markdown or ""
+        return normalized
     
     async def __call__(self, state):
         """Call the presenter agent to generate and validate UI from restaurant data."""
@@ -91,14 +137,7 @@ class PresenterAgent:
         try:
             parsed = json.loads(data)
             if isinstance(parsed, list):
-                # Shallow aliasing for UI compatibility: imageURL -> imageUrl
-                normalized_list = []
-                for it in parsed:
-                    if isinstance(it, dict):
-                        if "imageURL" in it and "imageUrl" not in it:
-                            it = {**it, "imageUrl": it.get("imageURL")}
-                    normalized_list.append(it)
-                formatter_items = normalized_list
+                formatter_items = [self._canonicalize_formatter_item(it) for it in parsed]
         except Exception:
             formatter_items = None
 

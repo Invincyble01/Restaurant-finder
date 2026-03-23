@@ -4,7 +4,7 @@
  of items with at least: { lat: number, lng: number, name?: string, infoLink?: string }.
  Optional properties:
   - zoom: number (default 12)
-  - height: string CSS size (default '360px')
+  - height: string CSS size (default '480px')
   - latField/lngField/titleField/linkField: override field names (defaults shown above)
 
  This component registers itself under the type name 'Map' in the A2UI
@@ -31,7 +31,7 @@ export class A2uiCustomMap extends Root {
   accessor zoom: number = 12;
 
   @property({ type: String })
-  accessor height: string = "360px";
+  accessor height: string = "480px";
 
   // Field names in each item
   @property({ type: String }) accessor latField: string = "lat";
@@ -41,6 +41,7 @@ export class A2uiCustomMap extends Root {
   @property({ type: String }) accessor ratingField: string = "rating";
   @property({ type: String }) accessor markerImageUrl: string =
     "https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png";
+  #mapLibreCssUrl = "https://unpkg.com/maplibre-gl@5.19.0/dist/maplibre-gl.css";
 
   // Use the shared processor passed down by a2ui-root via .processor
 
@@ -52,29 +53,80 @@ export class A2uiCustomMap extends Root {
       }
       #map {
         width: 100%;
-        height: var(--a2ui-map-height, 360px);
+        height: var(--a2ui-map-height, 480px);
         border-radius: 12px;
         overflow: hidden;
         position: relative;
         pointer-events: auto;
       }
-      #map * {
-        pointer-events: auto;
-      }
       /* Tooltip-style popup inside the map container */
       .maplibregl-popup {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        will-change: transform;
         max-width: 280px;
         font: 13px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         z-index: 10;
+        pointer-events: none;
+      }
+      .maplibregl-popup-anchor-top,
+      .maplibregl-popup-anchor-top-left,
+      .maplibregl-popup-anchor-top-right {
+        flex-direction: column;
+      }
+      .maplibregl-popup-anchor-bottom,
+      .maplibregl-popup-anchor-bottom-left,
+      .maplibregl-popup-anchor-bottom-right {
+        flex-direction: column-reverse;
+      }
+      .maplibregl-popup-anchor-left {
+        flex-direction: row;
+      }
+      .maplibregl-popup-anchor-right {
+        flex-direction: row-reverse;
       }
       .maplibregl-popup-content {
+        position: relative;
         border-radius: 8px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.25);
         padding: 8px 10px;
         background: rgba(255,255,255,0.95);
+        pointer-events: auto;
+      }
+      .maplibregl-popup-content * {
+        pointer-events: auto;
       }
       .maplibregl-popup-tip {
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
         border-top-color: rgba(255,255,255,0.95) !important;
+      }
+      .maplibregl-popup-anchor-top .maplibregl-popup-tip,
+      .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+      .maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+        align-self: center;
+        border-top: none;
+        border-bottom-color: rgba(255,255,255,0.95);
+      }
+      .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+      .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+      .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+        align-self: center;
+        border-bottom: none;
+        border-top-color: rgba(255,255,255,0.95);
+      }
+      .maplibregl-popup-anchor-left .maplibregl-popup-tip {
+        align-self: center;
+        border-left: none;
+        border-right-color: rgba(255,255,255,0.95);
+      }
+      .maplibregl-popup-anchor-right .maplibregl-popup-tip {
+        align-self: center;
+        border-right: none;
+        border-left-color: rgba(255,255,255,0.95);
       }
       .notice {
         font-size: 0.9rem;
@@ -95,9 +147,14 @@ export class A2uiCustomMap extends Root {
   #container?: HTMLDivElement;
   #mapLoaded = false;
   #hasFitOnce = false;
-  #hoverPopup?: any;
-  #currentFeatureCoordinates?: string;
+  #popup?: any;
   #layerId?: string;
+  #activePopupKey?: string;
+  #skipNextMapClickClose = false;
+  #popupContentEl?: HTMLElement;
+  #onPopupContentClick = (ev: Event) => {
+    ev.stopPropagation();
+  };
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -105,6 +162,7 @@ export class A2uiCustomMap extends Root {
   }
 
   firstUpdated(): void {
+    this.#ensureMapLibreCssInShadowRoot();
     // Load MapLibre dynamically if not present, then initialize.
     if ((window as any).maplibregl) {
       this.#initMapIfPossible();
@@ -116,6 +174,13 @@ export class A2uiCustomMap extends Root {
   updated(): void {
     // Update GeoJSON source when data changes.
     this.#updateSource();
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.#detachPopupClickGuard();
+    this.#popup?.remove();
+    this.#activePopupKey = undefined;
   }
 
   render() {
@@ -132,7 +197,6 @@ export class A2uiCustomMap extends Root {
 
     // Derive center from first marker if available.
     const items = this.#getItems();
-    console.log(items);
     const first = items.find((x) => this.#isFiniteCoord(x));
     const coord = first ? this.#getCoords(first) : null;
     const fallback = { lat: 30.2672, lng: -97.7431 }; // Austin, TX
@@ -204,47 +268,23 @@ export class A2uiCustomMap extends Root {
         this.#layerId = "restaurants-circles";
       }
 
-      // 3) Popup handlers (hover + click) using resolved layer id
+      // 3) Click-only popup handlers using resolved layer id
       const lid = this.#layerId!;
-      this.#hoverPopup = new window.maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, anchor: 'bottom' });
-
-      let lastHoverKey: string | undefined = undefined;
-      this.#map.on("mousemove", lid, (ev: any) => {
-        const f = ev.features?.[0];
-        if (!f) return;
-        const targetCoords = (f.geometry?.coordinates || []).slice();
-        // Anchor to the nearest world copy like maplibre-test.html
-        while (Math.abs(ev.lngLat.lng - targetCoords[0]) > 180) {
-          targetCoords[0] += ev.lngLat.lng > targetCoords[0] ? 360 : -360;
-        }
-        const hoverKey = `${f.id ?? 'noid'}|${targetCoords[0].toFixed(6)},${targetCoords[1].toFixed(6)}`;
-        if (hoverKey === lastHoverKey) return;
-        lastHoverKey = hoverKey;
-        const p = f.properties || {};
-        const html = this.#popupHtml({
-          [this.titleField]: p.title,
-          [this.ratingField]: p.rating,
-          [this.linkField]: p.link,
-        });
-        if (!html) return;
-        this.#map.getCanvas().style.cursor = "pointer";
-        this.#hoverPopup.setLngLat(targetCoords).setHTML(html).addTo(this.#map);
-      });
-
-      this.#map.on("mouseleave", lid, () => {
-        lastHoverKey = undefined;
-        this.#map.getCanvas().style.cursor = "";
-        this.#hoverPopup.remove();
+      this.#popup = new window.maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
       });
 
       this.#map.on("click", lid, (ev: any) => {
-        const f = ev.features?.[0];
+        this.#skipNextMapClickClose = true;
+        window.setTimeout(() => {
+          this.#skipNextMapClickClose = false;
+        }, 0);
+        const f = this.#pickClosestFeature(ev, lid);
         if (!f) return;
-        let [lng, lat] = f.geometry.coordinates;
-        // Anchor to the nearest world copy like maplibre-test.html
-        while (Math.abs(ev.lngLat.lng - lng) > 180) {
-          lng += ev.lngLat.lng > lng ? 360 : -360;
-        }
+        const targetCoords = this.#getWrappedCoords(ev, f);
+        if (!targetCoords) return;
+
         const p = f.properties || {};
         const html = this.#popupHtml({
           [this.titleField]: p.title,
@@ -252,12 +292,37 @@ export class A2uiCustomMap extends Root {
           [this.linkField]: p.link,
         });
         if (!html) return;
-        this.#hoverPopup.setLngLat([lng, lat]).setHTML(html).addTo(this.#map);
+
+        const popupKey = `${f.id ?? "noid"}|${targetCoords[0].toFixed(6)},${targetCoords[1].toFixed(6)}`;
+        if (popupKey === this.#activePopupKey && this.#popup?.isOpen?.()) {
+          this.#closePopup();
+          return;
+        }
+
+        this.#map.getCanvas().style.cursor = "pointer";
+        this.#popup.setLngLat(targetCoords).setHTML(html).addTo(this.#map);
+        this.#activePopupKey = popupKey;
+        this.#attachPopupClickGuard();
       });
 
-      // Remove global mousemove fallback to avoid conflicting anchors
+      this.#map.on("click", (ev: any) => {
+        if (this.#skipNextMapClickClose) {
+          this.#skipNextMapClickClose = false;
+          return;
+        }
+        const target = ev?.originalEvent?.target;
+        if (
+          this.#popupContentEl &&
+          target instanceof Node &&
+          this.#popupContentEl.contains(target)
+        ) {
+          return;
+        }
+        if (this.#hasLayerFeatureAtPoint(ev, lid)) return;
+        this.#closePopup();
+      });
 
-      // 5) Finalize
+      // 4) Finalize
       this.#mapLoaded = true;
       this.#map.resize();
       this.#updateSource();
@@ -277,7 +342,7 @@ export class A2uiCustomMap extends Root {
       const link = d.createElement("link");
       link.id = "maplibre-css";
       link.rel = "stylesheet";
-      link.href = "https://unpkg.com/maplibre-gl@5.19.0/dist/maplibre-gl.css";
+      link.href = this.#mapLibreCssUrl;
       d.head.appendChild(link);
     }
 
@@ -287,6 +352,16 @@ export class A2uiCustomMap extends Root {
     script.src = "https://unpkg.com/maplibre-gl@5.19.0/dist/maplibre-gl.js";
     script.onload = () => this.#initMapIfPossible();
     d.head.appendChild(script);
+  }
+
+  #ensureMapLibreCssInShadowRoot() {
+    if (!(this.renderRoot instanceof ShadowRoot)) return;
+    if (this.renderRoot.getElementById("maplibre-shadow-css")) return;
+    const link = document.createElement("link");
+    link.id = "maplibre-shadow-css";
+    link.rel = "stylesheet";
+    link.href = this.#mapLibreCssUrl;
+    this.renderRoot.appendChild(link);
   }
 
   #updateSource() {
@@ -346,21 +421,102 @@ export class A2uiCustomMap extends Root {
     }
   }
 
-  #ensurePopupInView() {
-    // No-op: map panning removed; MapLibre anchor/offset keeps popup near marker
+  #closePopup() {
+    this.#popup?.remove();
+    this.#activePopupKey = undefined;
+    this.#detachPopupClickGuard();
+    if (this.#map) {
+      this.#map.getCanvas().style.cursor = "";
+    }
   }
 
-  #adjustLngToCursor(featureLng: number, referenceLng: number): number {
-    const delta = referenceLng - featureLng;
-    const wraps = Math.round(delta / 360);
-    return featureLng + wraps * 360;
+  #detachPopupClickGuard() {
+    if (!this.#popupContentEl) return;
+    this.#popupContentEl.removeEventListener("click", this.#onPopupContentClick);
+    this.#popupContentEl = undefined;
+  }
+
+  #attachPopupClickGuard() {
+    if (!this.#popup) return;
+    const popupEl = this.#popup.getElement?.();
+    if (!(popupEl instanceof HTMLElement)) return;
+    const contentEl = popupEl.querySelector(".maplibregl-popup-content");
+    if (!(contentEl instanceof HTMLElement)) return;
+    if (this.#popupContentEl === contentEl) return;
+
+    this.#detachPopupClickGuard();
+    contentEl.addEventListener("click", this.#onPopupContentClick);
+    this.#popupContentEl = contentEl;
+  }
+
+  #hasLayerFeatureAtPoint(ev: any, layerId: string): boolean {
+    if (!this.#map || !ev?.point) return false;
+    try {
+      const features = this.#map.queryRenderedFeatures(ev.point, { layers: [layerId] }) ?? [];
+      return Array.isArray(features) && features.length > 0;
+    } catch {
+      return false;
+    }
+  }
+
+  #getFeatureCoords(feature: any): [number, number] | null {
+    if (!feature) return null;
+    const coords = feature?.geometry?.coordinates;
+    if (!Array.isArray(coords) || coords.length < 2) return null;
+    const lng = Number(coords[0]);
+    const lat = Number(coords[1]);
+    if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;
+    return [lng, lat];
+  }
+
+  #getWrappedCoords(ev: any, feature: any): [number, number] | null {
+    const coords = this.#getFeatureCoords(feature);
+    if (!coords) return null;
+    const wrapped: [number, number] = [coords[0], coords[1]];
+    while (Math.abs(ev?.lngLat?.lng - wrapped[0]) > 180) {
+      wrapped[0] += ev.lngLat.lng > wrapped[0] ? 360 : -360;
+    }
+    return wrapped;
+  }
+
+  #pickClosestFeature(ev: any, layerId: string): any | null {
+    if (!this.#map) return ev?.features?.[0] ?? null;
+    let features: any[] = [];
+    try {
+      features = this.#map.queryRenderedFeatures(ev.point, { layers: [layerId] }) ?? [];
+    } catch {
+      return ev?.features?.[0] ?? null;
+    }
+
+    if (!Array.isArray(features) || features.length === 0) {
+      return ev?.features?.[0] ?? null;
+    }
+    if (features.length === 1) {
+      return features[0];
+    }
+
+    let closest: any | null = null;
+    let closestDist = Number.POSITIVE_INFINITY;
+    for (const feature of features) {
+      const wrapped = this.#getWrappedCoords(ev, feature);
+      if (!wrapped) continue;
+      const p = this.#map.project(wrapped);
+      const dx = p.x - ev.point.x;
+      const dy = p.y - ev.point.y;
+      const dist = dx * dx + dy * dy;
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = feature;
+      }
+    }
+
+    return closest ?? features[0];
   }
 
   #popupHtml(item: any): string | null {
     const title = this.#toString(item[this.titleField]);
     const link = this.#toString(item[this.linkField]);
     const rating = this.#toString(item[this.ratingField]);
-    if (!title && !link && !rating) return null;
     const safeTitle = title ? this.#escapeHtml(title) : "Location";
     const safeRating = rating ? `<div style=\"margin-top:4px;color:#555\">${this.#escapeHtml(rating)}</div>` : "";
     const safeLink = link ? `<div style=\"margin-top:6px\"><a style=\"color:#3b82f6\" target=\"_blank\" href=\"${this.#escapeAttr(link)}\">Open</a></div>` : "";

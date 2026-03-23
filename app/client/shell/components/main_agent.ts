@@ -20,18 +20,15 @@ import {
 import { type Snackbar } from "../ui/snackbar.js";
 import { repeat } from "lit/directives/repeat.js";
 import { v0_8 } from "@a2ui/lit";
-import "./reservation-form.js";
 import * as UI from "@a2ui/lit/ui";
 
 // App elements.
 import "../ui/ui.js";
 import "./config_canvas.js"
-import "./stat_bar.js";
 
 // Configurations
 import { AppConfig } from "../configs/types.js";
 import { config as restaurantConfig } from "../configs/restaurant.js";
-import { agentConfig } from "../configs/agent_config.js";
 
 @customElement("dynamic-module")
 export class DynamicModule extends LitElement {
@@ -421,14 +418,6 @@ export class DynamicModule extends LitElement {
           background: ${this.color};
         }
       </style>
-      <stat-bar
-        .title=${this.title}
-        .time=${(this.#elapsedTime !== null || this.#currentElapsedTime !== null) ? `${((this.#elapsedTime || this.#currentElapsedTime || 0) / 1000).toFixed(2)}s` : '0.00s'}
-        .tokens=${'12456'}
-        .configUrl=${this.config.serverUrl + '/config'}
-        .configType=${'agent'}
-        .configData=${agentConfig}
-      ></stat-bar>
       ${this.#maybeRenderError()}
       ${this.#maybeRenderData()}
       ${this.#renderStatusWindow()}

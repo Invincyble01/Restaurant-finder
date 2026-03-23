@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import random
 import logging
 from urllib.parse import urlparse
 from typing import Any, Dict, List, Optional
@@ -30,8 +31,14 @@ class ApifyPlacesAgent:
         self.default_location = os.getenv("DEFAULT_LOCATION", "Austin, TX")
         self.actor_id = os.getenv("APIFY_ACTOR", "compass/crawler-google-places")
         self.base_url = os.getenv("APIFY_BASE_URL", "https://api.apify.com")
-        self.token = os.getenv("APIFY_TOKEN").strip()
-        self.data_mode = os.getenv("APIFY_DATA_MODE", "static").lower()
+        self.token = (os.getenv("APIFY_TOKEN") or "").strip()
+        raw_mode = (os.getenv("APIFY_DATA_MODE", "live") or "live").strip().lower()
+        self.data_mode = raw_mode if raw_mode in ("live", "static") else "live"
+        if raw_mode not in ("live", "static"):
+            logger.warning(
+                "Unsupported APIFY_DATA_MODE='%s'. Falling back to 'live'.",
+                raw_mode,
+            )
         self.static_dir = os.getenv("APIFY_STATIC_DIR", os.path.join(os.path.dirname(os.path.dirname(__file__)), "static_data", "apify"),)
         self.static_file = os.getenv("APIFY_STATIC_FILE", "").strip()
 
@@ -43,25 +50,32 @@ class ApifyPlacesAgent:
     async def __call__(self, state: Dict[str, Any]) -> Dict[str, Any]:
         user_text = str(state["messages"][0].content)
         # Derive desired count
-        count = self._extract_count(user_text, default=5)
+        count = self._extract_count(user_text, default=10)
 
         # Build actor input with LLM guidance; fallback to heuristic
         actor_input = await self._build_actor_input_llm(user_text, count)
         if not actor_input:
             actor_input = self._map_query_to_actor_input(user_text)
-            actor_input["maxItems"] = count
 
-        # Ensure maxItems present
-        actor_input.setdefault("maxItems", count)
-        actor_input.setdefault("language", "en")
+        actor_input = self._sanitize_actor_input(actor_input, count) or self._map_query_to_actor_input(user_text)
 
         # Call Apify and return RAW items so downstream FormatterAgent
         # can normalize while preserving coordinates (lat/lng) for the map.
         items = await self._run_apify_actor(actor_input)
-        items = items[:count] if isinstance(items, list) else []
+        items = self._sample_items(items, count)
         return {"messages": state["messages"] + [AIMessage(content=json.dumps(items, ensure_ascii=False))]}
 
-    def _extract_count(self, text: str, default: int = 5) -> int:
+    @staticmethod
+    def _sample_items(items: Any, count: int) -> List[Dict[str, Any]]:
+        if not isinstance(items, list):
+            return []
+        dict_items = [item for item in items if isinstance(item, dict)]
+        if not dict_items:
+            return []
+        sample_size = min(max(1, count), len(dict_items))
+        return random.sample(dict_items, sample_size)
+
+    def _extract_count(self, text: str, default: int = 10) -> int:
         m = re.search(r"(\d+)", text)
         try:
             return max(1, min(50, int(m.group(1)))) if m else default
@@ -78,6 +92,16 @@ class ApifyPlacesAgent:
                 except Exception:
                     pass
         return None
+
+    def _extract_place_ids(self, text: str) -> List[str]:
+        if not text:
+            return []
+        matches = re.findall(r"\bChI[A-Za-z0-9_-]{8,}\b", text)
+        out: List[str] = []
+        for pid in matches:
+            if pid not in out:
+                out.append(pid)
+        return out
 
     def _extract_location(self, text: str) -> Optional[str]:
         t = (text or "").strip()
@@ -116,30 +140,148 @@ class ApifyPlacesAgent:
             t = f"{t} restaurants" if t else "restaurants"
         return t
 
-    def _ensure_search_string(self, text: str) -> str:
-        t = text.strip()
-        # Remove prefix like "Top 5" etc.
-        t = re.sub(r"(?i)\btop\s+\d+\b", "", t).strip()
-        # Ensure a place-type keyword exists
-        if not re.search(r"(?i)\b(restaurant|restaurants|cafe|cafes|coffee|bar|bistro)\b", t):
-            t = f"{t} restaurants"
-        # Ensure location
-        # If user already provided a probable location word (e.g., Hyderabad), don't append default
-        has_in_phrase = re.search(r"(?i)\bin\s+.+", t)
-        has_comma_place = ("," in t)
-        probable_city_word = re.search(r"(?<!\S)[A-Z][a-zA-Z]+(\s+[A-Z][a-zA-Z]+)*", t)
-        if not (has_in_phrase or has_comma_place or probable_city_word):
-            t = f"{t} in {self.default_location}"
-        return t
+    def _normalize_start_urls(self, value: Any) -> List[Dict[str, str]]:
+        entries = value if isinstance(value, list) else [value]
+        start_urls: List[Dict[str, str]] = []
+        for entry in entries:
+            url = None
+            if isinstance(entry, dict):
+                url = entry.get("url")
+            elif isinstance(entry, str):
+                url = entry
+            if not isinstance(url, str):
+                continue
+            candidate = url.strip()
+            if not candidate:
+                continue
+            try:
+                parsed = urlparse(candidate)
+            except Exception:
+                continue
+            if parsed.scheme in ("http", "https") and parsed.netloc:
+                start_urls.append({"url": candidate})
+            if len(start_urls) >= 10:
+                break
+        return start_urls
+
+    def _normalize_place_ids(self, value: Any) -> List[str]:
+        if isinstance(value, str):
+            parts = re.split(r"[\s,]+", value.strip())
+        elif isinstance(value, list):
+            parts = [str(v).strip() for v in value if isinstance(v, str)]
+        else:
+            return []
+
+        out: List[str] = []
+        for part in parts:
+            if re.fullmatch(r"ChI[A-Za-z0-9_-]{8,}", part) and part not in out:
+                out.append(part)
+            if len(out) >= 25:
+                break
+        return out
+
+    def _normalize_search_strings(self, value: Any, location: Optional[str]) -> List[str]:
+        if isinstance(value, str):
+            raw_terms: List[str] = [value]
+        elif isinstance(value, list):
+            raw_terms = [t for t in value if isinstance(t, str)]
+        else:
+            raw_terms = []
+
+        out: List[str] = []
+        for term in raw_terms[:5]:
+            cleaned = self._sanitize_query_terms(term, location)
+            if cleaned and cleaned not in out:
+                out.append(cleaned)
+            if len(out) >= 3:
+                break
+        return out
+
+    @staticmethod
+    def _to_bool(value: Any) -> Optional[bool]:
+        if isinstance(value, bool):
+            return value
+        return None
+
+    def _sanitize_actor_input(self, candidate: Dict[str, Any], count: int) -> Optional[Dict[str, Any]]:
+        if not isinstance(candidate, dict):
+            return None
+
+        safe_count = self._extract_count(str(candidate.get("maxCrawledPlacesPerSearch", count)), default=count)
+        if "maxCrawledPlacesPerSearch" in candidate:
+            try:
+                safe_count = max(1, min(50, int(candidate["maxCrawledPlacesPerSearch"])))
+            except Exception:
+                safe_count = count
+        elif "maxItems" in candidate:
+            try:
+                safe_count = max(1, min(50, int(candidate["maxItems"])))
+            except Exception:
+                safe_count = count
+
+        out: Dict[str, Any] = {
+            "maxCrawledPlacesPerSearch": max(1, min(50, safe_count)),
+            "language": "en",
+            "searchMatching": "all",
+            "skipClosedPlaces": True,
+            "includeWebResults": False,
+        }
+
+        language = candidate.get("language")
+        if isinstance(language, str) and language.strip():
+            out["language"] = language.strip()
+
+        search_matching = candidate.get("searchMatching")
+        if search_matching in ("all", "any"):
+            out["searchMatching"] = search_matching
+
+        skip_closed = self._to_bool(candidate.get("skipClosedPlaces"))
+        if skip_closed is not None:
+            out["skipClosedPlaces"] = skip_closed
+
+        include_web = self._to_bool(candidate.get("includeWebResults"))
+        if include_web is not None:
+            out["includeWebResults"] = include_web
+
+        start_urls = self._normalize_start_urls(candidate.get("startUrls"))
+        place_ids = self._normalize_place_ids(candidate.get("placeIds"))
+
+        location = candidate.get("locationQuery")
+        if not isinstance(location, str) or not location.strip():
+            location = self.default_location
+        location = location.strip()
+
+        search_strings = self._normalize_search_strings(candidate.get("searchStringsArray"), location)
+
+        if start_urls:
+            out["startUrls"] = start_urls
+        elif place_ids:
+            out["placeIds"] = place_ids
+        else:
+            out["locationQuery"] = location
+            if search_strings:
+                out["searchStringsArray"] = search_strings
+            else:
+                return None
+
+        return out
 
     def _map_query_to_actor_input(self, user_text: str) -> Dict[str, Any]:
-        count = self._extract_count(user_text, default=5)
+        count = self._extract_count(user_text, default=10)
         maps_url = self._extract_url(user_text)
-
-        actor_input: Dict[str, Any] = {"maxItems": count, "language": "en"}
+        place_ids = self._extract_place_ids(user_text)
+        actor_input: Dict[str, Any] = {
+            "maxCrawledPlacesPerSearch": count,
+            "language": "en",
+            "searchMatching": "all",
+            "skipClosedPlaces": True,
+            "includeWebResults": False,
+        }
 
         if maps_url:
             actor_input["startUrls"] = [{"url": maps_url}]
+        elif place_ids:
+            actor_input["placeIds"] = place_ids
         else:
             loc = self._extract_location(user_text) or self.default_location
             terms = self._sanitize_query_terms(user_text, loc)
@@ -161,16 +303,20 @@ class ApifyPlacesAgent:
         """Use LLM to craft valid actor input JSON.
         - Prefer searchStringsArray with 1–3 optimized queries
         - If a Google Maps URL is present, use startUrls instead
-        - Always include maxItems and language: 'en'
-        - If user provided a location (e.g., Hyderabad), DO NOT append default location
+        - Support placeIds when present
+        - Always include maxCrawledPlacesPerSearch and language: 'en'
+        - If user provided a location, keep it in locationQuery only
         """
         guidelines = (
             "Build input for Apify actor 'compass/crawler-google-places'. Return JSON only.\n"
-            "Include: maxItems (int), language ('en'), and one of: searchStringsArray (preferred), startUrls, or categoryFilterWords.\n"
+            "Use ONLY actor-supported keys: maxCrawledPlacesPerSearch, language, searchMatching, skipClosedPlaces, includeWebResults, searchStringsArray, locationQuery, startUrls, placeIds.\n"
+            "Include one source among: searchStringsArray (+ locationQuery), startUrls, or placeIds.\n"
             "Use locationQuery for the location. Do NOT include the location inside searchStringsArray.\n"
             f"If the user did not provide a location, set locationQuery to '{self.default_location}'.\n"
             "If a Google Maps URL is present, use startUrls instead of searchStringsArray.\n"
-            "Provide 1-3 search strings; (e.g., 'chinese restaurants', 'coffee shops')."
+            "If place IDs are present, use placeIds.\n"
+            f"Set maxCrawledPlacesPerSearch to {count}. Use language 'en', searchMatching 'all', skipClosedPlaces true, includeWebResults false unless user asks otherwise.\n"
+            "Provide 1-3 search strings (e.g., 'chinese restaurants', 'coffee shops')."
         )
         prompt = (
             f"USER_QUERY: {user_text}\n"
@@ -186,36 +332,7 @@ class ApifyPlacesAgent:
             data = json.loads(text)
             if not isinstance(data, dict):
                 return None
-            out: Dict[str, Any] = {"maxItems": max(1, min(50, int(count))), "language": "en"}
-            if data.get("startUrls"):
-                out["startUrls"] = data["startUrls"]
-            if data.get("categoryFilterWords"):
-                out["categoryFilterWords"] = data["categoryFilterWords"][:5]
-            if isinstance(data.get("maxItems"), int):
-                out["maxItems"] = max(1, min(50, int(data["maxItems"])) )
-            if isinstance(data.get("language"), str):
-                out["language"] = data["language"]
-            # If startUrls not present, enforce/synthesize locationQuery and sanitize search strings
-            if not out.get("startUrls"):
-                loc = data.get("locationQuery")
-                if isinstance(loc, str) and loc.strip():
-                    out["locationQuery"] = loc.strip()
-                else:
-                    out["locationQuery"] = self.default_location
-                if data.get("searchStringsArray"):
-                    terms: List[str] = []
-                    for t in data["searchStringsArray"][:3]:
-                        if isinstance(t, str):
-                            cleaned = self._sanitize_query_terms(t, out["locationQuery"]) \
-                                if hasattr(self, "_sanitize_query_terms") else t
-                            if cleaned:
-                                terms.append(cleaned)
-                    if terms:
-                        out["searchStringsArray"] = terms
-            # Ensure at least one required key besides maxItems/language
-            if not any(k in out for k in ("searchStringsArray", "startUrls", "categoryFilterWords")):
-                return None
-            return out
+            return self._sanitize_actor_input(data, count)
         except Exception as e:
             logger.warning("LLM actor-input mapping failed; using heuristic. Error: %s", e)
             return None
@@ -224,12 +341,12 @@ class ApifyPlacesAgent:
         if not items:
             return []
         schema_hint = (
-            "Return a JSON array of exactly N items with keys: name, caption, rating, location, imageURL, infoLink.\n"
+            "Return a JSON array of exactly N items with keys: name, detail, rating, address, imageUrl, infoLink.\n"
             "- name ← 'title' (or 'name')\n"
-            "- caption ← 'categoryName' or first of 'categories'\n"
+            "- detail ← 'categoryName' or first of 'categories' or description\n"
             "- rating ← unicode stars from numeric 'totalScore' (>=4.5★★★★★, >=3.5★★★★☆, >=2.5★★★☆☆, >=1.5★★☆☆☆, >=0.5★☆☆☆☆, else ☆☆☆☆☆)\n"
-            "- location ← 'address' (or 'city' + 'state')\n"
-            "- imageURL ← 'imageUrl' if present\n"
+            "- address ← 'address' (or 'city' + 'state')\n"
+            "- imageUrl ← 'imageUrl' if present\n"
             "- infoLink ← 'website' else 'url' else 'searchPageUrl'\n"
         )
         prompt = (
@@ -276,17 +393,17 @@ class ApifyPlacesAgent:
         out: List[Dict[str, Any]] = []
         for it in items[:count]:
             name = it.get("title") or it.get("name") or "Unknown"
-            caption = it.get("categoryName") or (it.get("categories") or [None])[0] or "Popular spot"
+            detail = it.get("categoryName") or (it.get("categories") or [None])[0] or it.get("description") or "Popular spot"
             rating_s = stars(it.get("totalScore") or it.get("rating"))
-            location = it.get("address") or ", ".join([v for v in [it.get("city"), it.get("state")] if v]) or self.default_location
+            address = it.get("address") or ", ".join([v for v in [it.get("city"), it.get("state")] if v]) or self.default_location
             image = it.get("imageUrl") or ""
             info = it.get("website") or it.get("url") or it.get("searchPageUrl") or ""
             out.append({
                 "name": name,
-                "caption": caption,
+                "detail": detail,
                 "rating": rating_s,
-                "location": location,
-                "imageURL": image,
+                "address": address,
+                "imageUrl": image,
                 "infoLink": info,
             })
         i = 0
@@ -296,8 +413,12 @@ class ApifyPlacesAgent:
         return out
 
     async def _run_apify_actor(self, actor_input: Dict[str, Any]) -> List[Dict[str, Any]]:
-        if self.data_mode == "static" or (not self.token or self.token.startswith("<")):
+        if self.data_mode == "static":
             return self._load_static_items(actor_input)
+
+        if not self.token or self.token.startswith("<"):
+            logger.error("APIFY_TOKEN is missing or placeholder; live mode call skipped.")
+            return []
 
         url = f"{self.base_url}/v2/acts/{self.actor_id.replace('/', '~')}/run-sync-get-dataset-items"
         headers = {"Authorization": f"Bearer {self.token}", "X-Apify-Token": self.token}

@@ -12,13 +12,12 @@ RESTAURANT_UI_EXAMPLES = """
       {{ "id": "item-card-template", "component": {{ "Card": {{ "child": "card-layout" }} }} }},
       {{ "id": "card-layout", "component": {{ "Row": {{ "children": {{ "explicitList": ["template-image", "card-details"] }} }} }} }},
       {{ "id": "template-image", weight: 1, "component": {{ "Image": {{ "url": {{ "path": "imageUrl" }} }} }} }},
-      {{ "id": "card-details", weight: 2, "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name", "template-rating", "template-detail", "template-link", "template-book-button"] }} }} }} }},
+      {{ "id": "card-details", weight: 2, "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name", "template-rating", "template-tags", "template-link", "template-reservation-dialog"] }} }} }} }},
       {{ "id": "template-name", "component": {{ "Text": {{ "usageHint": "h3", "text": {{ "path": "name" }} }} }} }},
       {{ "id": "template-rating", "component": {{ "Text": {{ "text": {{ "path": "rating" }} }} }} }},
-      {{ "id": "template-detail", "component": {{ "Text": {{ "text": {{ "path": "detail" }} }} }} }},
-      {{ "id": "template-link", "component": {{ "Text": {{ "text": {{ "path": "infoLink" }} }} }} }},
-      {{ "id": "template-book-button", "component": {{ "Button": {{ "child": "book-now-text", "primary": true, "action": {{ "name": "book_restaurant", "context": [ {{ "key": "restaurantName", "value": {{ "path": "name" }} }}, {{ "key": "imageUrl", "value": {{ "path": "imageUrl" }} }}, {{ "key": "address", "value": {{ "path": "address" }} }} ] }} }} }} }},
-      {{ "id": "book-now-text", "component": {{ "Text": {{ "text": {{ "literalString": "Book Now" }} }} }} }}
+      {{ "id": "template-tags", "component": {{ "Text": {{ "usageHint": "caption", "text": {{ "path": "tags" }} }} }} }},
+      {{ "id": "template-link", "component": {{ "Text": {{ "text": {{ "path": "infoLinkMarkdown" }} }} }} }},
+      {{ "id": "template-reservation-dialog", "component": {{ "ReservationDialog": {{ "triggerLabel": {{ "literalString": "Book Now" }}, "restaurantName": {{ "path": "name" }}, "restaurantImageUrl": {{ "path": "imageUrl" }}, "restaurantAddress": {{ "path": "address" }} }} }} }}
     ]
   }} }},
   {{ "dataModelUpdate": {{
@@ -28,17 +27,21 @@ RESTAURANT_UI_EXAMPLES = """
       {{ "key": "items", "valueMap": [
         {{ "key": "item1", "valueMap": [
           {{ "key": "name", "valueString": "The Fancy Place" }},
-          {{ "key": "rating", "valueNumber": 4.8 }},
+          {{ "key": "rating", "valueString": "★★★★★ | 3456 ratings" }},
           {{ "key": "detail", "valueString": "Fine dining experience" }},
+          {{ "key": "tags", "valueString": "Vegetarian options | Bar onsite | Free street parking" }},
           {{ "key": "infoLink", "valueString": "https://example.com/fancy" }},
+          {{ "key": "infoLinkMarkdown", "valueString": "[https://example.com/fancy](https://example.com/fancy)" }},
           {{ "key": "imageUrl", "valueString": "https://example.com/fancy.jpg" }},
           {{ "key": "address", "valueString": "123 Main St" }}
         ] }},
         {{ "key": "item2", "valueMap": [
           {{ "key": "name", "valueString": "Quick Bites" }},
-          {{ "key": "rating", "valueNumber": 4.2 }},
+          {{ "key": "rating", "valueString": "★★★★☆ | 1285 ratings" }},
           {{ "key": "detail", "valueString": "Casual and fast" }},
+          {{ "key": "tags", "valueString": "Takeout | Cozy | Accepts reservations" }},
           {{ "key": "infoLink", "valueString": "https://example.com/quick" }},
+          {{ "key": "infoLinkMarkdown", "valueString": "[https://example.com/quick](https://example.com/quick)" }},
           {{ "key": "imageUrl", "valueString": "https://example.com/quick.jpg" }},
           {{ "key": "address", "valueString": "456 Oak Ave" }}
         ] }}
@@ -54,30 +57,28 @@ RESTAURANT_UI_EXAMPLES = """
   {{ "surfaceUpdate": {{
     "surfaceId": "default",
     "components": [
-      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "map-view", "restaurant-row-1"] }} }} }} }},
+      {{ "id": "root-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["title-heading", "restaurant-row-1", "map-view"] }} }} }} }},
             {{ "id": "map-view", "component": {{ "Map": {{ "dataPath": "/items", "height": "360px" }} }} }},
       {{ "id": "title-heading", "component": {{ "Text": {{ "usageHint": "h1", "text": {{ "path": "title" }} }} }} }},
       {{ "id": "restaurant-row-1", "component": {{ "Row": {{ "children": {{ "explicitList": ["item-card-1", "item-card-2"] }} }} }} }},
       {{ "id": "item-card-1", "weight": 1, "component": {{ "Card": {{ "child": "card-layout-1" }} }} }},
       {{ "id": "card-layout-1", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-image-1", "card-details-1"] }} }} }} }},
       {{ "id": "template-image-1", "component": {{ "Image": {{ "url": {{ "path": "/items/0/imageUrl" }}, "width": "100%" }} }} }},
-      {{ "id": "card-details-1", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name-1", "template-rating-1", "template-detail-1", "template-link-1", "template-book-button-1"] }} }} }} }},
+      {{ "id": "card-details-1", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name-1", "template-rating-1", "template-tags-1", "template-link-1", "template-reservation-dialog-1"] }} }} }} }},
       {{ "id": "template-name-1", "component": {{ "Text": {{ "usageHint": "h3", "text": {{ "path": "/items/0/name" }} }} }} }},
       {{ "id": "template-rating-1", "component": {{ "Text": {{ "text": {{ "path": "/items/0/rating" }} }} }} }},
-      {{ "id": "template-detail-1", "component": {{ "Text": {{ "text": {{ "path": "/items/0/detail" }} }} }} }},
-      {{ "id": "template-link-1", "component": {{ "Text": {{ "text": {{ "path": "/items/0/infoLink" }} }} }} }},
-      {{ "id": "template-book-button-1", "component": {{ "Button": {{ "child": "book-now-text-1", "action": {{ "name": "book_restaurant", "context": [ {{ "key": "restaurantName", "value": {{ "path": "/items/0/name" }} }}, {{ "key": "imageUrl", "value": {{ "path": "/items/0/imageUrl" }} }}, {{ "key": "address", "value": {{ "path": "/items/0/address" }} }} ] }} }} }} }},
-      {{ "id": "book-now-text-1", "component": {{ "Text": {{ "text": {{ "literalString": "Book Now" }} }} }} }},
+      {{ "id": "template-tags-1", "component": {{ "Text": {{ "usageHint": "caption", "text": {{ "path": "/items/0/tags" }} }} }} }},
+      {{ "id": "template-link-1", "component": {{ "Text": {{ "text": {{ "path": "/items/0/infoLinkMarkdown" }} }} }} }},
+      {{ "id": "template-reservation-dialog-1", "component": {{ "ReservationDialog": {{ "triggerLabel": {{ "literalString": "Book Now" }}, "restaurantName": {{ "path": "/items/0/name" }}, "restaurantImageUrl": {{ "path": "/items/0/imageUrl" }}, "restaurantAddress": {{ "path": "/items/0/address" }} }} }} }},
       {{ "id": "item-card-2", "weight": 1, "component": {{ "Card": {{ "child": "card-layout-2" }} }} }},
       {{ "id": "card-layout-2", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-image-2", "card-details-2"] }} }} }} }},
       {{ "id": "template-image-2", "component": {{ "Image": {{ "url": {{ "path": "/items/1/imageUrl" }}, "width": "100%" }} }} }},
-      {{ "id": "card-details-2", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name-2", "template-rating-2", "template-detail-2", "template-link-2", "template-book-button-2"] }} }} }} }},
+      {{ "id": "card-details-2", "component": {{ "Column": {{ "children": {{ "explicitList": ["template-name-2", "template-rating-2", "template-tags-2", "template-link-2", "template-reservation-dialog-2"] }} }} }} }},
       {{ "id": "template-name-2", "component": {{ "Text": {{ "usageHint": "h3", "text": {{ "path": "/items/1/name" }} }} }} }},
       {{ "id": "template-rating-2", "component": {{ "Text": {{ "text": {{ "path": "/items/1/rating" }} }} }} }},
-      {{ "id": "template-detail-2", "component": {{ "Text": {{ "text": {{ "path": "/items/1/detail" }} }} }} }},
-      {{ "id": "template-link-2", "component": {{ "Text": {{ "text": {{ "path": "/items/1/infoLink" }} }} }} }},
-      {{ "id": "template-book-button-2", "component": {{ "Button": {{ "child": "book-now-text-2", "action": {{ "name": "book_restaurant", "context": [ {{ "key": "restaurantName", "value": {{ "path": "/items/1/name" }} }}, {{ "key": "imageUrl", "value": {{ "path": "/items/1/imageUrl" }} }}, {{ "key": "address", "value": {{ "path": "/items/1/address" }} }} ] }} }} }} }},
-      {{ "id": "book-now-text-2", "component": {{ "Text": {{ "text": {{ "literalString": "Book Now" }} }} }} }}
+      {{ "id": "template-tags-2", "component": {{ "Text": {{ "usageHint": "caption", "text": {{ "path": "/items/1/tags" }} }} }} }},
+      {{ "id": "template-link-2", "component": {{ "Text": {{ "text": {{ "path": "/items/1/infoLinkMarkdown" }} }} }} }},
+      {{ "id": "template-reservation-dialog-2", "component": {{ "ReservationDialog": {{ "triggerLabel": {{ "literalString": "Book Now" }}, "restaurantName": {{ "path": "/items/1/name" }}, "restaurantImageUrl": {{ "path": "/items/1/imageUrl" }}, "restaurantAddress": {{ "path": "/items/1/address" }} }} }} }}
     ]
   }} }},
   {{ "dataModelUpdate": {{
@@ -88,17 +89,21 @@ RESTAURANT_UI_EXAMPLES = """
       {{ "key": "items", "valueMap": [
         {{ "key": "item1", "valueMap": [
           {{ "key": "name", "valueString": "The Fancy Place" }},
-          {{ "key": "rating", "valueNumber": 4.8 }},
+          {{ "key": "rating", "valueString": "★★★★★ | 3456 ratings" }},
           {{ "key": "detail", "valueString": "Fine dining experience" }},
+          {{ "key": "tags", "valueString": "Vegetarian options | Bar onsite | Free street parking" }},
           {{ "key": "infoLink", "valueString": "https://example.com/fancy" }},
+          {{ "key": "infoLinkMarkdown", "valueString": "[https://example.com/fancy](https://example.com/fancy)" }},
           {{ "key": "imageUrl", "valueString": "https://example.com/fancy.jpg" }},
           {{ "key": "address", "valueString": "123 Main St" }}
         ] }},
         {{ "key": "item2", "valueMap": [
           {{ "key": "name", "valueString": "Quick Bites" }},
-          {{ "key": "rating", "valueNumber": 4.2 }},
+          {{ "key": "rating", "valueString": "★★★★☆ | 1285 ratings" }},
           {{ "key": "detail", "valueString": "Casual and fast" }},
+          {{ "key": "tags", "valueString": "Takeout | Cozy | Accepts reservations" }},
           {{ "key": "infoLink", "valueString": "https://example.com/quick" }},
+          {{ "key": "infoLinkMarkdown", "valueString": "[https://example.com/quick](https://example.com/quick)" }},
           {{ "key": "imageUrl", "valueString": "https://example.com/quick.jpg" }},
           {{ "key": "address", "valueString": "456 Oak Ave" }}
         ] }}

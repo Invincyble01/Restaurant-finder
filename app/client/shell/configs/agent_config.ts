@@ -5,14 +5,14 @@ const agents = {
     model: "xai.grok-4-fast-non-reasoning",
     temperature: 0.3,
     name: "apify_places_agent",
-    systemPrompt: "You find restaurants and cafes using an MCP tool. Always call the discovered Google Places tool with the user's text as a single-element 'queries' array and 'maxItems' from the text (default 5). Return ONLY the tool JSON.",
+    systemPrompt: "You find restaurants and cafes using the Apify crawler-google-places schema. Prefer searchStringsArray + locationQuery (or startUrls/placeIds when present), set maxCrawledPlacesPerSearch from the user's count (default 5), and return only tool JSON.",
     toolsEnabled: ["compass/crawler-google-places"]
   },
   "formatter_agent": {
     model: "openai.gpt-4.1",
     temperature: 0.2,
     name: "formatter_agent",
-    systemPrompt: "Normalize raw place items to an array of {name, caption, rating, location, imageURL, infoLink}. Return JSON only.",
+    systemPrompt: "Normalize raw place items to an array of {name, detail, rating, address, imageUrl, infoLink, infoLinkMarkdown, lat?, lng?}. Include reviewsCount in rating display when available (e.g., '★★★★★ | 3456 ratings'). Prefer Apify raw fields like title/categoryName/totalScore/address/imageUrl/website.",
     toolsEnabled: []
   },
   "presenter_agent": {

@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-import { html, css, nothing } from "lit";
+import { html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import { Root } from "./root.js";
 import { classMap } from "lit/directives/class-map.js";
@@ -111,11 +111,19 @@ export class Card extends Root {
   }
 
   render() {
+    const cardStyles = this.theme.additionalStyles?.Card ?? {};
+    const resolvedStyles = {
+      background: `var(--a2ui-card-background, ${cardStyles.background ?? "transparent"})`,
+      borderRadius: `var(--a2ui-card-border-radius, ${cardStyles.borderRadius ?? "0px"})`,
+      boxShadow: `var(--a2ui-card-box-shadow, ${cardStyles.boxShadow ?? "none"})`,
+      border: `var(--a2ui-card-border, ${cardStyles.border ?? "none"})`,
+      overflow: `var(--a2ui-card-overflow, ${cardStyles.overflow ?? "visible"})`,
+      padding: `var(--a2ui-card-padding, ${cardStyles.padding ?? "0px"})`,
+    };
+
     return html` <section
       class=${classMap(this.theme.components.Card)}
-      style=${this.theme.additionalStyles?.Card
-        ? styleMap(this.theme.additionalStyles?.Card)
-        : nothing}
+      style=${styleMap(resolvedStyles)}
     >
       <slot></slot>
     </section>`;

@@ -104,13 +104,20 @@ export class Image extends Root {
       this.theme.components.Image.all,
       this.usageHint ? this.theme.components.Image[this.usageHint] : {}
     );
+    const imageStyles = this.theme.additionalStyles?.Image ?? {};
+    const resolvedStyles = {
+      background: `var(--a2ui-image-background, ${imageStyles.background ?? "transparent"})`,
+      borderRadius: `var(--a2ui-image-border-radius, ${imageStyles.borderRadius ?? "0px"})`,
+      overflow: `var(--a2ui-image-overflow, ${imageStyles.overflow ?? "visible"})`,
+      aspectRatio: `var(--a2ui-image-aspect-ratio, ${imageStyles.aspectRatio ?? "auto"})`,
+      minHeight: `var(--a2ui-image-min-height, ${imageStyles.minHeight ?? "0px"})`,
+      height: "var(--a2ui-image-height, auto)",
+      "--object-fit": this.fit ?? "fill",
+    };
 
     return html`<section
       class=${classMap(classes)}
-      style=${styleMap({
-        ...(this.theme.additionalStyles?.Image ?? {}),
-        "--object-fit": this.fit ?? "fill",
-      })}
+      style=${styleMap(resolvedStyles)}
     >
       ${this.#renderImage()}
     </section>`;

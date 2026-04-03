@@ -99,22 +99,27 @@ export class A2uiReservationDialog extends Root {
       .trigger {
         appearance: none;
         border: 0;
-        border-radius: 999px;
-        padding: 0.7rem 1.1rem;
-        background: linear-gradient(135deg, var(--rf-primary), var(--rf-primary-strong));
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 10px 24px;
+        background: #00685d;
         color: var(--rf-primary-contrast);
-        font-size: 0.82rem;
+        font-family: var(--font-copy);
+        font-size: 0.9rem;
         font-weight: 700;
         cursor: pointer;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        text-transform: none;
         transition: transform 120ms ease, box-shadow 140ms ease, opacity 140ms ease;
-        box-shadow: 0 16px 34px rgba(0, 107, 95, 0.18);
+        box-shadow: 0 10px 20px rgba(0, 107, 95, 0.12);
       }
 
       .trigger:hover {
         transform: translateY(-1px);
-        box-shadow: 0 20px 38px rgba(0, 107, 95, 0.22);
+        box-shadow: 0 14px 26px rgba(0, 107, 95, 0.16);
       }
 
       .trigger:active {

@@ -17,14 +17,13 @@
 import { v0_8 } from "@a2ui/lit";
 
 const link = {
-  "typography-f-sf": true,
+  "typography-f-s": true,
   "typography-fs-n": true,
-  "typography-w-500": true,
+  "typography-w-600": true,
   "layout-as-n": true,
   "layout-dis-iflx": true,
   "layout-al-c": true,
-  "typography-td-none": true,
-  "color-c-p40": true,
+  "color-c-t40": true,
 };
 
 const body = {
@@ -103,8 +102,13 @@ export const theme: v0_8.Types.Theme = {
       gap: "14px",
     },
     List: {
-      gap: "24px",
+      gap: "32px",
       padding: "0",
+    },
+    Divider: {
+      background: "#EEEEEE",
+      height: "1px",
+      margin: "0",
     },
     Image: {
       background: "linear-gradient(180deg, rgba(0, 104, 93, 0.08), rgba(0, 104, 93, 0.02))",

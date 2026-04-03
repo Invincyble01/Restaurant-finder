@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import re
 from langchain.agents import create_agent
 from langchain_oci import ChatOCIGenAI
 from langchain.messages import HumanMessage, AIMessage
@@ -27,8 +28,12 @@ AGENT_INSTRUCTION = """
     - If 5 or fewer restaurants, use the SINGLE_COLUMN_LIST_EXAMPLE template.
     - If more than 5 restaurants, use the TWO_COLUMN_LIST_EXAMPLE template.
     - The restaurant results view must use image-led editorial cards with the map displayed beside the list, not the older image-left utility card layout.
-    - Render the `tags` text in each restaurant card when present.
+    - Use the exact restaurant-results component ids shown in the examples so the client styling hooks apply correctly.
+    - Each restaurant card must follow the Figma layout for node 1:258 using the custom `RestaurantCard` component inside the item card template.
+    - The left link label must be exactly `Visit site`; never render a raw URL as visible text in the card.
+    - Render a top-right numeric rating badge overlay when rating data is present, place the ratings-count text beside the restaurant name when present, and render tag pills when tags are present.
     - Keep the reservation trigger in every restaurant card.
+    - Use `#00685D` as the primaryColor for restaurant and booking surfaces.
     - Populate the dataModelUpdate.contents with the restaurant information.
 
     Output in the format: conversational text ---a2ui_JSON--- JSON list of A2UI messages
@@ -102,6 +107,31 @@ class PresenterAgent:
                 return text
         return None
 
+    @staticmethod
+    def _extract_info_link(value):
+        if not value:
+            return None
+
+        if isinstance(value, str):
+            text = value.strip()
+            if not text:
+                return None
+
+            markdown_match = re.match(r"^\[[^\]]+\]\((https?://[^)]+)\)$", text)
+            if markdown_match:
+                return markdown_match.group(1)
+
+            return text
+
+        return None
+
+    @staticmethod
+    def _format_info_link_markdown(link):
+        safe_link = (link or "").strip()
+        if not safe_link:
+            return ""
+        return f"[Visit site]({safe_link})"
+
     @classmethod
     def _canonicalize_formatter_item(cls, item):
         if not isinstance(item, dict):
@@ -117,11 +147,11 @@ class PresenterAgent:
             normalized.get("imageUrl"), normalized.get("imageURL")
         )
         tags = cls._coalesce(normalized.get("tags"))
-        info_link = cls._coalesce(normalized.get("infoLink"))
-        info_link_markdown = cls._coalesce(
-            normalized.get("infoLinkMarkdown"),
-            f"[{info_link}]({info_link})" if info_link else None,
+        info_link = cls._coalesce(
+            normalized.get("infoLink"),
+            cls._extract_info_link(normalized.get("infoLinkMarkdown")),
         )
+        info_link_markdown = cls._format_info_link_markdown(info_link)
 
         normalized["detail"] = detail or ""
         normalized["address"] = address or ""

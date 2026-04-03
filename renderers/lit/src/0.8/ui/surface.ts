@@ -59,26 +59,28 @@ export class Surface extends Root {
 
       a2ui-row#results-row {
         --a2ui-row-wrap: nowrap;
-        align-items: stretch;
-        gap: 24px;
+        align-items: flex-start;
+        gap: 40px;
         height: 100%;
         min-height: 0;
       }
 
       a2ui-column#results-column,
       a2ui-column#map-column {
-        flex: 0 0 calc(50% - 12px);
-        max-width: calc(50% - 12px);
         min-width: 0;
         min-height: 0;
       }
 
       a2ui-column#results-column {
+        flex: 0 0 min(560px, 100%);
+        max-width: 560px;
         height: 100%;
         overflow: hidden;
       }
 
       a2ui-column#map-column {
+        flex: 1 1 0;
+        max-width: none;
         position: sticky;
         top: 0;
         align-self: flex-start;
@@ -97,7 +99,7 @@ export class Surface extends Root {
         height: 100%;
         min-height: 0;
         overflow: auto;
-        padding-right: 8px;
+        padding-right: 12px;
       }
 
       a2ui-list#item-list,
@@ -105,9 +107,24 @@ export class Surface extends Root {
         overflow: visible;
       }
 
+      a2ui-card#item-card-template {
+        width: min(100%, 480px);
+        --a2ui-card-background: transparent;
+        --a2ui-card-border-radius: 0;
+        --a2ui-card-box-shadow: none;
+        --a2ui-card-border: none;
+        --a2ui-card-padding: 0;
+        --a2ui-card-overflow: visible;
+      }
+
+      a2ui-restaurant-card#restaurant-card {
+        min-width: 0;
+      }
+
       @media (max-width: 900px) {
         a2ui-row#results-row {
           --a2ui-row-wrap: wrap;
+          gap: 28px;
           height: auto;
         }
 
@@ -133,6 +150,14 @@ export class Surface extends Root {
           height: auto;
           overflow: visible;
           padding-right: 0;
+        }
+
+        a2ui-card#item-card-template {
+          width: 100%;
+        }
+
+        a2ui-restaurant-card#restaurant-card {
+          width: 100%;
         }
       }
     `,

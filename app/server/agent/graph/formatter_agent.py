@@ -16,20 +16,20 @@ FORMATTER_PROMPT = (
     "Output: ONLY a JSON array (no prose) where each element has exactly these keys: \n"
     "- name (string)\n"
     "- detail (string: short descriptor like cuisine or categories)\n"
-    "- rating (string using Unicode stars such as '★★★★★', '★★★★☆', etc.)\n"
+    "- rating (string in the form '4.8' or '4.8 | 3456 ratings')\n"
     "- address (string: formatted address or city)\n"
     "- imageUrl (string: absolute URL to an image)\n"
     "- tags (string, optional: short highlights joined by ' | ')\n"
     "- lat (number, optional)\n"
     "- lng (number, optional)\n"
     "- infoLink (string: https URL for more info)\n"
-    "- infoLinkMarkdown (string, optional: markdown link that shows the full URL text)\n\n"
+    "- infoLinkMarkdown (string, optional: markdown link labeled exactly 'Visit site')\n\n"
     "Rules:\n"
-    "- If a numeric rating 0-5 exists, map to stars: >=4.5 '★★★★★', >=3.5 '★★★★☆', >=2.5 '★★★☆☆', >=1.5 '★★☆☆☆', >=0.5 '★☆☆☆☆', else '☆☆☆☆☆'. Append ' | N ratings' when reviewsCount exists.\n"
+    "- If a numeric rating 0-5 exists, preserve it as a number string (for example '4.8'). Append ' | N ratings' when reviewsCount exists.\n"
     "- Apify field precedence: title over name, categoryName over categories over description, totalScore over rating, address over city/state, imageUrl over imageURL, website over url over searchPageUrl.\n"
     "- detail: join up to 3 values from categories when categoryName is missing.\n"
     "- infoLink: prefer website/url/searchPageUrl/link; otherwise create a Google Maps search link using the name and address.\n"
-    "- infoLinkMarkdown: format as [https://example.com](https://example.com) from infoLink.\n"
+    "- infoLinkMarkdown: format as [Visit site](https://example.com) from infoLink.\n"
     "- imageUrl: prefer imageUrl/imageURL/photo.url/thumbnail/image/photoUrl if present; if none, leave an empty string. Do not invent images.\n"
     "- address: prefer address/formattedAddress/fullAddress/vicinity/location(string); else city/state; else default city.\n"
     "- lat/lng: if available in raw data as location/latitude/longitude/coords/geo, include numeric values (WGS84). If missing, omit keys.\n"
@@ -121,7 +121,9 @@ class FormatterAgent:
         if isinstance(location, dict):
             coord_candidates.append(location)
         coord_candidates.append({"lat": item.get("lat"), "lng": item.get("lng")})
-        coord_candidates.append({"lat": item.get("latitude"), "lng": item.get("longitude")})
+        coord_candidates.append(
+            {"lat": item.get("latitude"), "lng": item.get("longitude")}
+        )
 
         for key in ("coords", "geo"):
             val = item.get(key)
@@ -135,11 +137,15 @@ class FormatterAgent:
                 coord_candidates.append(geom_loc)
 
         for candidate in coord_candidates:
-            lat = self._to_float(candidate.get("lat") if isinstance(candidate, dict) else None)
+            lat = self._to_float(
+                candidate.get("lat") if isinstance(candidate, dict) else None
+            )
             if lat is None and isinstance(candidate, dict):
                 lat = self._to_float(candidate.get("latitude"))
 
-            lng = self._to_float(candidate.get("lng") if isinstance(candidate, dict) else None)
+            lng = self._to_float(
+                candidate.get("lng") if isinstance(candidate, dict) else None
+            )
             if lng is None and isinstance(candidate, dict):
                 lng = self._to_float(candidate.get("lon"))
             if lng is None and isinstance(candidate, dict):
@@ -149,21 +155,19 @@ class FormatterAgent:
                 return lat, lng
         return None
 
-    @staticmethod
-    def _stars_from_score(score: Optional[float]) -> str:
-        if score is None:
-            return "☆☆☆☆☆"
-        if score >= 4.5:
-            return "★★★★★"
-        if score >= 3.5:
-            return "★★★★☆"
-        if score >= 2.5:
-            return "★★★☆☆"
-        if score >= 1.5:
-            return "★★☆☆☆"
-        if score >= 0.5:
-            return "★☆☆☆☆"
-        return "☆☆☆☆☆"
+    @classmethod
+    def _normalize_score_text(cls, value: Any) -> Optional[str]:
+        if value is None or isinstance(value, bool):
+            return None
+        if isinstance(value, (int, float)):
+            return str(value)
+
+        text = cls._as_non_empty_string(value)
+        if not text:
+            return None
+
+        numeric_match = re.search(r"\d+(?:\.\d+)?", text)
+        return numeric_match.group(0) if numeric_match else None
 
     @staticmethod
     def _normalize_reviews_count(item: Dict[str, Any]) -> Optional[int]:
@@ -183,28 +187,25 @@ class FormatterAgent:
         return None
 
     def _normalize_rating(self, item: Dict[str, Any]) -> str:
-        # Apify-first preference for raw score.
-        apify_score = self._to_float(item.get("totalScore"))
-        if apify_score is not None:
-            stars = self._stars_from_score(apify_score)
-            reviews = self._normalize_reviews_count(item)
-            return f"{stars} | {reviews} ratings" if reviews is not None else stars
-
         rating_val = item.get("rating")
-        numeric_rating = self._to_float(rating_val)
-        if numeric_rating is not None:
-            stars = self._stars_from_score(numeric_rating)
-            reviews = self._normalize_reviews_count(item)
-            return f"{stars} | {reviews} ratings" if reviews is not None else stars
+        score_text = self._normalize_score_text(item.get("totalScore"))
+        if score_text is None:
+            score_text = self._normalize_score_text(rating_val)
 
-        rating_text = self._as_non_empty_string(rating_val)
-        if rating_text and any(ch in rating_text for ch in ("★", "☆")):
-            reviews = self._normalize_reviews_count(item)
-            return f"{rating_text} | {reviews} ratings" if reviews is not None else rating_text
+        if score_text is None:
+            rating_text = self._as_non_empty_string(rating_val)
+            if rating_text and any(ch in rating_text for ch in ("★", "☆")):
+                full_stars = min(len(re.findall(r"★", rating_text)), 5)
+                score_text = f"{float(full_stars):.1f}"
 
-        stars = "☆☆☆☆☆"
         reviews = self._normalize_reviews_count(item)
-        return f"{stars} | {reviews} ratings" if reviews is not None else stars
+        if score_text:
+            return (
+                f"{score_text} | {reviews} ratings"
+                if reviews is not None
+                else score_text
+            )
+        return f"{reviews} ratings" if reviews is not None else ""
 
     def _normalize_detail(self, item: Dict[str, Any]) -> str:
         category_name = self._as_non_empty_string(item.get("categoryName"))
@@ -223,12 +224,15 @@ class FormatterAgent:
             if names:
                 return ", ".join(names)
 
-        return self._first_non_empty(
-            item.get("description"),
-            item.get("caption"),
-            item.get("detail"),
-            "Popular spot",
-        ) or "Popular spot"
+        return (
+            self._first_non_empty(
+                item.get("description"),
+                item.get("caption"),
+                item.get("detail"),
+                "Popular spot",
+            )
+            or "Popular spot"
+        )
 
     def _normalize_address(self, item: Dict[str, Any]) -> str:
         location_value = item.get("location")
@@ -237,35 +241,45 @@ class FormatterAgent:
         state = self._as_non_empty_string(item.get("state"))
         city_state = ", ".join([part for part in (city, state) if part])
 
-        return self._first_non_empty(
-            item.get("address"),
-            item.get("formattedAddress"),
-            item.get("fullAddress"),
-            item.get("vicinity"),
-            location_string,
-            city_state,
-            self.default_city,
-        ) or self.default_city
+        return (
+            self._first_non_empty(
+                item.get("address"),
+                item.get("formattedAddress"),
+                item.get("fullAddress"),
+                item.get("vicinity"),
+                location_string,
+                city_state,
+                self.default_city,
+            )
+            or self.default_city
+        )
 
     def _normalize_image_url(self, item: Dict[str, Any]) -> str:
         image_obj = item.get("image")
         image_obj_url = None
         if isinstance(image_obj, dict):
-            image_obj_url = self._first_non_empty(image_obj.get("url"), image_obj.get("src"))
+            image_obj_url = self._first_non_empty(
+                image_obj.get("url"), image_obj.get("src")
+            )
         elif isinstance(image_obj, str):
             image_obj_url = image_obj
 
-        return self._first_non_empty(
-            item.get("imageUrl"),
-            item.get("imageURL"),
-            self._nested_get(item, "photo.url"),
-            item.get("thumbnail"),
-            image_obj_url,
-            item.get("photoUrl"),
-            "",
-        ) or ""
+        return (
+            self._first_non_empty(
+                item.get("imageUrl"),
+                item.get("imageURL"),
+                self._nested_get(item, "photo.url"),
+                item.get("thumbnail"),
+                image_obj_url,
+                item.get("photoUrl"),
+                "",
+            )
+            or ""
+        )
 
-    def _normalize_info_link(self, item: Dict[str, Any], name: str, address: str) -> str:
+    def _normalize_info_link(
+        self, item: Dict[str, Any], name: str, address: str
+    ) -> str:
         raw_link = self._first_non_empty(
             item.get("website"),
             item.get("url"),
@@ -286,7 +300,7 @@ class FormatterAgent:
         safe_link = (link or "").strip()
         if not safe_link:
             return ""
-        return f"[{safe_link}]({safe_link})"
+        return f"[Visit site]({safe_link})"
 
     def _normalize_tags(self, item: Dict[str, Any]) -> str:
         additional_info = item.get("additionalInfo")
@@ -323,7 +337,10 @@ class FormatterAgent:
         return " | ".join(selected)
 
     def _normalize_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
-        name = self._first_non_empty(item.get("title"), item.get("name"), "Unknown") or "Unknown"
+        name = (
+            self._first_non_empty(item.get("title"), item.get("name"), "Unknown")
+            or "Unknown"
+        )
         detail = self._normalize_detail(item)
         address = self._normalize_address(item)
         info_link = self._normalize_info_link(item, name, address)
@@ -393,7 +410,9 @@ class FormatterAgent:
         )
         llm_items: List[Dict[str, Any]] = []
         try:
-            result = await self._agent.ainvoke({"messages": [HumanMessage(content=prompt)]})
+            result = await self._agent.ainvoke(
+                {"messages": [HumanMessage(content=prompt)]}
+            )
             llm_content = self._extract_llm_content(result)
             cleaned = self._strip_code_fences(llm_content)
             llm_payload = json.loads(cleaned)
@@ -412,12 +431,11 @@ class FormatterAgent:
                     merged.update(item)
                 merged_items.append(merged if merged else item)
             if len(source_items) > len(llm_items):
-                merged_items.extend(source_items[len(llm_items):])
+                merged_items.extend(source_items[len(llm_items) :])
             chosen_items = merged_items
         normalized_items = [self._normalize_item(item) for item in chosen_items]
 
         return {
-            "messages": state["messages"] + [
-                AIMessage(content=json.dumps(normalized_items, ensure_ascii=False))
-            ]
+            "messages": state["messages"]
+            + [AIMessage(content=json.dumps(normalized_items, ensure_ascii=False))]
         }

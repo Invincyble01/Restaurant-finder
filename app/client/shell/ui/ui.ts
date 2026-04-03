@@ -18,3 +18,4 @@ export { Snackbar } from "./snackbar";
 // Register custom components so they are available to A2UI surfaces
 import "./custom-components/map-area";
 import "./custom-components/reservation-dialog";
+import "./custom-components/restaurant-card";

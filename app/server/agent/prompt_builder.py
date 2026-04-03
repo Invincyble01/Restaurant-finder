@@ -816,6 +816,10 @@ def get_ui_prompt(base_url: str, examples: str) -> str:
     -   If the number of restaurants is 5 or fewer, you MUST use the `SINGLE_COLUMN_LIST_EXAMPLE` template.
     -   If the number of restaurants is more than 5, you MUST use the `TWO_COLUMN_LIST_EXAMPLE` template.
     -   For restaurant results, you MUST use image-led cards and a split list-plus-map layout; do not use the older horizontal utility-card style.
+    -   Use the exact restaurant-results component ids from the examples so the client styling hooks apply correctly: `results-row`, `results-column`, `map-column`, `item-list`, `item-card-template`, `restaurant-card`, and `map-view`.
+    -   The restaurant card must mirror Figma node `1:258`: a large hero image, a top-right numeric rating badge overlay when rating data is present, the ratings-count text beside the restaurant name when present, supporting copy below, pill-style tags when present, then a divider-like footer with a left `Visit site` link and a right `Book Now` reservation CTA.
+    -   The visible link label inside every restaurant card MUST be exactly `Visit site`; never display the raw URL text.
+    -   Use `#00685D` as `primaryColor` for restaurant and booking surfaces.
     -   If the query is to book a restaurant (e.g., "USER_WANTS_TO_BOOK..."), you MUST use the `BOOKING_FORM_EXAMPLE` template.
     -   If the query is a booking submission (e.g., "User submitted a booking..."), you MUST use the `CONFIRMATION_EXAMPLE` template.
 

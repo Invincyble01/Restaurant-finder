@@ -12,7 +12,7 @@ const agents = {
     model: "openai.gpt-4.1",
     temperature: 0.2,
     name: "formatter_agent",
-    systemPrompt: "Normalize raw place items to an array of {name, detail, rating, address, imageUrl, infoLink, infoLinkMarkdown, lat?, lng?}. Include reviewsCount in rating display when available (e.g., '★★★★★ | 3456 ratings'). Prefer Apify raw fields like title/categoryName/totalScore/address/imageUrl/website.",
+    systemPrompt: "Normalize raw place items to an array of {name, detail, rating, address, imageUrl, infoLink, infoLinkMarkdown, lat?, lng?}. Preserve numeric ratings in the rating display when available (e.g., '4.8 | 3456 ratings'). Set infoLinkMarkdown to a labeled markdown link using the exact text 'Visit site'. Prefer Apify raw fields like title/categoryName/totalScore/address/imageUrl/website.",
     toolsEnabled: []
   },
   "presenter_agent": {

@@ -1323,7 +1323,11 @@ export class DynamicModule extends LitElement {
   }
 
   #scrollRestaurantCard(surfaceId: string | null, restaurantKey: string) {
-    const surfaceElements = Array.from(this.renderRoot.querySelectorAll("a2ui-surface")) as Array<HTMLElement & { surfaceId?: string | null; shadowRoot?: ShadowRoot | null }>
+    const surfaceElements = Array.from(this.renderRoot.querySelectorAll("a2ui-surface")) as Array<HTMLElement & {
+      surfaceId?: string | null
+      shadowRoot?: ShadowRoot | null
+      showListPane?: () => void
+    }>
 
     for (const surfaceElement of surfaceElements) {
       if (surfaceId && surfaceElement.surfaceId && surfaceElement.surfaceId !== surfaceId) {
@@ -1335,8 +1339,16 @@ export class DynamicModule extends LitElement {
         continue
       }
 
-      card.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
-      this.#flashRestaurantCard(card)
+      surfaceElement.showListPane?.()
+      requestAnimationFrame(() => {
+        const revealedCard = this.#findRestaurantCard(surfaceElement.shadowRoot, restaurantKey)
+        if (!revealedCard) {
+          return
+        }
+
+        revealedCard.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+        this.#flashRestaurantCard(revealedCard)
+      })
       break
     }
   }

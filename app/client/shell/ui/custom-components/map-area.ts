@@ -302,6 +302,14 @@ export class A2uiCustomMap extends Root {
     this.#activePopupKey = undefined;
   }
 
+  resizeMap() {
+    if (!this.#map) {
+      return;
+    }
+
+    this.#map.resize();
+  }
+
   render() {
     const itemsCount = this.#getItems().filter((item) => this.#isFiniteCoord(item)).length;
 

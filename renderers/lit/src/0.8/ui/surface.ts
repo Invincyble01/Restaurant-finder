@@ -14,8 +14,8 @@
  limitations under the License.
  */
 
-import { html, css, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { html, css, nothing, PropertyValues } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import * as Types from "@a2ui/web_core/types/types";
 import { A2uiMessageProcessor } from "@a2ui/web_core/data/model-processor";
 import { Root } from "./root.js";
@@ -32,14 +32,21 @@ export class Surface extends Root {
   @property()
   accessor processor: A2uiMessageProcessor | null = null;
 
+  @property({ reflect: true, attribute: "mobile-pane" })
+  accessor mobilePane: "list" | "map" = "list";
+
+  @state()
+  accessor #showMobilePaneToggle = false;
+
   static styles = [
     css`
       :host {
+        --results-workspace-height: min(780px, calc(100dvh - 240px));
         display: flex;
         min-height: 0;
         max-height: 100%;
         flex-direction: column;
-        gap: 16px;
+        gap: 18px;
         overflow: visible;
       }
 
@@ -55,37 +62,70 @@ export class Surface extends Root {
 
       a2ui-root {
         flex: 1;
+        min-height: 0;
+        max-height: none;
       }
 
       a2ui-row#results-row {
         --a2ui-row-wrap: nowrap;
-        align-items: flex-start;
-        gap: 40px;
+        align-items: stretch;
+        gap: 22px;
         height: 100%;
         min-height: 0;
       }
 
       a2ui-column#results-column,
       a2ui-column#map-column {
+        box-sizing: border-box;
         min-width: 0;
         min-height: 0;
+        border-radius: 30px;
+        border: 1px solid rgba(109, 122, 119, 0.12);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 247, 0.9));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 18px 34px rgba(17, 33, 30, 0.06);
+        overflow: hidden;
       }
 
       a2ui-column#results-column {
-        flex: 0 0 min(560px, 100%);
-        max-width: 560px;
-        height: 100%;
-        overflow: hidden;
+        position: relative;
+        flex: 0 0 clamp(360px, 44%, 560px);
+        max-width: clamp(360px, 44%, 560px);
+        height: var(--results-workspace-height);
+        padding: 58px 18px 18px;
+      }
+
+      a2ui-column#results-column::before {
+        content: "Available restaurants";
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(243, 243, 243, 0.92);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.12);
+        color: var(--rf-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        z-index: 1;
       }
 
       a2ui-column#map-column {
-        flex: 1 1 0;
+        flex: 1 1 56%;
         max-width: none;
         position: sticky;
-        top: 0;
+        top: 8px;
         align-self: flex-start;
-        height: 100%;
-        overflow: hidden;
+        height: var(--results-workspace-height);
+        padding: 18px;
       }
 
       a2ui-column#map-column a2ui-custom-map,
@@ -98,13 +138,44 @@ export class Surface extends Root {
       a2ui-list#item-list {
         height: 100%;
         min-height: 0;
-        overflow: auto;
-        padding-right: 12px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding-right: 6px;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 104, 93, 0.45) rgba(243, 243, 243, 0.96);
+        overscroll-behavior: contain;
       }
 
-      a2ui-list#item-list,
       a2ui-card[data-restaurant-key] {
         overflow: visible;
+      }
+
+      a2ui-list#item-list::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      a2ui-list#item-list::-webkit-scrollbar-track {
+        border-radius: 999px;
+        background: rgba(243, 243, 243, 0.96);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.08);
+      }
+
+      a2ui-list#item-list::-webkit-scrollbar-thumb {
+        border: 3px solid rgba(243, 243, 243, 0.96);
+        border-radius: 999px;
+        background: linear-gradient(180deg, rgba(0, 131, 118, 0.72), rgba(0, 104, 93, 0.92));
+        min-height: 56px;
+      }
+
+      a2ui-list#item-list::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, rgba(0, 131, 118, 0.82), rgba(0, 104, 93, 1));
+      }
+
+      a2ui-list#item-list::-webkit-scrollbar-button {
+        display: none;
+        width: 0;
+        height: 0;
       }
 
       a2ui-card#item-card-template {
@@ -121,10 +192,59 @@ export class Surface extends Root {
         min-width: 0;
       }
 
+      .mobile-pane-toggle {
+        display: none;
+      }
+
+      .mobile-pane-toggle button {
+        appearance: none;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(243, 243, 243, 0.88);
+        color: var(--rf-muted);
+        font-family: var(--font-copy);
+        font-size: 0.88rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.12);
+        transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+      }
+
+      .mobile-pane-toggle button:hover {
+        transform: translateY(-1px);
+      }
+
+      .mobile-pane-toggle button.is-active {
+        background: linear-gradient(135deg, var(--rf-primary), var(--rf-primary-strong));
+        color: var(--rf-primary-contrast);
+        box-shadow: 0 12px 24px rgba(0, 107, 95, 0.18);
+      }
+
       @media (max-width: 900px) {
+        :host {
+          --results-workspace-height: auto;
+          gap: 14px;
+        }
+
+        .mobile-pane-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 6px;
+          width: fit-content;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.88);
+          box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.12);
+        }
+
         a2ui-row#results-row {
-          --a2ui-row-wrap: wrap;
-          gap: 28px;
+          --a2ui-row-wrap: nowrap;
+          gap: 0;
           height: auto;
         }
 
@@ -132,24 +252,26 @@ export class Surface extends Root {
         a2ui-column#map-column {
           flex: 1 1 100%;
           max-width: 100%;
+          width: 100%;
         }
 
         a2ui-column#results-column {
-          overflow: visible;
-          height: auto;
+          height: min(68svh, 820px);
+          padding: 54px 14px 14px;
         }
 
         a2ui-column#map-column {
           position: static;
           top: auto;
-          height: auto;
-          overflow: visible;
+          height: min(68svh, 700px);
+          padding: 14px;
         }
 
         a2ui-list#item-list {
-          height: auto;
-          overflow: visible;
+          height: 100%;
+          overflow-y: auto;
           padding-right: 0;
+          scrollbar-width: auto;
         }
 
         a2ui-card#item-card-template {
@@ -158,6 +280,14 @@ export class Surface extends Root {
 
         a2ui-restaurant-card#restaurant-card {
           width: 100%;
+        }
+
+        :host([mobile-pane="list"]) a2ui-column#map-column {
+          display: none;
+        }
+
+        :host([mobile-pane="map"]) a2ui-column#results-column {
+          display: none;
         }
       }
     `,
@@ -175,6 +305,91 @@ export class Surface extends Root {
 
   @property()
   accessor enableCustomElements = false;
+
+  protected willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
+
+    if (changedProperties.has("surface") || changedProperties.has("surfaceId")) {
+      this.#showMobilePaneToggle = this.#isRestaurantResultsSurface();
+      if (this.mobilePane !== "list") {
+        this.mobilePane = "list";
+      }
+    }
+  }
+
+  updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+
+    if (changedProperties.has("mobilePane") && this.mobilePane === "map") {
+      this.#scheduleMapResize();
+    }
+  }
+
+  showListPane() {
+    if (!this.#showMobilePaneToggle) {
+      return;
+    }
+    this.mobilePane = "list";
+  }
+
+  showMapPane() {
+    if (!this.#showMobilePaneToggle) {
+      return;
+    }
+    this.mobilePane = "map";
+    this.#scheduleMapResize();
+  }
+
+  #isRestaurantResultsSurface() {
+    const componentMap = this.surface?.components;
+    if (!componentMap) {
+      return false;
+    }
+
+    return (
+      componentMap.has("results-row") &&
+      componentMap.has("results-column") &&
+      componentMap.has("map-column") &&
+      componentMap.has("item-list") &&
+      componentMap.has("map-view")
+    );
+  }
+
+  #scheduleMapResize() {
+    requestAnimationFrame(() => {
+      const mapElement = this.renderRoot.querySelector("a2ui-custom-map") as
+        | { resizeMap?: () => void }
+        | null;
+      mapElement?.resizeMap?.();
+    });
+  }
+
+  #renderMobilePaneToggle() {
+    if (!this.#showMobilePaneToggle) {
+      return nothing;
+    }
+
+    return html`<div class="mobile-pane-toggle" aria-label="Choose result pane">
+      <button
+        class=${this.mobilePane === "list" ? "is-active" : ""}
+        aria-pressed=${this.mobilePane === "list"}
+        @click=${() => {
+          this.showListPane();
+        }}
+      >
+        List
+      </button>
+      <button
+        class=${this.mobilePane === "map" ? "is-active" : ""}
+        aria-pressed=${this.mobilePane === "map"}
+        @click=${() => {
+          this.showMapPane();
+        }}
+      >
+        Map
+      </button>
+    </div>`;
+  }
 
 
   #renderSurface() {
@@ -239,6 +454,6 @@ export class Surface extends Root {
       return nothing;
     }
 
-    return html`${[this.#renderLogo(), this.#renderSurface()]}`;
+    return html`${[this.#renderLogo(), this.#renderMobilePaneToggle(), this.#renderSurface()]}`;
   }
 }

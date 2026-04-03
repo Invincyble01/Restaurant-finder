@@ -18,40 +18,19 @@ import { AppConfig } from "./types.js";
 
 export const config: AppConfig = {
   key: "restaurant",
-  title: "Sample application for A2UI",
+  title: "Restaurant Finder",
   heroImage: "/hero.png",
   heroImageDark: "/hero-dark.png",
-  background: `radial-gradient(
-    at 0% 0%,
-    light-dark(rgba(161, 196, 253, 0.3), rgba(6, 182, 212, 0.15)) 0px,
-    transparent 50%
-  ),
-  radial-gradient(
-    at 100% 0%,
-    light-dark(rgba(255, 226, 226, 0.3), rgba(59, 130, 246, 0.15)) 0px,
-    transparent 50%
-  ),
-  radial-gradient(
-    at 100% 100%,
-    light-dark(rgba(162, 210, 255, 0.3), rgba(20, 184, 166, 0.15)) 0px,
-    transparent 50%
-  ),
-  radial-gradient(
-    at 0% 100%,
-    light-dark(rgba(255, 200, 221, 0.3), rgba(99, 102, 241, 0.15)) 0px,
-    transparent 50%
-  ),
-  linear-gradient(
-    120deg,
-    light-dark(#f0f4f8, #0f172a) 0%,
-    light-dark(#e2e8f0, #1e293b) 100%
-  )`,
-  placeholder: "Top 5 Chinese restaurants in New York.",
+  background: `radial-gradient(circle at 12% 18%, rgba(134, 246, 228, 0.22), transparent 0 28%),
+  radial-gradient(circle at 82% 14%, rgba(150, 241, 250, 0.2), transparent 0 22%),
+  radial-gradient(circle at 78% 82%, rgba(0, 104, 93, 0.08), transparent 0 24%),
+  linear-gradient(180deg, #fbfbfa 0%, #f4f3f0 100%)`,
+  placeholder: "Top 5 Chinese restaurants in New York",
   loadingText: [
-    "Finding the best spots for you...",
-    "Checking reviews...",
-    "Looking for open tables...",
-    "Almost there...",
+    "Mapping the dining scene...",
+    "Reviewing ratings and atmosphere...",
+    "Plotting restaurants on the map...",
+    "Preparing reservation options...",
   ],
   serverUrl: "http://localhost:10002/agent",
 };

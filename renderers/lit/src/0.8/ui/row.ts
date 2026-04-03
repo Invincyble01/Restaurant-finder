@@ -45,6 +45,7 @@ export class Row extends Root {
       section {
         display: flex;
         flex-direction: row;
+        flex-wrap: var(--a2ui-row-wrap, nowrap);
         width: 100%;
         min-height: 100%;
       }

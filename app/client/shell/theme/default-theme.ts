@@ -16,9 +16,7 @@
 
 import { v0_8 } from "@a2ui/lit";
 
-/** Elements */
-
-const a = {
+const link = {
   "typography-f-sf": true,
   "typography-fs-n": true,
   "typography-w-500": true,
@@ -29,51 +27,24 @@ const a = {
   "color-c-p40": true,
 };
 
-const audio = {
-  "layout-w-100": true,
-};
-
 const body = {
   "typography-f-s": true,
   "typography-fs-n": true,
   "typography-w-400": true,
-  "layout-mt-0": true,
-  "layout-mb-2": true,
+  "layout-m-0": true,
   "typography-sz-bm": true,
   "color-c-n10": true,
-};
-
-const button = {
-  "typography-f-sf": true,
-  "typography-fs-n": true,
-  "typography-w-500": true,
-  "layout-pt-3": true,
-  "layout-pb-3": true,
-  "layout-pl-5": true,
-  "layout-pr-5": true,
-  "layout-mb-1": true,
-  "border-br-16": true,
-  "border-bw-0": true,
-  "border-c-n70": true,
-  "border-bs-s": true,
-  "color-bgc-s30": true,
-  "behavior-ho-80": true,
 };
 
 const heading = {
   "typography-f-sf": true,
   "typography-fs-n": true,
   "typography-w-500": true,
-  "layout-mt-0": true,
-  "layout-mb-2": true,
-};
-
-const iframe = {
-  "behavior-sw-n": true,
+  "layout-m-0": true,
 };
 
 const input = {
-  "typography-f-sf": true,
+  "typography-f-s": true,
   "typography-fs-n": true,
   "typography-w-400": true,
   "layout-pl-4": true,
@@ -82,129 +53,133 @@ const input = {
   "layout-pb-2": true,
   "border-br-6": true,
   "border-bw-1": true,
-  "color-bc-s70": true,
   "border-bs-s": true,
-  "layout-as-n": true,
   "color-c-n10": true,
 };
 
-const p = {
+const button = {
   "typography-f-s": true,
   "typography-fs-n": true,
-  "typography-w-400": true,
-  "layout-m-0": true,
-  "typography-sz-bm": true,
-  "layout-as-n": true,
-  "color-c-n10": true,
+  "typography-w-500": true,
+  "layout-pt-2": true,
+  "layout-pb-2": true,
+  "layout-pl-4": true,
+  "layout-pr-4": true,
+  "border-br-12": true,
+  "border-bw-0": true,
+  "border-bs-s": true,
 };
 
-const orderedList = {
-  "typography-f-s": true,
-  "typography-fs-n": true,
-  "typography-w-400": true,
-  "layout-m-0": true,
-  "typography-sz-bm": true,
-  "layout-as-n": true,
-  "color-c-n10": true,
-};
-
-const unorderedList = {
-  "typography-f-s": true,
-  "typography-fs-n": true,
-  "typography-w-400": true,
-  "layout-m-0": true,
-  "typography-sz-bm": true,
-  "layout-as-n": true,
-  "color-c-n10": true,
-};
-
-const listItem = {
-  "typography-f-s": true,
-  "typography-fs-n": true,
-  "typography-w-400": true,
-  "layout-m-0": true,
-  "typography-sz-bm": true,
-  "layout-as-n": true,
-  "color-c-n10": true,
-};
-
-const pre = {
-  "typography-f-c": true,
-  "typography-fs-n": true,
-  "typography-w-400": true,
-  "typography-sz-bm": true,
-  "typography-ws-p": true,
-  "layout-as-n": true,
-};
-
-const textarea = {
-  ...input,
-  "layout-r-none": true,
-  "layout-fs-c": true,
-};
-
-const video = {
-  "layout-el-cv": true,
-};
-
-const aLight = v0_8.Styles.merge(a, {});
-const inputLight = v0_8.Styles.merge(input, {});
-const textareaLight = v0_8.Styles.merge(textarea, {});
-const buttonLight = v0_8.Styles.merge(button, {});
+const aLight = v0_8.Styles.merge(link, {});
 const bodyLight = v0_8.Styles.merge(body, {});
-const pLight = v0_8.Styles.merge(p, {});
-const preLight = v0_8.Styles.merge(pre, {});
-const orderedListLight = v0_8.Styles.merge(orderedList, {});
-const unorderedListLight = v0_8.Styles.merge(unorderedList, {});
-const listItemLight = v0_8.Styles.merge(listItem, {});
+const buttonLight = v0_8.Styles.merge(button, {});
+const headingLight = v0_8.Styles.merge(heading, {});
+const inputLight = v0_8.Styles.merge(input, {});
 
 export const theme: v0_8.Types.Theme = {
   additionalStyles: {
     Button: {
-      "--n-35": "var(--n-100)",
-      "--n-10": "var(--n-0)",
       background:
-        "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-      boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
-      padding: "12px 28px",
-      textTransform: "uppercase",
+        "linear-gradient(135deg, var(--rf-primary) 0%, var(--rf-primary-strong) 100%)",
+      color: "var(--rf-primary-contrast)",
+      border: "none",
+      minHeight: "46px",
+      boxShadow: "0 18px 36px rgba(0, 104, 93, 0.16)",
+      letterSpacing: "0.01em",
+      cursor: "pointer",
+    },
+    Card: {
+      background: "var(--rf-surface-elevated)",
+      borderRadius: "28px",
+      boxShadow: "0 22px 40px rgba(0, 107, 95, 0.08)",
+      border: "1px solid rgba(109, 122, 119, 0.12)",
+      overflow: "hidden",
+      padding: "22px",
+    },
+    Column: {
+      gap: "16px",
+    },
+    Row: {
+      gap: "14px",
+    },
+    List: {
+      gap: "24px",
+      padding: "0",
+    },
+    Image: {
+      background: "linear-gradient(180deg, rgba(0, 104, 93, 0.08), rgba(0, 104, 93, 0.02))",
+      borderRadius: "24px",
+      overflow: "hidden",
+      aspectRatio: "16 / 10",
+      minHeight: "220px",
     },
     Text: {
       h1: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "var(--rf-ink)",
+        fontFamily: "var(--font-display)",
+        fontSize: "clamp(2rem, 3vw, 3rem)",
+        lineHeight: "1.02",
+        letterSpacing: "-0.04em",
+        fontWeight: "800",
       },
       h2: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "var(--rf-ink)",
+        fontFamily: "var(--font-display)",
+        fontSize: "1.55rem",
+        lineHeight: "1.08",
+        letterSpacing: "-0.03em",
+        fontWeight: "750",
       },
       h3: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "var(--rf-ink)",
+        fontFamily: "var(--font-display)",
+        fontSize: "1.18rem",
+        lineHeight: "1.15",
+        letterSpacing: "-0.02em",
+        fontWeight: "700",
       },
-      h4: {},
-      h5: {},
-      body: {},
-      caption: {},
-    },
-    Card: {
-      background:
-        "radial-gradient(circle at top left, light-dark(transparent, rgba(6, 182, 212, 0.15)), transparent 40%), radial-gradient(circle at bottom right, light-dark(transparent, rgba(139, 92, 246, 0.15)), transparent 40%), linear-gradient(135deg, light-dark(rgba(255, 255, 255, 0.7), rgba(30, 41, 59, 0.7)), light-dark(rgba(255, 255, 255, 0.7), rgba(15, 23, 42, 0.8)))",
+      h4: {
+        color: "var(--rf-ink)",
+        fontFamily: "var(--font-display)",
+        fontSize: "1rem",
+        lineHeight: "1.2",
+        letterSpacing: "-0.01em",
+        fontWeight: "700",
+      },
+      h5: {
+        color: "var(--rf-ink-muted)",
+        fontFamily: "var(--font-copy)",
+        fontSize: "0.85rem",
+        lineHeight: "1.45",
+        fontWeight: "600",
+        textTransform: "uppercase",
+        letterSpacing: "0.12em",
+      },
+      body: {
+        color: "var(--rf-ink-muted)",
+        fontFamily: "var(--font-copy)",
+        fontSize: "0.95rem",
+        lineHeight: "1.55",
+      },
+      caption: {
+        color: "var(--rf-muted)",
+        fontFamily: "var(--font-mono)",
+        fontSize: "0.75rem",
+        lineHeight: "1.45",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+      },
     },
     TextField: {
-      "--p-0": "light-dark(var(--n-0), #1e293b)",
+      background: "var(--rf-surface-subtle)",
+      borderRadius: "16px",
+      border: "1px solid rgba(109, 122, 119, 0.18)",
+    },
+    Modal: {
+      boxShadow: "0 28px 60px rgba(0, 107, 95, 0.12)",
+      borderRadius: "26px",
+      border: "1px solid rgba(109, 122, 119, 0.14)",
+      background: "var(--rf-surface-elevated)",
     },
   },
   components: {
@@ -212,16 +187,17 @@ export const theme: v0_8.Types.Theme = {
     Button: {
       "layout-pt-2": true,
       "layout-pb-2": true,
-      "layout-pl-3": true,
-      "layout-pr-3": true,
+      "layout-pl-4": true,
+      "layout-pr-4": true,
       "border-br-12": true,
       "border-bw-0": true,
       "border-bs-s": true,
-      "color-bgc-p30": true,
-      "behavior-ho-70": true,
-      "typography-w-400": true,
+      "typography-w-500": true,
     },
-    Card: { "border-br-9": true, "layout-p-4": true, "color-bgc-n100": true },
+    Card: {
+      "border-br-9": true,
+      "layout-p-4": true,
+    },
     CheckBox: {
       element: {
         "layout-m-0": true,
@@ -230,18 +206,11 @@ export const theme: v0_8.Types.Theme = {
         "border-br-12": true,
         "border-bw-1": true,
         "border-bs-s": true,
-        "color-bgc-p100": true,
-        "color-bc-p60": true,
-        "color-c-n30": true,
-        "color-c-p30": true,
       },
       label: {
-        "color-c-p30": true,
-        "typography-f-sf": true,
-        "typography-v-r": true,
+        "typography-f-s": true,
         "typography-w-400": true,
         "layout-flx-1": true,
-        "typography-sz-ll": true,
       },
       container: {
         "layout-dsp-iflex": true,
@@ -249,7 +218,7 @@ export const theme: v0_8.Types.Theme = {
       },
     },
     Column: {
-      "layout-g-2": true,
+      "layout-g-3": true,
     },
     DateTimeInput: {
       container: {
@@ -258,10 +227,9 @@ export const theme: v0_8.Types.Theme = {
         "layout-g-2": true,
         "layout-dsp-flexhor": true,
         "layout-al-c": true,
-        "typography-ws-nw": true,
       },
       label: {
-        "color-c-p30": true,
+        "color-c-n40": true,
         "typography-sz-bm": true,
       },
       element: {
@@ -269,13 +237,9 @@ export const theme: v0_8.Types.Theme = {
         "layout-pb-2": true,
         "layout-pl-3": true,
         "layout-pr-3": true,
-        "border-br-2": true,
+        "border-br-6": true,
         "border-bw-1": true,
         "border-bs-s": true,
-        "color-bgc-p100": true,
-        "color-bc-p60": true,
-        "color-c-n30": true,
-        "color-c-p30": true,
       },
     },
     Divider: {},
@@ -296,17 +260,15 @@ export const theme: v0_8.Types.Theme = {
     Icon: {},
     List: {
       "layout-g-4": true,
-      "layout-p-2": true,
+      "layout-p-0": true,
     },
     Modal: {
       backdrop: { "color-bbgc-p60_20": true },
       element: {
-        "border-br-2": true,
-        "color-bgc-p100": true,
+        "border-br-5": true,
         "layout-p-4": true,
         "border-bw-1": true,
         "border-bs-s": true,
-        "color-bc-p80": true,
       },
     },
     MultipleChoice: {
@@ -330,50 +292,45 @@ export const theme: v0_8.Types.Theme = {
     Text: {
       all: {
         "layout-w-100": true,
-        "layout-g-2": true,
       },
       h1: {
         "typography-f-sf": true,
-        "typography-v-r": true,
-        "typography-w-400": true,
+        "typography-w-500": true,
         "layout-m-0": true,
         "layout-p-0": true,
-        "typography-sz-hs": true,
       },
       h2: {
         "typography-f-sf": true,
-        "typography-v-r": true,
-        "typography-w-400": true,
+        "typography-w-500": true,
         "layout-m-0": true,
         "layout-p-0": true,
-        "typography-sz-tl": true,
       },
       h3: {
         "typography-f-sf": true,
-        "typography-v-r": true,
-        "typography-w-400": true,
+        "typography-w-500": true,
         "layout-m-0": true,
         "layout-p-0": true,
-        "typography-sz-tl": true,
       },
       h4: {
         "typography-f-sf": true,
-        "typography-v-r": true,
-        "typography-w-400": true,
+        "typography-w-500": true,
         "layout-m-0": true,
         "layout-p-0": true,
-        "typography-sz-bl": true,
       },
       h5: {
-        "typography-f-sf": true,
-        "typography-v-r": true,
-        "typography-w-400": true,
+        "typography-f-s": true,
+        "typography-w-500": true,
         "layout-m-0": true,
         "layout-p-0": true,
-        "typography-sz-bm": true,
       },
-      body: {},
-      caption: {},
+      body: {
+        "layout-m-0": true,
+        "layout-p-0": true,
+      },
+      caption: {
+        "layout-m-0": true,
+        "layout-p-0": true,
+      },
     },
     TextField: {
       container: {
@@ -382,11 +339,9 @@ export const theme: v0_8.Types.Theme = {
         "layout-g-2": true,
         "layout-dsp-flexhor": true,
         "layout-al-c": true,
-        "typography-ws-nw": true,
       },
       label: {
         "layout-flx-0": true,
-        "color-c-p30": true,
       },
       element: {
         "typography-sz-bm": true,
@@ -394,13 +349,9 @@ export const theme: v0_8.Types.Theme = {
         "layout-pb-2": true,
         "layout-pl-3": true,
         "layout-pr-3": true,
-        "border-br-2": true,
+        "border-br-6": true,
         "border-bw-1": true,
         "border-bs-s": true,
-        "color-bgc-p100": true,
-        "color-bc-p60": true,
-        "color-c-n30": true,
-        "color-c-p30": true,
       },
     },
     Video: {
@@ -410,31 +361,31 @@ export const theme: v0_8.Types.Theme = {
   },
   elements: {
     a: aLight,
-    audio,
+    audio: {},
     body: bodyLight,
     button: buttonLight,
-    h1: heading,
-    h2: heading,
-    h3: heading,
-    h4: heading,
-    h5: heading,
-    iframe,
+    h1: headingLight,
+    h2: headingLight,
+    h3: headingLight,
+    h4: headingLight,
+    h5: headingLight,
+    iframe: {},
     input: inputLight,
-    p: pLight,
-    pre: preLight,
-    textarea: textareaLight,
-    video,
+    p: bodyLight,
+    pre: bodyLight,
+    textarea: inputLight,
+    video: {},
   },
   markdown: {
-    p: [...Object.keys(pLight)],
-    h1: [...Object.keys(heading)],
-    h2: [...Object.keys(heading)],
-    h3: [...Object.keys(heading)],
-    h4: [...Object.keys(heading)],
-    h5: [...Object.keys(heading)],
-    ul: [...Object.keys(unorderedListLight)],
-    ol: [...Object.keys(orderedListLight)],
-    li: [...Object.keys(listItemLight)],
+    p: [...Object.keys(bodyLight)],
+    h1: [...Object.keys(headingLight)],
+    h2: [...Object.keys(headingLight)],
+    h3: [...Object.keys(headingLight)],
+    h4: [...Object.keys(headingLight)],
+    h5: [...Object.keys(headingLight)],
+    ul: [...Object.keys(bodyLight)],
+    ol: [...Object.keys(bodyLight)],
+    li: [...Object.keys(bodyLight)],
     a: [...Object.keys(aLight)],
     strong: [],
     em: [],

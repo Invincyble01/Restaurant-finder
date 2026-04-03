@@ -1,0 +1,5776 @@
+[
+  {
+    "title": "Sapori Italian Roots",
+    "price": "$20–30",
+    "categoryName": "Restaurant",
+    "address": "800 Brazos St ste 215, Austin, TX 78701",
+    "neighborhood": "Downtown Austin",
+    "street": "800 Brazos St ste 215",
+    "city": "Austin",
+    "postalCode": "78701",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://saporiatx.com/",
+    "phone": "(737) 351-9271",
+    "phoneUnformatted": "+17373519271",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2698335,
+      "lng": -97.7412877
+    },
+    "totalScore": 4.8,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJp7tO_dy1RIYRW9_xLOG_ehs",
+    "categories": [
+      "Restaurant"
+    ],
+    "fid": "0x8644b5dcfd4ebba7:0x1b7abfe12cf1df5b",
+    "cid": "1980105960025349979",
+    "reviewsCount": 753,
+    "imagesCount": 579,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.836Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "Closed"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "No-contact delivery": true
+        },
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Beer": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Usually somewhat difficult to find a space": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Sapori%20Italian%20Roots&query_place_id=ChIJp7tO_dy1RIYRW9_xLOG_ehs",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 1,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoO9Rd-LjddjtNBAY-Uz-3TifzflFsuI46X9hv5ISeFbECPi5_2BWSBs_bbv1fgHs4vtfCsEpDjfMb4VvvyCTg2MobJEwmYcn8ixGTSXlshduf8Ayn9PEnE64of-QcgafE1CABql7C2EPg=w408-h306-k-no",
+    "kgmid": "/g/11kqwj7k6t"
+  },
+  {
+    "title": "Fig Italian Kitchen & Bar",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "3403 S Lamar Blvd, Austin, TX 78704",
+    "neighborhood": "South Lamar",
+    "street": "3403 S Lamar Blvd",
+    "city": "Austin",
+    "postalCode": "78704",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.figaustin.com/",
+    "phone": "(512) 601-8863",
+    "phoneUnformatted": "+15126018863",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2407046,
+      "lng": -97.7858874
+    },
+    "totalScore": 4.8,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJndqjXQBLW4YR4e4Edn7JQ_8",
+    "categories": [
+      "Italian restaurant",
+      "Pizza restaurant"
+    ],
+    "fid": "0x865b4b005da3da9d:0xff43c97e7604eee1",
+    "cid": "18393766848094334689",
+    "reviewsCount": 1285,
+    "imagesCount": 973,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.838Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/fvz2mwCEIrs?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "4 to 9 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Dinner": [
+        {
+          "day": "Monday",
+          "hours": "4–10 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "4–10 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "4–10 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "4–10 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "4–10:30 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "4–10:30 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "4–9 PM"
+        }
+      ],
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Saturday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Live music": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking garage": true
+        },
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Fig%20Italian%20Kitchen%20%26%20Bar&query_place_id=ChIJndqjXQBLW4YR4e4Edn7JQ_8",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 2,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipNVoUl6eHqvHfP6vMfpvQtoAbohs1UsFO3t9idW=w408-h272-k-no",
+    "kgmid": "/g/11y6kfh2k4"
+  },
+  {
+    "title": "Intero Restaurant",
+    "description": "Sustainability focused farm-to-table Italian with pasta & artisanal chocolate on a rotational menu.",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "2612 E Cesar Chavez St Suite 105, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "2612 E Cesar Chavez St Suite 105",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://www.interorestaurant.com/",
+    "phone": "(512) 599-4052",
+    "phoneUnformatted": "+15125994052",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2537,
+      "lng": -97.71443
+    },
+    "totalScore": 4.7,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJrxfsWDO0RIYRzhXtXuegE1Q",
+    "categories": [
+      "Italian restaurant",
+      "Restaurant"
+    ],
+    "fid": "0x8644b43358ec17af:0x5413a0e75eed15ce",
+    "cid": "6058362839333934542",
+    "reviewsCount": 1177,
+    "imagesCount": 1597,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.839Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/-dgcV57WL9o?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 9 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Dinner": [
+        {
+          "day": "Monday",
+          "hours": "5–9 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "5–9 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "5–9 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "5–9 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "5–10 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "5–10 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "5–9 PM"
+        }
+      ],
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "5–6:30 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "5–6:30 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "5–6:30 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "5–6:30 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Saturday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "From the business": [
+        {
+          "Identifies as women-owned": true
+        }
+      ],
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Organic dishes": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Intero%20Restaurant&query_place_id=ChIJrxfsWDO0RIYRzhXtXuegE1Q",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 3,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerjVrAr0u9WgBv1xT9qHMAhQAMDrP4JnC5JgTapeMOu6NW_nkvKMUIRcvksvEztnKiMrouNUoVM5Jqrajv4EEqQiZ_3Hy1ERw6HEpko0zGXEaM22rlt0xLHDS4D0xa7nR4pZswy=w408-h306-k-no",
+    "kgmid": "/g/11gdkrwxzp"
+  },
+  {
+    "title": "Red Ash",
+    "description": "Craft Italian fare, from wood-fired specialties to housemade pasta, plus wine in rustic-modern digs.",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "Colorado Tower, 303 Colorado St #200, Austin, TX 78701",
+    "neighborhood": "Downtown Austin",
+    "street": "Colorado Tower, 303 Colorado St #200",
+    "city": "Austin",
+    "postalCode": "78701",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://redashgrill.com/",
+    "phone": "(512) 379-2906",
+    "phoneUnformatted": "+15123792906",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2657022,
+      "lng": -97.7449409
+    },
+    "totalScore": 4.7,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJWfpBiwi1RIYRvg4iIbIE2go",
+    "categories": [
+      "Italian restaurant",
+      "Restaurant"
+    ],
+    "fid": "0x8644b5088b41fa59:0xada04b221220ebe",
+    "cid": "781942648408772286",
+    "reviewsCount": 2344,
+    "imagesCount": 2987,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.839Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/OOV8iQ5K3yI?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great beer selection": true
+        },
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Late-night food": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Reservations required": true
+        },
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Valet parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Red%20Ash&query_place_id=ChIJWfpBiwi1RIYRvg4iIbIE2go",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 4,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerWplfYHASRGg5OCo95ysaapEkpXaJiN2DmPKcHu69TqlWI41IBUXu3ShcmDQE-MYPAaxMz_F9bvG5nelKWBgSDSuYS3f3gGmC_tAUYc2Dixgz8pajwuzvAOa4ANUBC9J1CLIqIYg=w408-h306-k-no",
+    "kgmid": "/g/11cs5wlpxh"
+  },
+  {
+    "title": "ARTIPASTA Italian Food (Austin Highland)",
+    "price": "$10–20",
+    "categoryName": "Italian restaurant",
+    "address": "6406 N Interstate 35 Frontage Rd #2510, Austin, TX 78752",
+    "neighborhood": "St. Johns",
+    "street": "6406 N Interstate 35 Frontage Rd #2510",
+    "city": "Austin",
+    "postalCode": "78752",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.artipasta.com/",
+    "phone": "(512) 919-6574",
+    "phoneUnformatted": "+15129196574",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.3252964,
+      "lng": -97.7074915
+    },
+    "totalScore": 4.6,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJzSxoj9TLRIYRKKFYimt2_Xo",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644cbd48f682ccd:0x7afd766b8a58a128",
+    "cid": "8862369845989646632",
+    "reviewsCount": 593,
+    "imagesCount": 568,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.840Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11:30 AM to 3 PM, 5:30 to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11:30 AM to 3 PM, 5:30 to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11:30 AM to 3 PM, 5:30 to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11:30 AM to 3 PM, 5:30 to 9 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11:30 AM to 3 PM, 5:30 to 9 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "12 to 8 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Vegetarian options": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Gender-neutral restroom": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Quiet": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        }
+      ],
+      "Planning": [
+        {
+          "Accepts reservations": false
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=ARTIPASTA%20Italian%20Food%20(Austin%20Highland)&query_place_id=ChIJzSxoj9TLRIYRKKFYimt2_Xo",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 5,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweom1vMd9gszdBKWXfDRb4Wt8EicudZX20KZ6Lul0Y3QNqW2UDaqq7k3ws3Qn6QdleVjI-iqdfp123mAE1LFd-rGGUzPOTcO9c0XVtAq3JjRWXHE21zrCIEgV0gHO4GRNvOU8_i8UA=w408-h725-k-no",
+    "kgmid": "/g/11trx0h9zp"
+  },
+  {
+    "title": "Poeta",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "Located within East Austin Hotel, 1108 E 6th St, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "Located within East Austin Hotel, 1108 E 6th St",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.poetarestaurant.com/",
+    "phone": "(512) 364-0380",
+    "phoneUnformatted": "+15123640380",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2646333,
+      "lng": -97.7307468
+    },
+    "totalScore": 4.5,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJ4WXjCG61RIYRVJw00YsKl_E",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b56e08e365e1:0xf1970a8bd1349c54",
+    "cid": "17408394480250559572",
+    "reviewsCount": 307,
+    "imagesCount": 498,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.841Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "9 AM to 3 PM, 5 to 9 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "9 AM to 3 PM, 5 to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "9 AM to 3 PM, 5 to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "9 AM to 3 PM, 5 to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "9 AM to 3 PM, 5 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "10 AM to 3 PM, 5 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "10 AM to 3 PM, 5 to 9 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Breakfast": true
+        },
+        {
+          "Brunch": true
+        },
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Has changing table(s)": true
+        },
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking garage": true
+        },
+        {
+          "Free parking lot": true
+        },
+        {
+          "On-site parking": true
+        },
+        {
+          "Paid street parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Poeta&query_place_id=ChIJ4WXjCG61RIYRVJw00YsKl_E",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 6,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoFfkockodyc2NFSgbv6104bl5EVFLbcL9QyXVMJ0EZ1rr2Q5fcWRFhwJQjOQ2D4zLMx64-8G_waanoZ4puUcVeOFNLvlN1a_Innf7H088aJTfWBss39OSB38zuflo4McIfsmykpg=w408-h306-k-no",
+    "kgmid": "/g/11l6lh96t4"
+  },
+  {
+    "title": "Casa Bianca",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "1510 E Cesar Chavez St, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "1510 E Cesar Chavez St",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://casabiancaatx.com/",
+    "phone": "(361) 903-9303",
+    "phoneUnformatted": "+13619039303",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2588167,
+      "lng": -97.7287915
+    },
+    "totalScore": 4.6,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJXaUptum1RIYRUEvy4n6Fz-E",
+    "categories": [
+      "Italian restaurant",
+      "Cocktail bar",
+      "Oyster bar restaurant"
+    ],
+    "fid": "0x8644b5e9b629a55d:0xe1cf857ee2f24b50",
+    "cid": "16271370758732794704",
+    "reviewsCount": 265,
+    "imagesCount": 444,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.841Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "4 to 10:30 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "4 to 10:30 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "4 to 10 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "4–6 PM"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Curbside pickup": true
+        },
+        {
+          "No-contact delivery": true
+        },
+        {
+          "Delivery": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Rooftop seating": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Brunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Gender-neutral restroom": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Casa%20Bianca&query_place_id=ChIJXaUptum1RIYRUEvy4n6Fz-E",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 7,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipNNQ4ChgEGZ_54yELO2IuwK5LwoPXIH9oSGAWv3=w408-h272-k-no",
+    "kgmid": "/g/11vyt53nvk"
+  },
+  {
+    "title": "Bellissima Italian Mediterranean Restaurant",
+    "price": "$20–30",
+    "categoryName": "Italian restaurant",
+    "address": "8300 N FM 620 K-200, Austin, TX 78726",
+    "neighborhood": "Four Points",
+    "street": "8300 N FM 620 K-200",
+    "city": "Austin",
+    "postalCode": "78726",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://bellissimatx.com/",
+    "phone": "(512) 284-7599",
+    "phoneUnformatted": "+15122847599",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.4199871,
+      "lng": -97.8468329
+    },
+    "totalScore": 4.8,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJy9ZdSRkzW4YRIsogFDLNmq0",
+    "categories": [
+      "Italian restaurant",
+      "Mediterranean restaurant"
+    ],
+    "fid": "0x865b3319495dd6cb:0xad9acd321420ca22",
+    "cid": "12509536529944726050",
+    "reviewsCount": 1873,
+    "imagesCount": 799,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.841Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/QgYbjz58-q0?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "11 AM to 9 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11 AM to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11 AM to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11 AM to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "11 AM to 9 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Live music": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Organic dishes": true
+        },
+        {
+          "Salad bar": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Trendy": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Bellissima%20Italian%20Mediterranean%20Restaurant&query_place_id=ChIJy9ZdSRkzW4YRIsogFDLNmq0",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 8,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipOkvqa_Ef9FcBr7_ihAiCyR1RwRG15Xx02XegWn=w408-h271-k-no",
+    "kgmid": "/g/11vc57gyrp"
+  },
+  {
+    "title": "Juliet Italian Kitchen- Barton Springs",
+    "description": "Modern & classic Italian fare & drinks in a spacious, multiroom setting with luxe flourishes.",
+    "price": "$20–30",
+    "categoryName": "Italian restaurant",
+    "address": "1500 Barton Springs Rd, Austin, TX 78704",
+    "neighborhood": "Zilker",
+    "street": "1500 Barton Springs Rd",
+    "city": "Austin",
+    "postalCode": "78704",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.juliet-austin.com/",
+    "phone": "(512) 479-1800",
+    "phoneUnformatted": "+15124791800",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2616576,
+      "lng": -97.7600367
+    },
+    "totalScore": 4.3,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJh_uTtxm1RIYRIzvQNoCD1H0",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b519b793fb87:0x7dd4838036d03b23",
+    "cid": "9067016536502319907",
+    "reviewsCount": 2443,
+    "imagesCount": 1689,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.841Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/tgJEyjml_Hg?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "11:30 AM to 9 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11:30 AM to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11:30 AM to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11:30 AM to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11:30 AM to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "11 AM to 9 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "4–6 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "4–6 PM"
+        }
+      ],
+      "Takeout": [
+        {
+          "day": "Monday",
+          "hours": "11:30 AM–9 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "11:30 AM–9 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "11:30 AM–9 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "11:30 AM–9 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "11:30 AM–9 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "11 AM–9 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "11 AM–9 PM"
+        }
+      ],
+      "Brunch": [
+        {
+          "day": "Monday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Thursday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Friday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Saturday",
+          "hours": "11 AM–3 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "11 AM–3 PM"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "No-contact delivery": true
+        },
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Live music": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Organic dishes": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Breakfast": true
+        },
+        {
+          "Brunch": true
+        },
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Brunch reservations recommended": true
+        },
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Checks": true
+        },
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Juliet%20Italian%20Kitchen-%20Barton%20Springs&query_place_id=ChIJh_uTtxm1RIYRIzvQNoCD1H0",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 9,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq4xFnO3JeXj0sqQ4iTzzhFc7QljGnscOzzqt7_NXyztpCf9auEzgiW63TD2Kf8WMjJZy58roUr81hGcrSybbaQ-gOPK8NOXLXtmxNzeZ2HMVPXe34hi5D9lVOKdxRGCkW1R679=w408-h305-k-no",
+    "kgmid": "/g/11btxcnk56"
+  },
+  {
+    "title": "Mandola's Italian Kitchen",
+    "description": "Homestyle pastas, salads & sandwiches, plus prepared & packaged foods to go.",
+    "price": "$10–20",
+    "categoryName": "Italian restaurant",
+    "address": "4700 W Guadalupe St #12, Austin, TX 78751",
+    "neighborhood": "Triangle State",
+    "street": "4700 W Guadalupe St #12",
+    "city": "Austin",
+    "postalCode": "78751",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://mandolas.com/",
+    "phone": "(512) 419-9700",
+    "phoneUnformatted": "+15124199700",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.3159668,
+      "lng": -97.7335651
+    },
+    "totalScore": 4.5,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJ5TZAf2XKRIYRg7t2uQYn1Kw",
+    "categories": [
+      "Italian restaurant",
+      "Caterer"
+    ],
+    "fid": "0x8644ca657f4036e5:0xacd42706b976bb83",
+    "cid": "12453621779421117315",
+    "reviewsCount": 3289,
+    "imagesCount": 2068,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.841Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "11 AM to 9 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "3–6 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "3–6 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "3–6 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "3–6 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "3–6 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "Closed"
+        },
+        {
+          "day": "Sunday",
+          "hours": "Closed"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Curbside pickup": true
+        },
+        {
+          "No-contact delivery": true
+        },
+        {
+          "Delivery": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        },
+        {
+          "Assistive hearing loop": false
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Prepared foods": true
+        },
+        {
+          "Quick bite": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Trendy": true
+        }
+      ],
+      "Crowd": [
+        {
+          "College students": true
+        },
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Accepts reservations": false
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "Has changing table(s)": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking garage": true
+        },
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "On-site parking": true
+        },
+        {
+          "Usually somewhat difficult to find a space": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed": true
+        },
+        {
+          "Dogs allowed inside": true
+        },
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Mandola's%20Italian%20Kitchen&query_place_id=ChIJ5TZAf2XKRIYRg7t2uQYn1Kw",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 10,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6rAVdRDTFFXVxLta3zo1Z8oR6bQfrbcZE3Cjh-TJD32iiEXaOfAhSQMlx0AcJwU4jlxaWfF55ufR2TIVT87H6MEDBosFoMdzbYsJFdPiOJ6dcG9lnmtQ_8KnfKuQm1gS0acvk=w469-h240-k-no",
+    "kgmid": "/g/1tdjxdgb"
+  },
+  {
+    "title": "Sammie's",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "807 W 6th St, Austin, TX 78703",
+    "neighborhood": "Market District",
+    "street": "807 W 6th St",
+    "city": "Austin",
+    "postalCode": "78703",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://sammiesitalian.com/",
+    "phone": "(512) 474-2054",
+    "phoneUnformatted": "+15124742054",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2702151,
+      "lng": -97.751157
+    },
+    "totalScore": 4.4,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJ_WWpQBe1RIYRGvDZJ7tgkqM",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b51740a965fd:0xa39260bb27d9f01a",
+    "cid": "11786589531725754394",
+    "reviewsCount": 654,
+    "imagesCount": 909,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/318OPq32364?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 PM to 12 AM"
+      },
+      {
+        "day": "Friday",
+        "hours": "12 PM to 12 AM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 PM to 12 AM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking garage": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Valet parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Sammie's&query_place_id=ChIJ_WWpQBe1RIYRGvDZJ7tgkqM",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 11,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwergWUNUSQECHLlTVKvCMyIvR2y11SPQm-f7XPuPlnSfr3g0Hp6fjfCStjyCe5HagkGu2VOTzdpb70wPIqAgDmThuPWNzG1lI8XcNDuYwY-A649NYaRdrty2QVY7F3fwhyKCDc95=w408-h305-k-no",
+    "kgmid": "/g/11r8yczjz3"
+  },
+  {
+    "title": "Dean's Italian Steakhouse",
+    "description": "Urbane outfit with a subdued vibe offering wagyu beef & homemade pasta, plus a cocktail terrace.",
+    "price": "$100+",
+    "categoryName": "Italian restaurant",
+    "address": "110 E 2nd St, Austin, TX 78701",
+    "neighborhood": "Downtown Austin",
+    "street": "110 E 2nd St",
+    "city": "Austin",
+    "postalCode": "78701",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.deanssteakhouseaustin.com/?utm_source=google&utm_medium=organic&utm_campaign=business_listing",
+    "phone": "(512) 608-4490",
+    "phoneUnformatted": "+15126084490",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2641454,
+      "lng": -97.7430761
+    },
+    "totalScore": 4.9,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJVycNKfm1RIYRTy7RJBzfPtc",
+    "categories": [
+      "Italian restaurant",
+      "Bar",
+      "Steak house",
+      "Restaurant"
+    ],
+    "fid": "0x8644b5f9290d2757:0xd73edf1c24d12e4f",
+    "cid": "15510079478680333903",
+    "reviewsCount": 3017,
+    "imagesCount": 1959,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/rDLzGMmMVCk?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        },
+        {
+          "Takeout": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        },
+        {
+          "Wheelchair accessible restroom": false
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Checks": true
+        },
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Paid parking garage": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Usually plenty of parking": true
+        },
+        {
+          "Valet parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Dean's%20Italian%20Steakhouse&query_place_id=ChIJVycNKfm1RIYRTy7RJBzfPtc",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 12,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqBeEA0i8EMpRkS5bDj8uRG4H-QzPKB_VgBNEcd6DyGRU4iutdJACBy47-wKBR5rDtsNcPRShdoWG9IcIJlpu3Koy0QjpAtiiNVB70YByGMHHUN72N7W-zzWVBbTP5NhdXPLs9z=w408-h306-k-no",
+    "kgmid": "/g/11pyc12_7j"
+  },
+  {
+    "title": "Trattoria Lisina",
+    "description": "Winery dining venue with wood-fired pizzas & other Italian offerings in a casually elegant setting.",
+    "price": "$30–50",
+    "categoryName": "Italian restaurant",
+    "address": "13308 Ranch to Market Rd 150, Driftwood, TX 78619",
+    "neighborhood": null,
+    "street": "13308 Ranch to Market Rd 150",
+    "city": "Driftwood",
+    "postalCode": "78619",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://trattorialisina.com/",
+    "phone": "(512) 894-3111",
+    "phoneUnformatted": "+15128943111",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.1024982,
+      "lng": -98.0128739
+    },
+    "totalScore": 4.6,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJdd80m5RFW4YRRH0WuTIajaQ",
+    "categories": [
+      "Italian restaurant",
+      "Event venue",
+      "Fine dining restaurant",
+      "Wedding venue"
+    ],
+    "fid": "0x865b45949b34df75:0xa48d1a32b9167d44",
+    "cid": "11857162199092329796",
+    "reviewsCount": 2316,
+    "imagesCount": 2721,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/AOq00B24aoU?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "4 to 9 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "4 to 9 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "4 to 9 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "4 to 9 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "11 AM to 9 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "11 AM to 9 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Fast service": true
+        },
+        {
+          "Fireplace": true
+        },
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Brunch": true
+        },
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Groups": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Brunch reservations recommended": true
+        },
+        {
+          "Lunch reservations recommended": true
+        },
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Has changing table(s)": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Trattoria%20Lisina&query_place_id=ChIJdd80m5RFW4YRRH0WuTIajaQ",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 13,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepjWxKZvNp1GTcKcQcMYYWI3dYTRIK1tnHcIdKvcdiOUH37q7b-Q7bEWzUXzFheMccebrKl5JvuHMPTOfTh1psc35p5wPGsBShTzvv8xYMlf4-0yyT1aCXJY5c9NjGSLGYNorTf=w408-h306-k-no",
+    "kgmid": "/g/11c2rbzvth"
+  },
+  {
+    "title": "Pasta|Bar Austin",
+    "price": "$100+",
+    "categoryName": "Restaurant",
+    "address": "1017 E 6th St, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "1017 E 6th St",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.exploretock.com/pastabaraustin",
+    "phone": "(512) 360-8207",
+    "phoneUnformatted": "+15123608207",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.264681,
+      "lng": -97.7318551
+    },
+    "totalScore": 4.6,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJVcPwM3G1RIYRr4vXlKPHBAI",
+    "categories": [
+      "Restaurant"
+    ],
+    "fid": "0x8644b57133f0c355:0x204c7a394d78baf",
+    "cid": "145460593373449135",
+    "reviewsCount": 135,
+    "imagesCount": 631,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/Oz9335I939Y?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 11 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "Closed"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Onsite services": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Planning": [
+        {
+          "Reservations required": true
+        },
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Parking": [
+        {
+          "Paid street parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Pasta%7CBar%20Austin&query_place_id=ChIJVcPwM3G1RIYRr4vXlKPHBAI",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 14,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqzgBMDnsSRI4GNnYYInBIsB3YFvvMKQNLsUUfiCyMlS7LiSSPRV3TulhF61vsVVDj6Yt3iGRcoTGclbqCOh3bXtwES8xe-Ap-1SoBuGLo57wZWlEpcUYi6djfRptON5r95R16Now=w408-h544-k-no",
+    "kgmid": "/g/11rqtm45rx"
+  },
+  {
+    "title": "Juniper",
+    "price": "$100+",
+    "categoryName": "Italian restaurant",
+    "address": "2400 E Cesar Chavez St UNIT 304, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "2400 E Cesar Chavez St UNIT 304",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.juniperaustin.com/",
+    "phone": "(512) 220-9421",
+    "phoneUnformatted": "+15122209421",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2547104,
+      "lng": -97.7172759
+    },
+    "totalScore": 4.4,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJ0T8L0cq1RIYRTCsoTlwUcig",
+    "categories": [
+      "Italian restaurant",
+      "Restaurant"
+    ],
+    "fid": "0x8644b5cad10b3fd1:0x2872145c4e282b4c",
+    "cid": "2914414295542934348",
+    "reviewsCount": 1156,
+    "imagesCount": 2306,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Curbside pickup": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Gender-neutral restroom": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Valet parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Juniper&query_place_id=ChIJ0T8L0cq1RIYRTCsoTlwUcig",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 15,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoLsXt-6KHSSmDQy3re3fSLjrnYzUQ99LviznMhNxvwtB36iPnAXA0d-nf0K4EikrVn7DwiLJUWxPUZj3eSkWs-L8c9jXUKfb10vxhlrYm8aVKnxxDbC0uTIXvyv0pEqLcURG7T=w408-h306-k-no",
+    "kgmid": "/g/11b7qxpk3s"
+  },
+  {
+    "title": "Il Brutto",
+    "description": "Classic Italian pasta dishes, wood-fired pizza & heartier entrees along with wine, cocktails & beer.",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "1601 E 6th St, Austin, TX 78702",
+    "neighborhood": "East Austin",
+    "street": "1601 E 6th St",
+    "city": "Austin",
+    "postalCode": "78702",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.ilbruttoaustin.com/",
+    "phone": "(512) 580-8779",
+    "phoneUnformatted": "+15125808779",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2628502,
+      "lng": -97.7263546
+    },
+    "totalScore": 4.4,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJeZBH07a1RIYRO8laRdPddzA",
+    "categories": [
+      "Italian restaurant",
+      "Lounge",
+      "Pizza restaurant",
+      "Wine bar"
+    ],
+    "fid": "0x8644b5b6d3479079:0x3077ddd3455ac93b",
+    "cid": "3492503935520524603",
+    "reviewsCount": 1202,
+    "imagesCount": 1192,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/EmyL8p9UVAQ?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "4 to 11 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "4 to 11 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "additionalOpeningHours": {
+      "Happy hours": [
+        {
+          "day": "Monday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Tuesday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Wednesday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Thursday",
+          "hours": "5–6 PM"
+        },
+        {
+          "day": "Friday",
+          "hours": "4–5 PM"
+        },
+        {
+          "day": "Saturday",
+          "hours": "4–5 PM"
+        },
+        {
+          "day": "Sunday",
+          "hours": "5–6 PM"
+        }
+      ]
+    },
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Live music": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trending": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Paid parking garage": true
+        },
+        {
+          "Paid street parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed": true
+        },
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Il%20Brutto&query_place_id=ChIJeZBH07a1RIYRO8laRdPddzA",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 16,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipP-AQVocBhWy5ab9NINIpMhUq_rZeGpNzAUi1TU=w408-h272-k-no",
+    "kgmid": "/g/11f4rdx8p6"
+  },
+  {
+    "title": "Patrizi's",
+    "description": "This food truck outside the Vortex theater dishes up old-school Italian standards & housemade pasta.",
+    "price": "$10–20",
+    "categoryName": "Italian restaurant",
+    "address": "2307 Manor Rd, Austin, TX 78722",
+    "neighborhood": "East Austin",
+    "street": "2307 Manor Rd",
+    "city": "Austin",
+    "postalCode": "78722",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://patrizis.com/",
+    "phone": "(346) 658-5171",
+    "phoneUnformatted": "+13466585171",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2838954,
+      "lng": -97.717262
+    },
+    "totalScore": 4.6,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJ_SqzjOy1RIYR0-au-H5SDZE",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b5ec8cb32afd:0x910d527ef8aee6d3",
+    "cid": "10452101015488358099",
+    "reviewsCount": 1865,
+    "imagesCount": 1456,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.842Z",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 9:30 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 9:30 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Live music": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Late-night food": true
+        },
+        {
+          "Organic dishes": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": false
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Gender-neutral restroom": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        }
+      ],
+      "Crowd": [
+        {
+          "College students": true
+        },
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed": true
+        },
+        {
+          "Dogs allowed inside": true
+        },
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Patrizi's&query_place_id=ChIJ_SqzjOy1RIYR0-au-H5SDZE",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 17,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoKoUZBRGHQq1_FelamJMx2PrdZhWN2WAt6g1z6Eh8RPwZskho1e9iQdxSUbFlWya7Z55k1R0CdP8C0Dry3I2TN3P8U49oAKkK3zPfVdG4Z0F9rNlQIzddENYrYOCRU_-TkVhXsmg=w408-h306-k-no",
+    "kgmid": "/g/12hk5vlwy"
+  },
+  {
+    "title": "Taverna Austin (Downtown) | The Baci Room",
+    "description": "Casual Italian chainlet featuring pizzas, risottos & sidewalk seating.",
+    "price": "$$$",
+    "categoryName": "Italian restaurant",
+    "address": "258 W 2nd St, Austin, TX 78701",
+    "neighborhood": "Downtown Austin",
+    "street": "258 W 2nd St",
+    "city": "Austin",
+    "postalCode": "78701",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.tavernabylombardi.com/",
+    "phone": "(512) 477-1001",
+    "phoneUnformatted": "+15124771001",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2651679,
+      "lng": -97.7463598
+    },
+    "totalScore": 4.2,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJMazVpAi1RIYRjhmcLjSvho8",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b508a4d5ac31:0x8f86af342e9c198e",
+    "cid": "10342146232958065038",
+    "reviewsCount": 1661,
+    "imagesCount": 1073,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.843Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/GqjClfffT7c?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "11 AM to 10 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "11 AM to 11 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "10 AM to 11 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "10 AM to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Live music": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        },
+        {
+          "Assistive hearing loop": false
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Brunch": true
+        },
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Gender-neutral restroom": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "Tourists": true
+        }
+      ],
+      "Planning": [
+        {
+          "Brunch reservations recommended": true
+        },
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Has changing table(s)": true
+        },
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking garage": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Usually difficult to find a space": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Taverna%20Austin%20(Downtown)%20%7C%20The%20Baci%20Room&query_place_id=ChIJMazVpAi1RIYRjhmcLjSvho8",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 18,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipNk9WXA42kyJY7aPYxRUBBDVNxz5vfVGeUPaBXY=w408-h271-k-no",
+    "kgmid": "/g/1td_c1t5"
+  },
+  {
+    "title": "Vespaio Restaurant",
+    "description": "Neighborhood Italian eatery offering homemade pasta & meat dishes, plus dessert, wine & cocktails.",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "1610 S Congress Ave S, Austin, TX 78704",
+    "neighborhood": "Bouldin Creek",
+    "street": "1610 S Congress Ave S",
+    "city": "Austin",
+    "postalCode": "78704",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://vespaioristorante.com/",
+    "phone": "(512) 441-6100",
+    "phoneUnformatted": "+15124416100",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2474255,
+      "lng": -97.7507097
+    },
+    "totalScore": 4.5,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJQxDp5f-1RIYREhw0DPYuRuI",
+    "categories": [
+      "Italian restaurant"
+    ],
+    "fid": "0x8644b5ffe5e91043:0xe2462ef60c341c12",
+    "cid": "16304771135243033618",
+    "reviewsCount": 2060,
+    "imagesCount": 1442,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.843Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/INM-5Jmk2O0?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "5 to 10 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "5 to 10:30 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "5 to 10:30 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "5 to 10:30 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "5 to 10:30 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "5 to 10:30 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "5 to 10 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Comfort food": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Brunch": true
+        },
+        {
+          "Lunch": true
+        },
+        {
+          "Dinner": true
+        },
+        {
+          "Catering": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Tourists": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        },
+        {
+          "Usually a wait": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "High chairs": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "On-site parking": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Usually somewhat difficult to find a space": true
+        },
+        {
+          "Valet parking": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=Vespaio%20Restaurant&query_place_id=ChIJQxDp5f-1RIYREhw0DPYuRuI",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 19,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepJWXEexD1ZDi0duMEaQbAbHCscEBd272G2YQzuKGzvw_mLSWihJT8Pg5MXuhQ27DlxtrxqLycUShSW_ZKoAQ3dzMxjnXqR2zizI6yiHLYLXon7CA83yH0D06aPPFAvzEhekyQf=w408-h306-k-no",
+    "kgmid": "/g/11j7d81wrk"
+  },
+  {
+    "title": "L'Oca d'Oro",
+    "description": "Bright, airy destination for individual & shareable Italian dishes, plus housemade pasta & cheese.",
+    "price": "$50–100",
+    "categoryName": "Italian restaurant",
+    "address": "1900 Simond Ave, Austin, TX 78723",
+    "neighborhood": "Mueller Town Center District",
+    "street": "1900 Simond Ave",
+    "city": "Austin",
+    "postalCode": "78723",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://www.locadoroaustin.com/",
+    "phone": "(737) 212-1876",
+    "phoneUnformatted": "+17372121876",
+    "claimThisBusiness": false,
+    "location": {
+      "lat": 30.2972489,
+      "lng": -97.7046722
+    },
+    "totalScore": 4.3,
+    "permanentlyClosed": false,
+    "temporarilyClosed": false,
+    "placeId": "ChIJm_DBL_m1RIYRT_yiSCvq0gI",
+    "categories": [
+      "Italian restaurant",
+      "Cocktail bar",
+      "Family restaurant",
+      "Pasta shop",
+      "Wine bar"
+    ],
+    "fid": "0x8644b5f92fc1f09b:0x2d2ea2b48a2fc4f",
+    "cid": "203482404808227919",
+    "reviewsCount": 743,
+    "imagesCount": 998,
+    "imageCategories": [],
+    "scrapedAt": "2026-02-21T08:23:47.843Z",
+    "reserveTableUrl": "https://www.google.com/maps/reserve/v/dine/c/yYj3XL_GSpY?source=pa&opi=79508299&hl=en-US&gei=kGuZaavOC4zNkPIPgJXk8Qk&sourceurl=https://www.google.com/search?tbm%3Dmap%26authuser%3D0%26hl%3Den%26gl%3Dus%26pb%3D!4m8!1m3!1d7382757.991878375!2d-81.50137645!3d25.375927499999996!3m2!1i1475!2i1327!4f13.1!7i20!10b1!12m25!1m5!18b1!30b1!31m1!1b1!34e1!2m4!5m1!6e2!20e3!39b1!10b1!12b1!13b1!16b1!17m1!3e1!20m3!5e2!6b1!14b1!46m1!1b0!96b1!99b1!19m4!2m3!1i360!2i120!4i8!20m65!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m16!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!22m2!1sjGuZacm6EP7UkPIP3cXEgAw!7e81!24m109!1m30!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m19!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!27m1!1b0!28b0!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!14m1!3b0!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!26m4!2m3!1i80!2i92!4i8!30m28!1m6!1m2!1i0!2i0!2m2!1i530!2i1327!1m6!1m2!1i1425!2i0!2m2!1i1475!2i1327!1m6!1m2!1i0!2i0!2m2!1i1475!2i20!1m6!1m2!1i0!2i1307!2m2!1i1475!2i1327!34m19!2b1!3b1!4b1!6b1!8m6!1b1!3b1!4b1!5b1!6b1!7b1!9b1!12b1!14b1!20b1!23b1!25b1!26b1!31b1!37m1!1e81!49m10!3b1!6m2!1b1!2b1!7m2!1e3!2b1!8b1!9b1!10e2!50m3!2e2!3m1!3b1!61b1!67m5!7b1!10b1!14b1!15m1!1b0!69i757%26q%3Ditalian%2Brestaurants%2BAustin,%2BTX%26ech%3D1%26psi%3DjGuZacm6EP7UkPIP3cXEgAw.1771662221606.1",
+    "googleFoodUrl": null,
+    "hotelAds": [],
+    "openingHours": [
+      {
+        "day": "Monday",
+        "hours": "Closed"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "4 to 9:30 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "4 to 9:30 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "4 to 9:30 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "4 to 10 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "4 to 9:30 PM"
+      }
+    ],
+    "peopleAlsoSearch": [],
+    "placesTags": [],
+    "reviewsTags": [],
+    "additionalInfo": {
+      "Service options": [
+        {
+          "Outdoor seating": true
+        },
+        {
+          "Onsite services": true
+        },
+        {
+          "Takeout": true
+        },
+        {
+          "Dine-in": true
+        },
+        {
+          "Delivery": false
+        }
+      ],
+      "Highlights": [
+        {
+          "Great cocktails": true
+        },
+        {
+          "Great coffee": true
+        },
+        {
+          "Great dessert": true
+        },
+        {
+          "Great wine list": true
+        },
+        {
+          "Serves local specialty": true
+        }
+      ],
+      "Popular for": [
+        {
+          "Dinner": true
+        },
+        {
+          "Solo dining": true
+        }
+      ],
+      "Accessibility": [
+        {
+          "Wheelchair accessible entrance": true
+        },
+        {
+          "Wheelchair accessible parking lot": true
+        },
+        {
+          "Wheelchair accessible restroom": true
+        },
+        {
+          "Wheelchair accessible seating": true
+        }
+      ],
+      "Offerings": [
+        {
+          "Alcohol": true
+        },
+        {
+          "Beer": true
+        },
+        {
+          "Cocktails": true
+        },
+        {
+          "Coffee": true
+        },
+        {
+          "Happy hour drinks": true
+        },
+        {
+          "Happy hour food": true
+        },
+        {
+          "Hard liquor": true
+        },
+        {
+          "Healthy options": true
+        },
+        {
+          "Organic dishes": true
+        },
+        {
+          "Private dining room": true
+        },
+        {
+          "Small plates": true
+        },
+        {
+          "Vegetarian options": true
+        },
+        {
+          "Wine": true
+        }
+      ],
+      "Dining options": [
+        {
+          "Dinner": true
+        },
+        {
+          "Counter service": true
+        },
+        {
+          "Dessert": true
+        },
+        {
+          "Seating": true
+        },
+        {
+          "Table service": true
+        }
+      ],
+      "Amenities": [
+        {
+          "Bar onsite": true
+        },
+        {
+          "Restroom": true
+        },
+        {
+          "Wi-Fi": true
+        },
+        {
+          "Free Wi-Fi": true
+        }
+      ],
+      "Atmosphere": [
+        {
+          "Casual": true
+        },
+        {
+          "Cozy": true
+        },
+        {
+          "Romantic": true
+        },
+        {
+          "Trendy": true
+        },
+        {
+          "Upscale": true
+        }
+      ],
+      "Crowd": [
+        {
+          "Family-friendly": true
+        },
+        {
+          "Groups": true
+        },
+        {
+          "LGBTQ+ friendly": true
+        },
+        {
+          "Transgender safespace": true
+        }
+      ],
+      "Planning": [
+        {
+          "Dinner reservations recommended": true
+        },
+        {
+          "Accepts reservations": true
+        }
+      ],
+      "Payments": [
+        {
+          "Credit cards": true
+        },
+        {
+          "Debit cards": true
+        },
+        {
+          "NFC mobile payments": true
+        },
+        {
+          "Credit cards": true
+        }
+      ],
+      "Children": [
+        {
+          "Good for kids": true
+        },
+        {
+          "High chairs": true
+        },
+        {
+          "Kids' menu": true
+        }
+      ],
+      "Parking": [
+        {
+          "Free parking lot": true
+        },
+        {
+          "Free street parking": true
+        },
+        {
+          "Paid parking lot": true
+        },
+        {
+          "Paid street parking": true
+        },
+        {
+          "Usually plenty of parking": true
+        }
+      ],
+      "Pets": [
+        {
+          "Dogs allowed outside": true
+        }
+      ]
+    },
+    "gasPrices": [],
+    "url": "https://www.google.com/maps/search/?api=1&query=L'Oca%20d'Oro&query_place_id=ChIJm_DBL_m1RIYRT_yiSCvq0gI",
+    "searchPageUrl": "https://www.google.com/maps/search/italian%20restaurants%20Austin,%20TX?hl=en",
+    "searchString": "italian restaurants Austin, TX",
+    "language": "en",
+    "rank": 20,
+    "isAdvertisement": false,
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipOSvyhHHvQVYEarSX_EN91gmINqPTd2s_0yQxkp=w408-h272-k-no",
+    "kgmid": "/g/11ck6f_p93"
+  }
+]

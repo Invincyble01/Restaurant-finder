@@ -34,14 +34,18 @@ export class Card extends Root {
         display: block;
         flex: var(--weight);
         min-height: 0;
-        overflow: auto;
+        overflow: visible;
+        scroll-margin-top: 24px;
       }
 
       section {
+        display: flex;
+        flex-direction: column;
         height: 100%;
         width: 100%;
         min-height: 0;
-        overflow: auto;
+        overflow: hidden;
+        box-sizing: border-box;
 
         ::slotted(*) {
           height: 100%;
@@ -50,6 +54,61 @@ export class Card extends Root {
       }
     `,
   ];
+
+  updated(): void {
+    this.#syncRestaurantMetadata();
+  }
+
+  #syncRestaurantMetadata() {
+    if (!this.processor || !this.component || !this.surfaceId) {
+      return;
+    }
+
+    const restaurantName = this.#coerceString(this.processor.getData(this.component, "name", this.surfaceId));
+    const restaurantAddress = this.#coerceString(this.processor.getData(this.component, "address", this.surfaceId));
+    const restaurantImageUrl = this.#coerceString(this.processor.getData(this.component, "imageUrl", this.surfaceId));
+    const restaurantKey = this.#restaurantKey(restaurantName, restaurantAddress, restaurantImageUrl);
+
+    if (restaurantName) {
+      this.setAttribute("data-restaurant-name", restaurantName);
+    } else {
+      this.removeAttribute("data-restaurant-name");
+    }
+
+    if (restaurantKey) {
+      this.setAttribute("data-restaurant-key", restaurantKey);
+    } else {
+      this.removeAttribute("data-restaurant-key");
+    }
+  }
+
+  #coerceString(value: unknown): string | null {
+    if (value == null) {
+      return null;
+    }
+
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      return trimmed ? trimmed : null;
+    }
+
+    if (typeof value === "number" || typeof value === "boolean") {
+      return String(value);
+    }
+
+    return null;
+  }
+
+  #restaurantKey(name: string | null, address: string | null, imageUrl: string | null): string | null {
+    if (!name && !address && !imageUrl) {
+      return null;
+    }
+
+    const normalize = (value: string | null, fallback: string) =>
+      value?.trim().toLowerCase() || fallback;
+
+    return `${normalize(name, "unknown-restaurant")}::${normalize(address, "no-address")}::${normalize(imageUrl, "no-image")}`;
+  }
 
   render() {
     return html` <section

@@ -1,0 +1,17 @@
+a2a
+a2ui
+agent
+langchain
+langchain_oci
+langchain_core
+langgraph
+jsonschema
+python-dotenv
+chat
+mcp
+httpx
+click
+starlette
+oci-openai
+playwright
+langchain-mcp-adapters

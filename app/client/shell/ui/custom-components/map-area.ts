@@ -49,16 +49,87 @@ export class A2uiCustomMap extends Root {
     css`
       :host {
         display: block;
+        flex: var(--weight);
+        height: 100%;
         min-height: 0;
       }
+
+      .map-shell {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 14px;
+        height: 100%;
+        min-height: 0;
+      }
+
+      .map-header,
+      .map-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .map-kicker {
+        display: block;
+        margin-bottom: 6px;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--rf-tertiary);
+      }
+
+      .map-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--rf-ink);
+      }
+
+      .map-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.12);
+        color: var(--rf-muted);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
       #map {
         width: 100%;
-        height: var(--a2ui-map-height, 480px);
-        border-radius: 12px;
+        height: 100%;
+        min-height: 420px;
+        border-radius: 28px;
         overflow: hidden;
         position: relative;
         pointer-events: auto;
+        box-shadow: 0 20px 40px rgba(0, 107, 95, 0.1);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.42)),
+          rgba(243, 243, 243, 0.9);
       }
+
+      #map::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 12% 16%, rgba(134, 246, 228, 0.26), transparent 0 20%),
+          radial-gradient(circle at 80% 20%, rgba(150, 241, 250, 0.16), transparent 0 16%);
+        z-index: 0;
+      }
+
       /* Tooltip-style popup inside the map container */
       .maplibregl-popup {
         position: absolute;
@@ -67,7 +138,7 @@ export class A2uiCustomMap extends Root {
         display: flex;
         will-change: transform;
         max-width: 280px;
-        font: 13px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        font: 13px/1.5 var(--font-copy);
         z-index: 10;
         pointer-events: none;
       }
@@ -89,11 +160,12 @@ export class A2uiCustomMap extends Root {
       }
       .maplibregl-popup-content {
         position: relative;
-        border-radius: 8px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-        padding: 8px 10px;
-        background: rgba(255,255,255,0.95);
+        border-radius: 18px;
+        box-shadow: 0 20px 34px rgba(0, 107, 95, 0.12);
+        padding: 0;
+        background: rgba(255, 255, 255, 0.96);
         pointer-events: auto;
+        overflow: hidden;
       }
       .maplibregl-popup-content * {
         pointer-events: auto;
@@ -102,43 +174,90 @@ export class A2uiCustomMap extends Root {
         width: 0;
         height: 0;
         border: 10px solid transparent;
-        border-top-color: rgba(255,255,255,0.95) !important;
+        border-top-color: rgba(255, 255, 255, 0.96) !important;
       }
       .maplibregl-popup-anchor-top .maplibregl-popup-tip,
       .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
       .maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
         align-self: center;
         border-top: none;
-        border-bottom-color: rgba(255,255,255,0.95);
+        border-bottom-color: rgba(255, 255, 255, 0.96);
       }
       .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
       .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
       .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
         align-self: center;
         border-bottom: none;
-        border-top-color: rgba(255,255,255,0.95);
+        border-top-color: rgba(255, 255, 255, 0.96);
       }
       .maplibregl-popup-anchor-left .maplibregl-popup-tip {
         align-self: center;
         border-left: none;
-        border-right-color: rgba(255,255,255,0.95);
+        border-right-color: rgba(255, 255, 255, 0.96);
       }
       .maplibregl-popup-anchor-right .maplibregl-popup-tip {
         align-self: center;
         border-right: none;
-        border-left-color: rgba(255,255,255,0.95);
+        border-left-color: rgba(255, 255, 255, 0.96);
       }
+
+      .popup-card {
+        display: grid;
+        gap: 8px;
+        padding: 14px 16px;
+        min-width: 220px;
+      }
+
+      .popup-title {
+        color: var(--rf-ink);
+        font-family: var(--font-display);
+        font-size: 1rem;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .popup-rating {
+        color: var(--rf-ink-muted);
+        font-size: 0.84rem;
+      }
+
+      .popup-link {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--rf-primary), var(--rf-primary-strong));
+        color: var(--rf-primary-contrast);
+        text-decoration: none;
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
       .notice {
-        font-size: 0.9rem;
-        opacity: 0.8;
+        font-size: 0.84rem;
+        color: var(--rf-ink-muted);
+        line-height: 1.5;
       }
       .fallback-list {
         margin-top: 8px;
         font-size: 0.9rem;
       }
       .fallback-list a {
-        color: var(--p-40, #5154b3);
+        color: var(--rf-primary);
         text-decoration: underline;
+      }
+
+      @media (max-width: 900px) {
+        #map {
+          height: min(520px, var(--a2ui-map-height, 520px));
+          min-height: 320px;
+          border-radius: 22px;
+        }
       }
     `,
   ];
@@ -184,8 +303,24 @@ export class A2uiCustomMap extends Root {
   }
 
   render() {
+    const itemsCount = this.#getItems().filter((item) => this.#isFiniteCoord(item)).length;
+
     return html`
-      <div id="map"></div>
+      <section class="map-shell">
+        <div class="map-header">
+          <div>
+            <span class="map-kicker">Spatial view</span>
+            <h3 class="map-title">Restaurant map</h3>
+          </div>
+          <span class="map-badge">${itemsCount} pins</span>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="map-footer">
+          <span class="notice">Pins reflect the restaurants shown in the current results list.</span>
+        </div>
+      </section>
     `;
   }
 
@@ -286,6 +421,10 @@ export class A2uiCustomMap extends Root {
         if (!targetCoords) return;
 
         const p = f.properties || {};
+        this.#notifyRestaurantPinSelected({
+          restaurantKey: this.#toString(p.restaurantKey),
+          restaurantName: this.#toString(p.title),
+        });
         const html = this.#popupHtml({
           [this.titleField]: p.title,
           [this.ratingField]: p.rating,
@@ -389,6 +528,7 @@ export class A2uiCustomMap extends Root {
           title: this.#toString(it[this.titleField]) || "",
           rating: this.#toString(it[this.ratingField]) || "",
           link: this.#toString(it[this.linkField]) || "",
+          restaurantKey: this.#restaurantKeyForItem(it) || "",
         },
         geometry: { type: "Point", coordinates: [c.lng, c.lat] },
       });
@@ -518,11 +658,15 @@ export class A2uiCustomMap extends Root {
     const link = this.#toString(item[this.linkField]);
     const rating = this.#toString(item[this.ratingField]);
     const safeTitle = title ? this.#escapeHtml(title) : "Location";
-    const safeRating = rating ? `<div style=\"margin-top:4px;color:#555\">${this.#escapeHtml(rating)}</div>` : "";
-    const safeLink = link ? `<div style=\"margin-top:6px\"><a style=\"color:#3b82f6\" target=\"_blank\" href=\"${this.#escapeAttr(link)}\">Open</a></div>` : "";
+    const safeRating = rating
+      ? `<div class=\"popup-rating\">${this.#escapeHtml(rating)}</div>`
+      : "";
+    const safeLink = link
+      ? `<a class=\"popup-link\" target=\"_blank\" href=\"${this.#escapeAttr(link)}\">Open Link</a>`
+      : "";
     return `
-      <div style=\"font: 13px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 260px;\">
-        <div style=\"font-weight:600;color:#111\">${safeTitle}</div>
+      <div class=\"popup-card\">
+        <div class=\"popup-title\">${safeTitle}</div>
         ${safeRating}
         ${safeLink}
       </div>`;
@@ -539,6 +683,24 @@ export class A2uiCustomMap extends Root {
       })
       .filter(Boolean);
     return html`${links}`;
+  }
+
+  #notifyRestaurantPinSelected(detail: { restaurantKey: string | null; restaurantName: string | null }) {
+    if (!detail.restaurantKey) {
+      return;
+    }
+
+    this.dispatchEvent(
+      new CustomEvent("restaurant-pin-selected", {
+        detail: {
+          surfaceId: this.surfaceId,
+          restaurantKey: detail.restaurantKey,
+          restaurantName: detail.restaurantName,
+        },
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   #getItems(): any[] {
@@ -597,6 +759,23 @@ export class A2uiCustomMap extends Root {
   #toString(v: any): string | null {
     if (v == null) return null;
     return String(v);
+  }
+
+  #restaurantKeyForItem(item: any): string | null {
+    const normalize = (value: unknown, fallback: string) => {
+      const stringValue = this.#toString(value)?.trim().toLowerCase();
+      return stringValue || fallback;
+    };
+
+    const name = this.#toString(item?.[this.titleField]);
+    const address = this.#toString(item?.address);
+    const imageUrl = this.#toString(item?.imageUrl);
+
+    if (!name && !address && !imageUrl) {
+      return null;
+    }
+
+    return `${normalize(name, "unknown-restaurant")}::${normalize(address, "no-address")}::${normalize(imageUrl, "no-image")}`;
   }
 
   #escapeHtml(s: string): string {

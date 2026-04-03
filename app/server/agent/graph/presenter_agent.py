@@ -6,6 +6,7 @@ from langchain_oci import ChatOCIGenAI
 from langchain.messages import HumanMessage, AIMessage
 from langgraph.graph.state import CompiledStateGraph
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import jsonschema
@@ -25,14 +26,17 @@ AGENT_INSTRUCTION = """
     - Determine the number of restaurants from the data.
     - If 5 or fewer restaurants, use the SINGLE_COLUMN_LIST_EXAMPLE template.
     - If more than 5 restaurants, use the TWO_COLUMN_LIST_EXAMPLE template.
+    - The restaurant results view must use image-led editorial cards with the map displayed beside the list, not the older image-left utility card layout.
     - Render the `tags` text in each restaurant card when present.
+    - Keep the reservation trigger in every restaurant card.
     - Populate the dataModelUpdate.contents with the restaurant information.
 
     Output in the format: conversational text ---a2ui_JSON--- JSON list of A2UI messages
 """
 
+
 class PresenterAgent:
-    """ Agent that generates A2UI schemas from restaurant data """
+    """Agent that generates A2UI schemas from restaurant data"""
 
     def __init__(self, base_url: str, use_ui: bool = False, config: AgentConfig = None):
         if config:
@@ -77,10 +81,7 @@ class PresenterAgent:
         )
 
         return create_agent(
-            model=oci_llm,
-            tools=[],
-            system_prompt=instruction,
-            name=self.agent_name
+            model=oci_llm, tools=[], system_prompt=instruction, name=self.agent_name
         )
 
     @staticmethod
@@ -112,7 +113,9 @@ class PresenterAgent:
 
         detail = cls._coalesce(normalized.get("detail"), normalized.get("caption"))
         address = cls._coalesce(normalized.get("address"), location_as_text)
-        image_url = cls._coalesce(normalized.get("imageUrl"), normalized.get("imageURL"))
+        image_url = cls._coalesce(
+            normalized.get("imageUrl"), normalized.get("imageURL")
+        )
         tags = cls._coalesce(normalized.get("tags"))
         info_link = cls._coalesce(normalized.get("infoLink"))
         info_link_markdown = cls._coalesce(
@@ -127,17 +130,19 @@ class PresenterAgent:
         normalized["infoLink"] = info_link or ""
         normalized["infoLinkMarkdown"] = info_link_markdown or ""
         return normalized
-    
+
     async def __call__(self, state):
         """Call the presenter agent to generate and validate UI from restaurant data."""
-        data = state['messages'][-1].content
+        data = state["messages"][-1].content
 
         # Try to parse the formatter's normalized array so we can ensure `/items` exists.
         formatter_items = None
         try:
             parsed = json.loads(data)
             if isinstance(parsed, list):
-                formatter_items = [self._canonicalize_formatter_item(it) for it in parsed]
+                formatter_items = [
+                    self._canonicalize_formatter_item(it) for it in parsed
+                ]
         except Exception:
             formatter_items = None
 
@@ -152,8 +157,11 @@ class PresenterAgent:
                 "--- PresenterAgent: A2UI_SCHEMA is not loaded. Cannot perform UI validation. ---"
             )
             return {
-                'messages': state['messages'] + [
-                    AIMessage(content="I'm sorry, I'm facing an internal configuration error with my UI components.")
+                "messages": state["messages"]
+                + [
+                    AIMessage(
+                        content="I'm sorry, I'm facing an internal configuration error with my UI components."
+                    )
                 ]
             }
 
@@ -163,9 +171,9 @@ class PresenterAgent:
                 f"--- PresenterAgent: Validation attempt {attempt}/{max_retries + 1} ---"
             )
 
-            messages = {'messages': [HumanMessage(content=current_query_text)]}
+            messages = {"messages": [HumanMessage(content=current_query_text)]}
             response = await self._agent.ainvoke(messages)
-            final_response_content = response['messages'][-1].content
+            final_response_content = response["messages"][-1].content
 
             # Validate the response
             is_valid = False
@@ -209,7 +217,9 @@ class PresenterAgent:
                         f"Validation OK (Attempt {attempt}). ---"
                     )
                     is_valid = True
-                    final_response_content = f"{text_part}\n---a2ui_JSON---\n{json_string}"
+                    final_response_content = (
+                        f"{text_part}\n---a2ui_JSON---\n{json_string}"
+                    )
                 except (
                     ValueError,
                     json.JSONDecodeError,
@@ -232,15 +242,21 @@ class PresenterAgent:
                 )
                 # Update the response with validated content
                 validated_response = response.copy()
-                validated_response['messages'][-1] = AIMessage(content=final_response_content)
+                validated_response["messages"][-1] = AIMessage(
+                    content=final_response_content
+                )
 
                 # Best-effort: Inject a dataModelUpdate to ensure `/items` is populated
                 # for components like the Map that read from that path.
                 try:
                     if formatter_items is not None:
                         # Extract the JSON list of messages from the validated content.
-                        _text_part, json_string = final_response_content.split("---a2ui_JSON---", 1)
-                        json_string_cleaned = json_string.strip().lstrip("```json").rstrip("```").strip()
+                        _text_part, json_string = final_response_content.split(
+                            "---a2ui_JSON---", 1
+                        )
+                        json_string_cleaned = (
+                            json_string.strip().lstrip("```json").rstrip("```").strip()
+                        )
                         ui_msgs = json.loads(json_string_cleaned)
                         if isinstance(ui_msgs, list):
                             # Find surfaceId from any existing message; fallback to "default".
@@ -265,7 +281,9 @@ class PresenterAgent:
                                     "contents": [
                                         {
                                             "key": ".",
-                                            "valueString": json.dumps(formatter_items, ensure_ascii=False),
+                                            "valueString": json.dumps(
+                                                formatter_items, ensure_ascii=False
+                                            ),
                                         }
                                     ],
                                 }
@@ -281,14 +299,16 @@ class PresenterAgent:
                                 # Merge by materializing both messages back into the `---a2ui_JSON---` payload.
                                 ui_msgs.append(ensure_items_msg)
                                 merged = json.dumps(ui_msgs, ensure_ascii=False)
-                                validated_response['messages'][-1] = AIMessage(
+                                validated_response["messages"][-1] = AIMessage(
                                     content=f"{_text_part}\n---a2ui_JSON---\n{merged}"
                                 )
                             except Exception:
                                 # If merging fails, we still return the validated response.
                                 pass
                 except Exception as e:
-                    logger.warning(f"--- PresenterAgent: Failed to inject /items dataModelUpdate: {e} ---")
+                    logger.warning(
+                        f"--- PresenterAgent: Failed to inject /items dataModelUpdate: {e} ---"
+                    )
 
                 return validated_response
 
@@ -308,14 +328,15 @@ class PresenterAgent:
                 # Loop continues for retry
 
         # If here, max retries exhausted
-        logger.error(
-            "--- PresenterAgent: Max retries exhausted. Returning error. ---"
-        )
+        logger.error("--- PresenterAgent: Max retries exhausted. Returning error. ---")
         return {
-            'messages': state['messages'] + [
-                AIMessage(content=(
-                    "I'm sorry, I'm having trouble generating the interface for that request right now. "
-                    "Please try again in a moment."
-                ))
+            "messages": state["messages"]
+            + [
+                AIMessage(
+                    content=(
+                        "I'm sorry, I'm having trouble generating the interface for that request right now. "
+                        "Please try again in a moment."
+                    )
+                )
             ]
         }

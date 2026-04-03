@@ -40,6 +40,7 @@ export class Surface extends Root {
         max-height: 100%;
         flex-direction: column;
         gap: 16px;
+        overflow: visible;
       }
 
       #surface-logo {
@@ -54,6 +55,85 @@ export class Surface extends Root {
 
       a2ui-root {
         flex: 1;
+      }
+
+      a2ui-row#results-row {
+        --a2ui-row-wrap: nowrap;
+        align-items: stretch;
+        gap: 24px;
+        height: 100%;
+        min-height: 0;
+      }
+
+      a2ui-column#results-column,
+      a2ui-column#map-column {
+        flex: 0 0 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+        min-width: 0;
+        min-height: 0;
+      }
+
+      a2ui-column#results-column {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      a2ui-column#map-column {
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      a2ui-column#map-column a2ui-custom-map,
+      a2ui-custom-map#map-view {
+        height: 100%;
+        min-height: 0;
+        top: auto;
+      }
+
+      a2ui-list#item-list {
+        height: 100%;
+        min-height: 0;
+        overflow: auto;
+        padding-right: 8px;
+      }
+
+      a2ui-list#item-list,
+      a2ui-card[data-restaurant-key] {
+        overflow: visible;
+      }
+
+      @media (max-width: 900px) {
+        a2ui-row#results-row {
+          --a2ui-row-wrap: wrap;
+          height: auto;
+        }
+
+        a2ui-column#results-column,
+        a2ui-column#map-column {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+
+        a2ui-column#results-column {
+          overflow: visible;
+          height: auto;
+        }
+
+        a2ui-column#map-column {
+          position: static;
+          top: auto;
+          height: auto;
+          overflow: visible;
+        }
+
+        a2ui-list#item-list {
+          height: auto;
+          overflow: visible;
+          padding-right: 0;
+        }
       }
     `,
   ];

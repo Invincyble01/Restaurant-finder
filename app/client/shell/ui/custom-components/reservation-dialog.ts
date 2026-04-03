@@ -82,6 +82,9 @@ export class A2uiReservationDialog extends Root {
   @state()
   accessor #confirmation: ReservationConfirmation | null = null;
 
+  @state()
+  accessor #failedImageUrl: string | null = null;
+
   @query("dialog")
   accessor #dialogRef: HTMLDialogElement | null = null;
 
@@ -550,6 +553,7 @@ export class A2uiReservationDialog extends Root {
     const restaurantAddress = this.#displayRestaurantAddress();
     const availableTimeOptions = this.#timeOptionsForDate(this.#reservationDate);
     const minimumDate = this.#todayDateString();
+    const showRestaurantImage = this.#canRenderRestaurantImage(restaurantImageUrl);
 
     return html`
       <section class="header">
@@ -566,8 +570,14 @@ export class A2uiReservationDialog extends Root {
         <div class="reservation-shell">
           <section class="hero-card">
             <div class="hero-image-wrap">
-              ${restaurantImageUrl
-                ? html`<img src=${restaurantImageUrl} alt=${`Photo of ${restaurantName}`} />`
+              ${showRestaurantImage
+                ? html`<img
+                    src=${restaurantImageUrl}
+                    alt=${`Photo of ${restaurantName}`}
+                    referrerpolicy="no-referrer"
+                    decoding="async"
+                    @error=${this.#onRestaurantImageError}
+                  />`
                 : html`<div class="hero-fallback">${restaurantName}</div>`}
               <div class="hero-overlay">
                 <span class="hero-label">Selected restaurant</span>
@@ -672,6 +682,7 @@ export class A2uiReservationDialog extends Root {
     const formattedDateTime = this.#formatDateTime(
       confirmation?.reservationDateTime ?? ""
     );
+    const showRestaurantImage = this.#canRenderRestaurantImage(restaurantImageUrl);
 
     return html`
       <section class="header">
@@ -689,8 +700,14 @@ export class A2uiReservationDialog extends Root {
         <div class="confirmation-shell">
           <section class="hero-card">
             <div class="hero-image-wrap">
-              ${restaurantImageUrl
-                ? html`<img src=${restaurantImageUrl} alt=${`Photo of ${restaurantName}`} />`
+              ${showRestaurantImage
+                ? html`<img
+                    src=${restaurantImageUrl}
+                    alt=${`Photo of ${restaurantName}`}
+                    referrerpolicy="no-referrer"
+                    decoding="async"
+                    @error=${this.#onRestaurantImageError}
+                  />`
                 : html`<div class="hero-fallback">${restaurantName}</div>`}
               <div class="hero-overlay">
                 <span class="hero-label">Booking locked in</span>
@@ -838,6 +855,18 @@ export class A2uiReservationDialog extends Root {
 
   #displayRestaurantImageUrl() {
     return this.#resolveStringValue(this.restaurantImageUrl);
+  }
+
+  #canRenderRestaurantImage(imageUrl: string | null) {
+    return Boolean(imageUrl) && imageUrl !== this.#failedImageUrl;
+  }
+
+  #onRestaurantImageError(event: Event) {
+    const target = event.currentTarget as HTMLImageElement | null;
+    const failedUrl = target?.getAttribute("src") || target?.currentSrc || target?.src || null;
+    if (failedUrl) {
+      this.#failedImageUrl = failedUrl;
+    }
   }
 
   #displayRestaurantAddress() {

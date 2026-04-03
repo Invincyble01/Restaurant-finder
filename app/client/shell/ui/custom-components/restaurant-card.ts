@@ -15,7 +15,7 @@
  */
 
 import { css, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { componentRegistry, Root } from "@a2ui/lit/ui";
 
 type StringBinding = string | { literalString?: string; path?: string } | null;
@@ -50,6 +50,9 @@ export class A2uiRestaurantCard extends Root {
 
   @property({ attribute: false })
   accessor infoLinkMarkdown: StringBinding = null;
+
+  @state()
+  accessor #failedImageUrl: string | null = null;
 
   static styles = [
     css`
@@ -403,6 +406,14 @@ export class A2uiRestaurantCard extends Root {
     return values.filter((value): value is string => Boolean(value)).join(" / ");
   }
 
+  #markImageFailed(event: Event) {
+    const target = event.currentTarget as HTMLImageElement | null;
+    const failedUrl = target?.getAttribute("src") || target?.currentSrc || target?.src || null;
+    if (failedUrl) {
+      this.#failedImageUrl = failedUrl;
+    }
+  }
+
   render() {
     const name = this.#resolveStringValue(this.name) ?? "Restaurant";
     const detail = this.#resolveStringValue(this.detail);
@@ -412,12 +423,20 @@ export class A2uiRestaurantCard extends Root {
     const rating = this.#extractRating(this.#resolveStringValue(this.rating));
     const tags = this.#splitTags(this.#resolveStringValue(this.tags));
     const footerMeta = this.#joinMeta(address);
+    const showImage = Boolean(imageUrl) && this.#failedImageUrl !== imageUrl;
 
     return html`
       <article class="card">
         <div class="media">
-          ${imageUrl
-            ? html`<img src=${imageUrl} alt=${name} />`
+          ${showImage
+            ? html`<img
+                src=${imageUrl}
+                alt=${name}
+                referrerpolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                @error=${this.#markImageFailed}
+              />`
             : html`<div class="media-fallback">${name}</div>`}
           ${rating.score
             ? html`<div class="rating-badge" aria-label=${`Rated ${rating.score}`}>

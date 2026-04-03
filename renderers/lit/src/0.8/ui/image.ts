@@ -65,7 +65,7 @@ export class Image extends Root {
     }
 
     const render = (url: string) => {
-      return html`<img src=${url} />`;
+      return html`<img src=${url} referrerpolicy="no-referrer" loading="lazy" decoding="async" />`;
     };
 
     if (this.url && typeof this.url === "object") {

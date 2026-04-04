@@ -1,4 +1,3 @@
-import json
 import logging
 import copy
 from dataclasses import asdict
@@ -27,6 +26,7 @@ from agent.graph.struct import AgentConfig, CONFIG_SCHEMA, DEFAULT_CONFIG
 
 logger = logging.getLogger(__name__)
 
+
 class RestaurantGraphExecutor(AgentExecutor):
     """Executor of a full graph"""
 
@@ -39,14 +39,12 @@ class RestaurantGraphExecutor(AgentExecutor):
     def _recreate_graphs(self):
         """Recreate graph instances with current config"""
         self._ui_restaurant_graph = RestaurantGraph(
-            base_url=self.base_url, 
-            use_ui=True, 
-            graph_configuration=self.current_config
+            base_url=self.base_url, use_ui=True, graph_configuration=self.current_config
         )
         self._restaurant_graph = RestaurantGraph(
-            base_url=self.base_url, 
-            use_ui=False, 
-            graph_configuration=self.current_config
+            base_url=self.base_url,
+            use_ui=False,
+            graph_configuration=self.current_config,
         )
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
@@ -54,18 +52,24 @@ class RestaurantGraphExecutor(AgentExecutor):
         ui_event_part = None
         action = None
 
-        logger.info(f"--- Client requested extensions: {context.requested_extensions} ---")
+        logger.info(
+            f"--- Client requested extensions: {context.requested_extensions} ---"
+        )
         use_ui = try_activate_a2ui_extension(context)
 
         # Determine which agent to use based on whether the a2ui extension is active.
         if use_ui:
             agent = self._ui_restaurant_graph
             await agent.build_graph()
-            logger.info("--- AGENT_EXECUTOR: A2UI extension is active. Using UI agent. ---")
+            logger.info(
+                "--- AGENT_EXECUTOR: A2UI extension is active. Using UI agent. ---"
+            )
         else:
             agent = self._restaurant_graph
             await agent.build_graph()
-            logger.info("--- AGENT_EXECUTOR: A2UI extension is not active. Using text agent. ---")
+            logger.info(
+                "--- AGENT_EXECUTOR: A2UI extension is not active. Using text agent. ---"
+            )
 
         if context.message and context.message.parts:
             logger.info(
@@ -123,8 +127,8 @@ class RestaurantGraphExecutor(AgentExecutor):
             is_task_complete = item["is_task_complete"]
             if not is_task_complete:
                 update_parts = []
-                update_parts.append(Part(root=TextPart(text=item['updates'])))
-                update_parts.append(Part(root=TextPart(text=item['detailed_updates'])))
+                update_parts.append(Part(root=TextPart(text=item["updates"])))
+                update_parts.append(Part(root=TextPart(text=item["detailed_updates"])))
                 await updater.update_status(
                     TaskState.working,
                     new_agent_parts_message(update_parts, task.context_id, task.id),
@@ -137,37 +141,24 @@ class RestaurantGraphExecutor(AgentExecutor):
                 else TaskState.input_required
             )
 
-            content = item["content"]
+            final_output = item.get("final_output") or {
+                "kind": "text",
+                "text": "",
+                "a2ui_messages": [],
+            }
             final_parts = []
-            if "---a2ui_JSON---" in content:
-                logger.info("Splitting final response into text and UI parts.")
-                text_content, json_string = content.split("---a2ui_JSON---", 1)
+            text_content = str(final_output.get("text") or "").strip()
+            if text_content:
+                final_parts.append(Part(root=TextPart(text=text_content)))
 
-                if text_content.strip():
-                    final_parts.append(Part(root=TextPart(text=text_content.strip())))
+            a2ui_messages = final_output.get("a2ui_messages")
+            if isinstance(a2ui_messages, list):
+                logger.info("Emitting %s structured A2UI messages.", len(a2ui_messages))
+                for message in a2ui_messages:
+                    final_parts.append(create_a2ui_part(message))
 
-                if json_string.strip():
-                    try:
-                        json_string_cleaned = (json_string.strip().lstrip("```json").rstrip("```").strip())
-                        json_data = json.loads(json_string_cleaned)
-
-                        if isinstance(json_data, list):
-                            logger.info(f"Found {len(json_data)} messages. Creating individual DataParts.")
-                            for message in json_data:
-                                final_parts.append(create_a2ui_part(message))
-                        else:
-                            # Handle the case where a single JSON object is returned
-                            logger.info("Received a single JSON object. Creating a DataPart.")
-                            final_parts.append(create_a2ui_part(json_data))
-
-                    except json.JSONDecodeError as e:
-                        logger.error(f"Failed to parse UI JSON: {e}")
-                        final_parts.append(Part(root=TextPart(text=json_string)))
-            else:
-                final_parts.append(Part(root=TextPart(text=content.strip())))
-
-            final_parts.append(Part(root=TextPart(text=item['detailed_updates'])))
-            final_parts.append(Part(root=TextPart(text=item['token_count'])))
+            final_parts.append(Part(root=TextPart(text=item["detailed_updates"])))
+            final_parts.append(Part(root=TextPart(text=item["token_count"])))
 
             logger.info("--- FINAL PARTS TO BE SENT ---")
             for i, part in enumerate(final_parts):

@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import re
+from dataclasses import asdict
 from typing import Any, Dict, List
 from langchain.agents import create_agent
 from langchain_oci import ChatOCIGenAI
@@ -14,18 +15,18 @@ load_dotenv()
 import jsonschema
 from agent.prompt_builder import (
     A2UI_SCHEMA,
-    RESTAURANT_UI_EXAMPLES,
-    get_ui_prompt,
+    get_text_prompt,
 )
-from agent.graph.struct import AgentConfig
+from agent.graph.struct import AgentConfig, PresenterOutput
 from agent.graph.a2ui_builder import (
     build_booking_form_surface,
     build_booking_text,
     build_confirmation_surface,
     build_confirmation_text,
-    build_presenter_response,
     build_results_surface,
     build_results_text,
+    build_text_output,
+    build_ui_output,
     is_booking_request,
     is_booking_submission,
     parse_booking_request,
@@ -33,25 +34,6 @@ from agent.graph.a2ui_builder import (
 )
 
 logger = logging.getLogger(__name__)
-
-AGENT_INSTRUCTION = """
-    You are a UI generation assistant. You receive restaurant data and must generate the appropriate A2UI UI JSON schema for display.
-
-    Use the provided restaurant data to populate the UI. Follow these rules:
-    - Determine the number of restaurants from the data.
-    - If 5 or fewer restaurants, use the SINGLE_COLUMN_LIST_EXAMPLE template.
-    - If more than 5 restaurants, use the TWO_COLUMN_LIST_EXAMPLE template.
-    - The restaurant results view must use image-led editorial cards with the map displayed beside the list, not the older image-left utility card layout.
-    - Use the exact restaurant-results component ids shown in the examples so the client styling hooks apply correctly.
-    - Each restaurant card must follow the Figma layout for node 1:258 using the custom `RestaurantCard` component inside the item card template.
-    - The left link label must be exactly `Visit site`; never render a raw URL as visible text in the card.
-    - Render a top-right numeric rating badge overlay when rating data is present, place the ratings-count text beside the restaurant name when present, and render tag pills when tags are present.
-    - Keep the reservation trigger in every restaurant card.
-    - Use `#00685D` as the primaryColor for restaurant and booking surfaces.
-    - Populate the dataModelUpdate.contents with the restaurant information.
-
-    Output in the format: conversational text ---a2ui_JSON--- JSON list of A2UI messages
-"""
 
 
 class PresenterAgent:
@@ -87,9 +69,7 @@ class PresenterAgent:
 
     def _build_agent(self) -> CompiledStateGraph:
         """Builds the agent for the presenter."""
-        instruction = AGENT_INSTRUCTION + get_ui_prompt(
-            self.base_url, RESTAURANT_UI_EXAMPLES
-        )
+        instruction = get_text_prompt()
 
         oci_llm = ChatOCIGenAI(
             model_id=self.oci_model,
@@ -109,16 +89,30 @@ class PresenterAgent:
         jsonschema.validate(instance=messages, schema=self.a2ui_schema_object)
 
     @staticmethod
-    def _validate_legacy_response_contract(content: str) -> None:
-        if "---a2ui_JSON---" not in content:
-            raise ValueError("Delimiter '---a2ui_JSON---' not found")
+    def _coerce_text(value: Any) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, str):
+            return value
+        return str(value)
 
-        _text_part, json_string = content.split("---a2ui_JSON---", 1)
-        payload = json.loads(json_string.strip())
-        if not isinstance(payload, list):
-            raise ValueError("JSON payload must be a list of A2UI messages")
+    @staticmethod
+    def _build_ai_message(
+        output: PresenterOutput | Dict[str, Any],
+        name: str,
+        response_metadata: Dict[str, Any] | None = None,
+    ) -> AIMessage:
+        presenter_output = (
+            asdict(output) if isinstance(output, PresenterOutput) else dict(output)
+        )
+        return AIMessage(
+            content=presenter_output.get("text", ""),
+            name=name,
+            response_metadata=response_metadata or {},
+            additional_kwargs={"presenter_output": presenter_output},
+        )
 
-    def _build_results_response(self, formatter_payload: str) -> str:
+    def _build_results_response(self, formatter_payload: str) -> Dict[str, Any]:
         formatter_items: List[Dict[str, Any]] = []
         try:
             parsed = json.loads(formatter_payload)
@@ -133,13 +127,9 @@ class PresenterAgent:
 
         ui_messages = build_results_surface(formatter_items)
         self._validate_ui_messages(ui_messages)
-        response = build_presenter_response(
-            build_results_text(formatter_items), ui_messages
-        )
-        self._validate_legacy_response_contract(response)
-        return response
+        return build_ui_output(build_results_text(formatter_items), ui_messages)
 
-    def _build_booking_response(self, query: str) -> str:
+    def _build_booking_response(self, query: str) -> Dict[str, Any]:
         booking_data = parse_booking_request(query)
         ui_messages = build_booking_form_surface(
             booking_data["restaurant_name"],
@@ -147,13 +137,11 @@ class PresenterAgent:
             booking_data.get("image_url", ""),
         )
         self._validate_ui_messages(ui_messages)
-        response = build_presenter_response(
+        return build_ui_output(
             build_booking_text(booking_data["restaurant_name"]), ui_messages
         )
-        self._validate_legacy_response_contract(response)
-        return response
 
-    def _build_confirmation_response(self, query: str) -> str:
+    def _build_confirmation_response(self, query: str) -> Dict[str, Any]:
         confirmation_data = parse_booking_submission(query)
         ui_messages = build_confirmation_surface(
             confirmation_data["restaurant_name"],
@@ -163,13 +151,11 @@ class PresenterAgent:
             confirmation_data.get("image_url", ""),
         )
         self._validate_ui_messages(ui_messages)
-        response = build_presenter_response(
+        return build_ui_output(
             build_confirmation_text(confirmation_data["restaurant_name"]), ui_messages
         )
-        self._validate_legacy_response_contract(response)
-        return response
 
-    def _build_deterministic_ui_response(self, data: str) -> str:
+    def _build_deterministic_ui_response(self, data: str) -> Dict[str, Any]:
         if is_booking_request(data):
             return self._build_booking_response(data)
         if is_booking_submission(data):
@@ -260,24 +246,28 @@ class PresenterAgent:
                 return {
                     "messages": state["messages"]
                     + [
-                        AIMessage(
-                            content="I'm sorry, I'm facing an internal configuration error with my UI components.",
-                            name=self.agent_name,
+                        self._build_ai_message(
+                            build_text_output(
+                                "I'm sorry, I'm facing an internal configuration error with my UI components."
+                            ),
+                            self.agent_name,
+                            {
+                                "model_id": "deterministic-a2ui-builder",
+                                "total_tokens": 0,
+                            },
                         )
                     ]
                 }
 
             try:
-                final_response_content = self._build_deterministic_ui_response(
-                    str(data)
-                )
+                final_output = self._build_deterministic_ui_response(str(data))
                 return {
                     "messages": state["messages"]
                     + [
-                        AIMessage(
-                            content=final_response_content,
-                            name=self.agent_name,
-                            response_metadata={
+                        self._build_ai_message(
+                            final_output,
+                            self.agent_name,
+                            {
                                 "model_id": "deterministic-a2ui-builder",
                                 "total_tokens": 0,
                             },
@@ -291,13 +281,13 @@ class PresenterAgent:
                 return {
                     "messages": state["messages"]
                     + [
-                        AIMessage(
-                            content=(
+                        self._build_ai_message(
+                            build_text_output(
                                 "I'm sorry, I'm having trouble generating the interface for that request right now. "
                                 "Please try again in a moment."
                             ),
-                            name=self.agent_name,
-                            response_metadata={
+                            self.agent_name,
+                            {
                                 "model_id": "deterministic-a2ui-builder",
                                 "total_tokens": 0,
                             },
@@ -305,208 +295,34 @@ class PresenterAgent:
                     ]
                 }
 
-        # Try to parse the formatter's normalized array so we can ensure `/items` exists.
-        formatter_items = None
         try:
-            parsed = json.loads(data)
-            if isinstance(parsed, list):
-                formatter_items = [
-                    self._canonicalize_formatter_item(it) for it in parsed
-                ]
-        except Exception:
-            formatter_items = None
-
-        # UI Validation and Retry Logic (adapted from oci_agent.py)
-        max_retries = 1  # Total 2 attempts
-        attempt = 0
-        current_query_text = data
-
-        # Ensure schema was loaded
-        if self.use_ui and self.a2ui_schema_object is None:
-            logger.error(
-                "--- PresenterAgent: A2UI_SCHEMA is not loaded. Cannot perform UI validation. ---"
+            response = await self._agent.ainvoke(
+                {"messages": [HumanMessage(content=data)]}
+            )
+            final_response_content = self._coerce_text(response["messages"][-1].content)
+            response_metadata = dict(
+                getattr(response["messages"][-1], "response_metadata", {}) or {}
+            )
+            validated_response = response.copy()
+            validated_response["messages"][-1] = self._build_ai_message(
+                build_text_output(final_response_content),
+                self.agent_name,
+                response_metadata,
+            )
+            return validated_response
+        except Exception as exc:
+            logger.exception(
+                "--- PresenterAgent: Text response generation failed: %s ---", exc
             )
             return {
                 "messages": state["messages"]
                 + [
-                    AIMessage(
-                        content="I'm sorry, I'm facing an internal configuration error with my UI components."
+                    self._build_ai_message(
+                        build_text_output(
+                            "I'm sorry, I'm having trouble generating the interface for that request right now. "
+                            "Please try again in a moment."
+                        ),
+                        self.agent_name,
                     )
                 ]
             }
-
-        while attempt <= max_retries:
-            attempt += 1
-            logger.info(
-                f"--- PresenterAgent: Validation attempt {attempt}/{max_retries + 1} ---"
-            )
-
-            messages = {"messages": [HumanMessage(content=current_query_text)]}
-            response = await self._agent.ainvoke(messages)
-            final_response_content = response["messages"][-1].content
-
-            # Validate the response
-            is_valid = False
-            error_message = ""
-
-            if self.use_ui:
-                logger.info(
-                    f"--- PresenterAgent: Validating UI response (Attempt {attempt})... ---"
-                )
-                try:
-                    if "---a2ui_JSON---" not in final_response_content:
-                        raise ValueError("Delimiter '---a2ui_JSON---' not found.")
-
-                    text_part, json_string = final_response_content.split(
-                        "---a2ui_JSON---", 1
-                    )
-
-                    if not json_string.strip():
-                        raise ValueError("JSON part is empty.")
-
-                    json_string_cleaned = (
-                        json_string.strip().lstrip("```json").rstrip("```").strip()
-                    )
-
-                    if not json_string_cleaned:
-                        raise ValueError("Cleaned JSON string is empty.")
-
-                    # Parse JSON
-                    parsed_json_data = json.loads(json_string_cleaned)
-
-                    # Validate against A2UI_SCHEMA
-                    logger.info(
-                        "--- PresenterAgent: Validating against A2UI_SCHEMA... ---"
-                    )
-                    jsonschema.validate(
-                        instance=parsed_json_data, schema=self.a2ui_schema_object
-                    )
-
-                    logger.info(
-                        f"--- PresenterAgent: UI JSON successfully parsed AND validated against schema. "
-                        f"Validation OK (Attempt {attempt}). ---"
-                    )
-                    is_valid = True
-                    final_response_content = (
-                        f"{text_part}\n---a2ui_JSON---\n{json_string}"
-                    )
-                except (
-                    ValueError,
-                    json.JSONDecodeError,
-                    jsonschema.exceptions.ValidationError,
-                ) as e:
-                    logger.warning(
-                        f"--- PresenterAgent: A2UI validation failed: {e} (Attempt {attempt}) ---"
-                    )
-                    logger.warning(
-                        f"--- Failed response content: {final_response_content[:500]}... ---"
-                    )
-                    error_message = f"Validation failed: {e}."
-
-            else:  # Not using UI, so text is always "valid"
-                is_valid = True
-
-            if is_valid:
-                logger.info(
-                    f"--- PresenterAgent: Response is valid. Returning final response (Attempt {attempt}). ---"
-                )
-                # Update the response with validated content
-                validated_response = response.copy()
-                validated_response["messages"][-1] = AIMessage(
-                    content=final_response_content
-                )
-
-                # Best-effort: Inject a dataModelUpdate to ensure `/items` is populated
-                # for components like the Map that read from that path.
-                try:
-                    if formatter_items is not None:
-                        # Extract the JSON list of messages from the validated content.
-                        _text_part, json_string = final_response_content.split(
-                            "---a2ui_JSON---", 1
-                        )
-                        json_string_cleaned = (
-                            json_string.strip().lstrip("```json").rstrip("```").strip()
-                        )
-                        ui_msgs = json.loads(json_string_cleaned)
-                        if isinstance(ui_msgs, list):
-                            # Find surfaceId from any existing message; fallback to "default".
-                            surface_id = "default"
-                            for m in ui_msgs:
-                                sid = (
-                                    (m.get("beginRendering") or {}).get("surfaceId")
-                                    or (m.get("surfaceUpdate") or {}).get("surfaceId")
-                                    or (m.get("dataModelUpdate") or {}).get("surfaceId")
-                                )
-                                if isinstance(sid, str) and sid:
-                                    surface_id = sid
-                                    break
-
-                            # Create a dataModelUpdate that writes the raw items array at `/items`.
-                            # We use the special `{ key: '.', valueString: JSON }` convention at a non-root path
-                            # so the client sets the primitive value at that exact location.
-                            ensure_items_msg = {
-                                "dataModelUpdate": {
-                                    "surfaceId": surface_id,
-                                    "path": "/items",
-                                    "contents": [
-                                        {
-                                            "key": ".",
-                                            "valueString": json.dumps(
-                                                formatter_items, ensure_ascii=False
-                                            ),
-                                        }
-                                    ],
-                                }
-                            }
-
-                            # Append our injection just after the LLM messages in the same assistant turn.
-                            # The client collects all parts from this message stream already, so we can
-                            # return the validated messages and rely on the router to send `ensure_items_msg`
-                            # as an additional part.
-                            # We encode both messages into the final assistant content expected by the client
-                            # by concatenating another JSON list element.
-                            try:
-                                # Merge by materializing both messages back into the `---a2ui_JSON---` payload.
-                                ui_msgs.append(ensure_items_msg)
-                                merged = json.dumps(ui_msgs, ensure_ascii=False)
-                                validated_response["messages"][-1] = AIMessage(
-                                    content=f"{_text_part}\n---a2ui_JSON---\n{merged}"
-                                )
-                            except Exception:
-                                # If merging fails, we still return the validated response.
-                                pass
-                except Exception as e:
-                    logger.warning(
-                        f"--- PresenterAgent: Failed to inject /items dataModelUpdate: {e} ---"
-                    )
-
-                return validated_response
-
-            # If here, validation failed
-            if attempt <= max_retries:
-                logger.warning(
-                    f"--- PresenterAgent: Retrying... ({attempt}/{max_retries + 1}) ---"
-                )
-                # Prepare retry query
-                current_query_text = (
-                    f"Your previous response was invalid. {error_message} "
-                    "You MUST generate a valid response that strictly follows the A2UI JSON SCHEMA. "
-                    "The response MUST be a JSON list of A2UI messages. "
-                    "Ensure the response is split by '---a2ui_JSON---' and the JSON part is well-formed. "
-                    f"Please retry the original request: '{data}'"
-                )
-                # Loop continues for retry
-
-        # If here, max retries exhausted
-        logger.error("--- PresenterAgent: Max retries exhausted. Returning error. ---")
-        return {
-            "messages": state["messages"]
-            + [
-                AIMessage(
-                    content=(
-                        "I'm sorry, I'm having trouble generating the interface for that request right now. "
-                        "Please try again in a moment."
-                    )
-                )
-            ]
-        }

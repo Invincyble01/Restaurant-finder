@@ -9,7 +9,7 @@ from agent.graph.apify_places_agent import ApifyPlacesAgent
 from agent.graph.a2ui_builder import is_booking_request, is_booking_submission
 from agent.graph.formatter_agent import FormatterAgent
 from agent.graph.presenter_agent import PresenterAgent
-from agent.graph.struct import AgentConfig, RestaurantGraphException
+from agent.graph.struct import AgentConfig, PresenterOutput, RestaurantGraphException
 
 from dotenv import load_dotenv
 
@@ -107,6 +107,35 @@ class RestaurantGraph:
         return timeline_message, detailed_message
 
     @staticmethod
+    def _extract_final_output(message: AnyMessage) -> dict[str, Any]:
+        if isinstance(message, AIMessage):
+            presenter_output = getattr(message, "additional_kwargs", {}).get(
+                "presenter_output"
+            )
+            if isinstance(presenter_output, dict):
+                kind = str(presenter_output.get("kind") or "text")
+                text = presenter_output.get("text")
+                a2ui_messages = presenter_output.get("a2ui_messages")
+                output = PresenterOutput(
+                    kind=kind,
+                    text=text if isinstance(text, str) else str(text or ""),
+                    a2ui_messages=a2ui_messages
+                    if isinstance(a2ui_messages, list)
+                    else [],
+                )
+                return {
+                    "kind": output.kind,
+                    "text": output.text,
+                    "a2ui_messages": output.a2ui_messages,
+                }
+
+        return {
+            "kind": "text",
+            "text": str(getattr(message, "content", "") or ""),
+            "a2ui_messages": [],
+        }
+
+    @staticmethod
     def _is_presenter_only_query(query: str) -> bool:
         return is_booking_request(query) or is_booking_submission(query)
 
@@ -132,7 +161,7 @@ class RestaurantGraph:
 
         yield {
             "is_task_complete": True,
-            "content": latest_message.content,
+            "final_output": self._extract_final_output(latest_message),
             "detailed_updates": detailed_message,
             "token_count": str(model_token_count),
         }
@@ -150,7 +179,7 @@ class RestaurantGraph:
             "run_id": str(session_id),
             "configurable": {"thread_id": str(session_id)},
         }
-        final_response_content = None
+        final_output = None
         model_token_count = 0
         node_name = "START"
 
@@ -159,7 +188,7 @@ class RestaurantGraph:
             input=current_message, config=config, stream_mode="values", subgraphs=True
         ):
             latest_message: AnyMessage = chunk[1]["messages"][-1]
-            final_response_content = latest_message.content
+            final_output = self._extract_final_output(latest_message)
 
             # Format the message based on its type
             if hasattr(latest_message, "tool_calls") and latest_message.tool_calls:
@@ -200,7 +229,7 @@ class RestaurantGraph:
 
         yield {
             "is_task_complete": True,
-            "content": final_response_content,
+            "final_output": final_output,
             "detailed_updates": detailed_message,
             "token_count": str(model_token_count),
         }

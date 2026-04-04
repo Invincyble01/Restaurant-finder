@@ -1,7 +1,10 @@
 import copy
 import json
 import re
+from dataclasses import asdict
 from typing import Any, Dict, List, Optional
+
+from agent.graph.struct import PresenterOutput
 
 
 RESULTS_SURFACE_ID = "default"
@@ -236,8 +239,14 @@ def is_booking_submission(query: str) -> bool:
     return (query or "").startswith(BOOK_SUBMISSION_PREFIX)
 
 
-def build_presenter_response(text: str, messages: List[Dict[str, Any]]) -> str:
-    return f"{(text or '').strip()}\n---a2ui_JSON---\n{json.dumps(messages, ensure_ascii=False)}"
+def build_ui_output(text: str, messages: List[Dict[str, Any]]) -> Dict[str, Any]:
+    return asdict(
+        PresenterOutput(kind="ui", text=(text or "").strip(), a2ui_messages=messages)
+    )
+
+
+def build_text_output(text: str) -> Dict[str, Any]:
+    return asdict(PresenterOutput(kind="text", text=(text or "").strip()))
 
 
 def build_results_surface(

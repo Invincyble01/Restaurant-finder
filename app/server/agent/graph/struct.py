@@ -1,15 +1,27 @@
-from dataclasses import dataclass
-from typing import List, Optional
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
+
 
 # Data class for better json handling
 @dataclass
 class AgentConfig:
     """Configuration for an agent"""
+
     model: str
     temperature: float
     name: str
     system_prompt: Optional[str]
     tools_enabled: List[str]
+
+
+@dataclass
+class PresenterOutput:
+    """Structured final output emitted by the presenter path."""
+
+    kind: str
+    text: str
+    a2ui_messages: List[Dict[str, Any]] = field(default_factory=list)
+
 
 # JSON Schema for validating AgentConfig
 AGENT_CONFIG_SCHEMA = {
@@ -19,9 +31,9 @@ AGENT_CONFIG_SCHEMA = {
         "temperature": {"type": "number", "minimum": 0, "maximum": 2},
         "name": {"type": "string"},
         "system_prompt": {"type": ["string", "null"]},
-        "tools_enabled": {"type": "array", "items": {"type": "string"}}
+        "tools_enabled": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["model", "temperature", "name", "tools_enabled"]
+    "required": ["model", "temperature", "name", "tools_enabled"],
 }
 
 CONFIG_SCHEMA = {
@@ -64,9 +76,10 @@ DEFAULT_CONFIG = {
     ),
 }
 
+
 # Exception for the config graph
 class RestaurantGraphException(Exception):
-    """ Exception for missing graph configs """
+    """Exception for missing graph configs"""
 
     def __init__(self, message="Missing configuration dictionary for graph"):
         self.message = message

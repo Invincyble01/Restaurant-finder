@@ -1,34 +1,50 @@
-Setup (requires `uv`)
+# Server README
 
-1. Create `.env` from [`./.env.example`](./.env.example).
-2. Fill required OCI variables:
-   - `COMPARTMENT_ID`
-   - `AUTH_PROFILE`
-   - `SERVICE_ENDPOINT`
-3. Fill required Apify variables:
-   - `APIFY_TOKEN`
-   - `APIFY_ACTOR` (default: `compass/crawler-google-places`)
-   - `APIFY_BASE_URL` (default: `https://api.apify.com`)
-   - `APIFY_DATA_MODE` (default: `live`)
-   - `DEFAULT_LOCATION` (fallback location for search queries without a place)
+For full project setup from a fresh machine, start with the root `README.md`.
 
-Mode behavior
+This folder contains the Python server for the Restaurant Finder demo.
 
-- `APIFY_DATA_MODE=live`:
-  - Calls Apify actor endpoint directly with schema-aligned input.
-  - If `APIFY_TOKEN` is missing/placeholder, the server logs an error and returns empty results.
-- `APIFY_DATA_MODE=static` (debug only):
-  - Loads local fixture data from `APIFY_STATIC_DIR` / `APIFY_STATIC_FILE` (or default fixture).
+## What This Folder Needs
 
-Run the server
+- A working OCI profile on your machine
+- `uv`
+- The environment file at `app/server/.env`
+
+Create the environment file from the template:
+
+```bash
+cp .env.example .env
+```
+
+For the easiest first run, use this minimal static setup in `.env`:
+
+```env
+APIFY_DATA_MODE=static
+DEFAULT_LOCATION=Austin, TX
+```
+
+You do not need to set `APIFY_STATIC_DIR` or `APIFY_STATIC_FILE` unless you want to override the built-in fixture defaults.
+
+You still must fill these OCI values:
+
+- `COMPARTMENT_ID`
+- `AUTH_PROFILE`
+- `SERVICE_ENDPOINT`
+
+Only add `APIFY_TOKEN`, `APIFY_ACTOR`, and `APIFY_BASE_URL` if you later switch to live Apify mode.
+
+## Install Dependencies
+
+```bash
+uv sync
+```
+
+## Run Only the Server
 
 ```bash
 uv run __main__.py
 ```
 
-Optional reset if environment metadata is broken:
+By default, the server runs at `http://localhost:10002`.
 
-```bash
-uv init
-uv sync
-```
+Use `localhost`, not `127.0.0.1`, because the client is configured for the localhost flow.

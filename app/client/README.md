@@ -1,37 +1,38 @@
-To run the client with `Lit` use. Requires node
+# Client README
 
-First, set up the renderers:
+For full setup from scratch, start with the root `README.md`.
 
-Navigate to [renderers/web_core](../../renderers/web_core/) and run:
+This folder is the client workspace for the Restaurant Finder demo.
+
+## Important
+
+Before this client can run, these local packages must already be built:
+
+- `renderers/web_core`
+- `renderers/lit`
+
+The root `README.md` explains the correct build order.
+
+## Install Client Dependencies
+
+From this folder:
 
 ```bash
 npm install
-npm run build
 ```
 
-Do the same on [renderers/lit](../../renderers/lit/) and run:
+## Run Only the Client
 
 ```bash
-npm install
-npm run build
-```
-
-Then go to the application folder [app/client](./) (this folder) and run:
-
-```bash
-npm install
 npm run serve:shell
 ```
 
-To run all with the server side using A2A do:
+## Run the Full Demo
+
+This starts both the client and the server together:
 
 ```bash
 npm run demo:restaurant
 ```
 
-`package.json` Commands are optimized for **Windows** using `shx` package, change to linux if required.
-
-## Structure
-
-1. [Components](./shell/components/) this folder contains the main application content for the three different calls, including the chat text area to send queries.
-2. [Services](./shell/services/) this folder is critical since is routing text and a2ui messages to the different server endpoints, in charge of packing and streaming of events.
+The server command assumes the Python server environment in `app/server` was already set up with `uv sync`.

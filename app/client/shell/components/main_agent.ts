@@ -497,26 +497,20 @@ export class DynamicModule extends LitElement {
         padding: 10px 0 0;
       }
 
-      .ready-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.9fr);
-        gap: 16px;
-      }
-
-      .ready-copy,
-      .ready-panel {
-        padding: 24px;
-        border-radius: 28px;
-        background: rgba(243, 243, 243, 0.82);
-      }
-
-      .ready-copy {
+      .ready-lead {
         display: grid;
         gap: 14px;
+        padding: 28px;
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at top right, rgba(134, 246, 228, 0.18), transparent 0 24%),
+          linear-gradient(180deg, rgba(243, 243, 243, 0.88), rgba(255, 255, 255, 0.9));
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.08);
       }
 
-      .ready-copy span,
-      .ready-panel span {
+      .ready-lead span,
+      .explain-card span,
+      .example-card span {
         font-family: var(--font-mono);
         font-size: 0.72rem;
         letter-spacing: 0.18em;
@@ -524,20 +518,165 @@ export class DynamicModule extends LitElement {
         color: var(--rf-tertiary);
       }
 
-      .ready-copy h3,
-      .ready-panel h3 {
+      .ready-lead h3,
+      .explain-card h4,
+      .example-card h4 {
         margin: 0;
         font-family: var(--font-display);
-        font-size: clamp(1.5rem, 2.1vw, 2.1rem);
-        line-height: 1.08;
         letter-spacing: -0.04em;
+        color: var(--rf-ink);
       }
 
-      .ready-copy p,
-      .ready-panel p {
+      .ready-lead h3 {
+        font-size: clamp(1.7rem, 2.3vw, 2.35rem);
+        line-height: 1.04;
+      }
+
+      .ready-lead p,
+      .explain-card p,
+      .example-card p,
+      .prompt-card p {
         margin: 0;
         color: var(--rf-ink-muted);
         line-height: 1.65;
+      }
+
+      .ready-subcopy {
+        max-width: 760px;
+        font-size: 1rem;
+      }
+
+      .explain-grid,
+      .diagram-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .explain-card,
+      .example-card {
+        display: grid;
+        gap: 14px;
+        padding: 24px;
+        border-radius: 28px;
+        background: rgba(243, 243, 243, 0.82);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.08);
+      }
+
+      .explain-card h4,
+      .example-card h4 {
+        font-size: 1.3rem;
+        line-height: 1.08;
+      }
+
+      .explain-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .explain-list li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        align-items: start;
+        color: var(--rf-ink);
+        line-height: 1.55;
+      }
+
+      .explain-list li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-top: 7px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--rf-primary), var(--rf-primary-strong));
+        box-shadow: 0 0 0 6px rgba(134, 246, 228, 0.14);
+      }
+
+      .diagram-card {
+        display: grid;
+        gap: 16px;
+        padding: 22px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.08);
+      }
+
+      .diagram-label {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        letter-spacing: -0.03em;
+      }
+
+      .diagram-flow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .diagram-step {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 12px 16px;
+        border-radius: 18px;
+        background: rgba(243, 243, 243, 0.96);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.12);
+        color: var(--rf-ink);
+        font-size: 0.92rem;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .diagram-arrow {
+        color: var(--rf-muted);
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .example-card {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+        gap: 18px;
+      }
+
+      .example-query,
+      .example-result {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: inset 0 0 0 1px rgba(109, 122, 119, 0.08);
+      }
+
+      .example-chip {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(243, 243, 243, 0.9);
+        color: var(--rf-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .example-query p,
+      .example-result p {
+        color: var(--rf-ink);
+      }
+
+      .result-list {
+        display: grid;
+        gap: 10px;
       }
 
       .prompt-grid {
@@ -562,9 +701,6 @@ export class DynamicModule extends LitElement {
       }
 
       .prompt-card p {
-        margin: 0;
-        color: var(--rf-ink-muted);
-        line-height: 1.55;
         font-size: 0.9rem;
       }
 
@@ -758,6 +894,11 @@ export class DynamicModule extends LitElement {
         .status-shell {
           min-height: 320px;
         }
+
+        .example-card,
+        .prompt-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 820px) {
@@ -769,9 +910,28 @@ export class DynamicModule extends LitElement {
           padding-right: 16px;
         }
 
-        .ready-hero,
+        .explain-grid,
+        .diagram-grid,
         .prompt-grid {
           grid-template-columns: 1fr;
+        }
+
+        .ready-lead,
+        .explain-card,
+        .diagram-card,
+        .example-card {
+          padding: 20px;
+          border-radius: 24px;
+        }
+
+        .diagram-flow {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .diagram-arrow {
+          transform: rotate(90deg);
+          align-self: center;
         }
 
         .pending-shell {
@@ -1225,38 +1385,101 @@ export class DynamicModule extends LitElement {
 
   #renderReadyState() {
     return html`<div class="ready-state">
-      <div class="ready-hero">
-        <section class="ready-copy">
-          <span>Search ready</span>
-          <h3>Describe the kind of restaurant you want to find.</h3>
-          <p>
-            Try a cuisine and city, a mood and time of day, or a more expressive dining brief.
-            Results will arrive as restaurant cards paired with a live map and booking actions.
-          </p>
-        </section>
+      <section class="ready-lead">
+        <span>First look</span>
+        <h3>What is the difference between a traditional app and A2UI?</h3>
+        <p class="ready-subcopy">
+          A traditional app has fixed screens. A2UI builds the screen around what you ask for. You
+          type what you need, and the interface appears to match that task.
+        </p>
+      </section>
 
-        <aside class="ready-panel">
-          <span>Current workflow</span>
-          <h3>Search, compare, reserve.</h3>
+      <section class="explain-grid">
+        <article class="explain-card">
+          <span>Traditional app</span>
+          <h4>Same screens for everyone</h4>
+          <p>You move through menus and pages that were designed ahead of time.</p>
+          <ul class="explain-list">
+            <li>You open the app.</li>
+            <li>You tap through fixed screens.</li>
+            <li>You fit your task into the app's layout.</li>
+          </ul>
+        </article>
+
+        <article class="explain-card">
+          <span>A2UI</span>
+          <h4>The screen is built for your request</h4>
+          <p>You ask in plain language, and the app builds the right tools for that moment.</p>
+          <ul class="explain-list">
+            <li>You type what you want.</li>
+            <li>AI decides what UI is needed.</li>
+            <li>The right view appears for that task.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="diagram-grid">
+        <article class="diagram-card">
+          <div class="diagram-label">Traditional app</div>
+          <div class="diagram-flow" aria-label="Traditional app flow">
+            <span class="diagram-step">You</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">Fixed screens</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">Menus</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">Result</span>
+          </div>
+        </article>
+
+        <article class="diagram-card">
+          <div class="diagram-label">A2UI</div>
+          <div class="diagram-flow" aria-label="A2UI flow">
+            <span class="diagram-step">You</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">Ask in plain English</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">UI is built live</span>
+            <span class="diagram-arrow" aria-hidden="true">-&gt;</span>
+            <span class="diagram-step">Result</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="example-card">
+        <div>
+          <span>Simple example</span>
+          <h4>How this restaurant finder uses A2UI</h4>
           <p>
-            The query bar stays persistent while the response surface updates underneath, so the
-            transition from landing to results stays uninterrupted.
+            Instead of making you jump across separate screens, the app can build the right layout
+            after one request.
           </p>
-        </aside>
-      </div>
+        </div>
+
+        <div class="result-list">
+          <div class="example-query">
+            <span class="example-chip">You say</span>
+            <p>Find a quiet Italian restaurant in Austin with reservations tonight.</p>
+          </div>
+          <div class="example-result">
+            <span class="example-chip">A2UI builds</span>
+            <p>A restaurant list, a live map, and reservation actions in one view.</p>
+          </div>
+        </div>
+      </section>
 
       <div class="prompt-grid">
         <article class="prompt-card">
-          <strong>City + cuisine</strong>
-          <p>Best ramen spots in Seattle with strong reviews and easy reservations.</p>
+          <strong>Food + city</strong>
+          <p>Find the best ramen spots in Seattle with easy reservations.</p>
         </article>
         <article class="prompt-card">
-          <strong>Mood + occasion</strong>
-          <p>Quiet anniversary dinner in Chicago with a modern dining room and good wine.</p>
+          <strong>Mood + plan</strong>
+          <p>Find a quiet anniversary dinner in Chicago with good wine.</p>
         </article>
         <article class="prompt-card">
-          <strong>Casual planning</strong>
-          <p>Top brunch restaurants in Austin with outdoor seating and easy group booking.</p>
+          <strong>Group outing</strong>
+          <p>Show brunch places in Austin with outdoor seating for a group.</p>
         </article>
       </div>
     </div>`

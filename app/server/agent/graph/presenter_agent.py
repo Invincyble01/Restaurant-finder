@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import re
+from typing import Any, Dict, List
 from langchain.agents import create_agent
 from langchain_oci import ChatOCIGenAI
 from langchain.messages import HumanMessage, AIMessage
@@ -17,6 +18,19 @@ from agent.prompt_builder import (
     get_ui_prompt,
 )
 from agent.graph.struct import AgentConfig
+from agent.graph.a2ui_builder import (
+    build_booking_form_surface,
+    build_booking_text,
+    build_confirmation_surface,
+    build_confirmation_text,
+    build_presenter_response,
+    build_results_surface,
+    build_results_text,
+    is_booking_request,
+    is_booking_submission,
+    parse_booking_request,
+    parse_booking_submission,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +68,7 @@ class PresenterAgent:
             self.agent_name = "presenter_agent"
         self.base_url = base_url
         self.use_ui = use_ui
-        self._agent = self._build_agent()
+        self._agent = None if self.use_ui else self._build_agent()
 
         # Load the A2UI_SCHEMA string into a Python object for validation
         try:
@@ -88,6 +102,79 @@ class PresenterAgent:
         return create_agent(
             model=oci_llm, tools=[], system_prompt=instruction, name=self.agent_name
         )
+
+    def _validate_ui_messages(self, messages: List[Dict[str, Any]]) -> None:
+        if self.a2ui_schema_object is None:
+            raise ValueError("A2UI schema is not loaded")
+        jsonschema.validate(instance=messages, schema=self.a2ui_schema_object)
+
+    @staticmethod
+    def _validate_legacy_response_contract(content: str) -> None:
+        if "---a2ui_JSON---" not in content:
+            raise ValueError("Delimiter '---a2ui_JSON---' not found")
+
+        _text_part, json_string = content.split("---a2ui_JSON---", 1)
+        payload = json.loads(json_string.strip())
+        if not isinstance(payload, list):
+            raise ValueError("JSON payload must be a list of A2UI messages")
+
+    def _build_results_response(self, formatter_payload: str) -> str:
+        formatter_items: List[Dict[str, Any]] = []
+        try:
+            parsed = json.loads(formatter_payload)
+            if isinstance(parsed, list):
+                formatter_items = [
+                    self._canonicalize_formatter_item(it)
+                    for it in parsed
+                    if isinstance(it, dict)
+                ]
+        except Exception:
+            formatter_items = []
+
+        ui_messages = build_results_surface(formatter_items)
+        self._validate_ui_messages(ui_messages)
+        response = build_presenter_response(
+            build_results_text(formatter_items), ui_messages
+        )
+        self._validate_legacy_response_contract(response)
+        return response
+
+    def _build_booking_response(self, query: str) -> str:
+        booking_data = parse_booking_request(query)
+        ui_messages = build_booking_form_surface(
+            booking_data["restaurant_name"],
+            booking_data.get("address", ""),
+            booking_data.get("image_url", ""),
+        )
+        self._validate_ui_messages(ui_messages)
+        response = build_presenter_response(
+            build_booking_text(booking_data["restaurant_name"]), ui_messages
+        )
+        self._validate_legacy_response_contract(response)
+        return response
+
+    def _build_confirmation_response(self, query: str) -> str:
+        confirmation_data = parse_booking_submission(query)
+        ui_messages = build_confirmation_surface(
+            confirmation_data["restaurant_name"],
+            confirmation_data["party_size"],
+            confirmation_data["reservation_time"],
+            confirmation_data["dietary"],
+            confirmation_data.get("image_url", ""),
+        )
+        self._validate_ui_messages(ui_messages)
+        response = build_presenter_response(
+            build_confirmation_text(confirmation_data["restaurant_name"]), ui_messages
+        )
+        self._validate_legacy_response_contract(response)
+        return response
+
+    def _build_deterministic_ui_response(self, data: str) -> str:
+        if is_booking_request(data):
+            return self._build_booking_response(data)
+        if is_booking_submission(data):
+            return self._build_confirmation_response(data)
+        return self._build_results_response(data)
 
     @staticmethod
     def _as_non_empty_string(value):
@@ -164,6 +251,59 @@ class PresenterAgent:
     async def __call__(self, state):
         """Call the presenter agent to generate and validate UI from restaurant data."""
         data = state["messages"][-1].content
+
+        if self.use_ui:
+            if self.a2ui_schema_object is None:
+                logger.error(
+                    "--- PresenterAgent: A2UI_SCHEMA is not loaded. Cannot perform UI validation. ---"
+                )
+                return {
+                    "messages": state["messages"]
+                    + [
+                        AIMessage(
+                            content="I'm sorry, I'm facing an internal configuration error with my UI components.",
+                            name=self.agent_name,
+                        )
+                    ]
+                }
+
+            try:
+                final_response_content = self._build_deterministic_ui_response(
+                    str(data)
+                )
+                return {
+                    "messages": state["messages"]
+                    + [
+                        AIMessage(
+                            content=final_response_content,
+                            name=self.agent_name,
+                            response_metadata={
+                                "model_id": "deterministic-a2ui-builder",
+                                "total_tokens": 0,
+                            },
+                        )
+                    ]
+                }
+            except Exception as exc:
+                logger.exception(
+                    "--- PresenterAgent: Deterministic UI build failed: %s ---", exc
+                )
+                return {
+                    "messages": state["messages"]
+                    + [
+                        AIMessage(
+                            content=(
+                                "I'm sorry, I'm having trouble generating the interface for that request right now. "
+                                "Please try again in a moment."
+                            ),
+                            name=self.agent_name,
+                            response_metadata={
+                                "model_id": "deterministic-a2ui-builder",
+                                "total_tokens": 0,
+                            },
+                        )
+                    ]
+                }
 
         # Try to parse the formatter's normalized array so we can ensure `/items` exists.
         formatter_items = None

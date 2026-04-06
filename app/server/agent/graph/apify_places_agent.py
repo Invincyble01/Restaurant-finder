@@ -1,7 +1,6 @@
 import os
 import re
 import json
-import random
 import logging
 from urllib.parse import urlparse
 from typing import Any, Dict, List, Optional
@@ -83,7 +82,19 @@ class ApifyPlacesAgent:
         if not dict_items:
             return []
         sample_size = min(max(1, count), len(dict_items))
-        return random.sample(dict_items, sample_size)
+
+        def rank_value(item: Dict[str, Any]) -> tuple[int, int | float]:
+            raw_rank = item.get("rank")
+            try:
+                return (0, float(raw_rank))
+            except Exception:
+                return (1, float("inf"))
+
+        ordered_items = sorted(
+            enumerate(dict_items),
+            key=lambda pair: (rank_value(pair[1]), pair[0]),
+        )
+        return [item for _, item in ordered_items[:sample_size]]
 
     def _extract_count(self, text: str, default: int = 10) -> int:
         m = re.search(r"(\d+)", text)

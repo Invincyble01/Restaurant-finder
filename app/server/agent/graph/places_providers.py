@@ -14,7 +14,7 @@ from mcp.client.streamable_http import streamable_http_client
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_PROVIDER = "rest"
+DEFAULT_PROVIDER = "static"
 DEFAULT_MCP_PAGE_SIZE = 50
 DEFAULT_TIMEOUT_SECONDS = 120
 GET_ACTOR_OUTPUT_TOOL = "get-actor-output"
@@ -32,28 +32,14 @@ class PlacesProvider(Protocol):
 
 def resolve_places_provider_mode() -> str:
     explicit_mode = (os.getenv("PLACES_PROVIDER") or "").strip().lower()
+    if not explicit_mode:
+        return DEFAULT_PROVIDER
     if explicit_mode in {"static", "rest", "mcp"}:
         return explicit_mode
-    if explicit_mode:
-        logger.warning(
-            "Unsupported PLACES_PROVIDER='%s'. Falling back to '%s'.",
-            explicit_mode,
-            DEFAULT_PROVIDER,
-        )
-        return DEFAULT_PROVIDER
-
-    legacy_mode = (os.getenv("APIFY_DATA_MODE", "live") or "live").strip().lower()
-    if legacy_mode == "static":
-        return "static"
-    if legacy_mode == "live":
-        return DEFAULT_PROVIDER
-
-    logger.warning(
-        "Unsupported APIFY_DATA_MODE='%s'. Falling back to '%s'.",
-        legacy_mode,
-        DEFAULT_PROVIDER,
+    raise ValueError(
+        "Unsupported PLACES_PROVIDER="
+        f"'{explicit_mode}'. Expected one of: static, rest, mcp."
     )
-    return DEFAULT_PROVIDER
 
 
 def actor_name_to_mcp_tool_name(actor_name: str) -> str:

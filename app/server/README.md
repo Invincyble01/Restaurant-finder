@@ -39,6 +39,9 @@ You still must fill these OCI values:
 
 These modes stay isolated: `mcp` does not fall back to REST, and `rest` does not use MCP.
 
+If `PLACES_PROVIDER` is omitted, the server defaults to `static`.
+Unsupported values cause server startup to fail.
+
 For live modes, set `APIFY_TOKEN` and `APIFY_ACTOR`.
 
 For REST mode, also set:
@@ -51,10 +54,10 @@ For MCP mode, also set:
 - `APIFY_MCP_TOOL_NAME`
 - `APIFY_MCP_PAGE_SIZE`
 
-If `PLACES_PROVIDER` is unset, the server still supports the old compatibility mapping:
+Optional advanced settings:
 
-- `APIFY_DATA_MODE=static` -> `static`
-- `APIFY_DATA_MODE=live` -> `rest`
+- `APIFY_TIMEOUT_SECONDS`
+- `APIFY_MCP_GET_OUTPUT_TOOL`
 
 ## Install Dependencies
 

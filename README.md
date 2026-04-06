@@ -238,6 +238,9 @@ Once the static setup works, you can switch to live data.
 - `rest` calls the Apify REST API only
 - `mcp` calls the Apify MCP server only
 
+If `PLACES_PROVIDER` is omitted, the server defaults to `static`.
+Unsupported values cause server startup to fail.
+
 Update `app/server/.env`:
 
 ```env
@@ -262,12 +265,14 @@ APIFY_MCP_TOOL_NAME=compass--crawler-google-places
 APIFY_MCP_PAGE_SIZE=50
 ```
 
+Optional advanced settings:
+
+```env
+APIFY_TIMEOUT_SECONDS=120
+APIFY_MCP_GET_OUTPUT_TOOL=get-actor-output
+```
+
 Then restart the demo.
-
-If `PLACES_PROVIDER` is unset, the older compatibility mapping still applies:
-
-- `APIFY_DATA_MODE=static` -> `static`
-- `APIFY_DATA_MODE=live` -> `rest`
 
 ## Troubleshooting
 
@@ -300,7 +305,7 @@ brew install uv
   - `COMPARTMENT_ID`
   - `AUTH_PROFILE`
   - `SERVICE_ENDPOINT`
-- For the easiest test, confirm you are using `APIFY_DATA_MODE=static` first.
+- For the easiest test, confirm you are using `PLACES_PROVIDER=static` first.
 - In static mode, you do not need to set `APIFY_STATIC_DIR` or `APIFY_STATIC_FILE` unless you want to override the built-in fixture selection.
 
 ### The client cannot connect to the server

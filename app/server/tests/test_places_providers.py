@@ -11,27 +11,26 @@ from agent.graph.places_providers import (
 
 
 class PlacesProviderModeTests(unittest.TestCase):
+    def test_accepts_rest_mode(self):
+        with patch.dict(os.environ, {"PLACES_PROVIDER": "rest"}, clear=True):
+            self.assertEqual(resolve_places_provider_mode(), "rest")
+
     def test_prefers_explicit_places_provider(self):
-        with patch.dict(
-            os.environ, {"PLACES_PROVIDER": "mcp", "APIFY_DATA_MODE": "static"}
-        ):
+        with patch.dict(os.environ, {"PLACES_PROVIDER": "mcp"}):
             self.assertEqual(resolve_places_provider_mode(), "mcp")
 
-    def test_maps_legacy_static_mode(self):
-        with patch.dict(
-            os.environ, {"PLACES_PROVIDER": "", "APIFY_DATA_MODE": "static"}
-        ):
+    def test_defaults_to_static_when_unset(self):
+        with patch.dict(os.environ, {}, clear=True):
             self.assertEqual(resolve_places_provider_mode(), "static")
 
-    def test_maps_legacy_live_mode_to_rest(self):
-        with patch.dict(os.environ, {"PLACES_PROVIDER": "", "APIFY_DATA_MODE": "live"}):
-            self.assertEqual(resolve_places_provider_mode(), "rest")
+    def test_defaults_to_static_with_unrelated_environment(self):
+        with patch.dict(os.environ, {"UNRELATED_ENV": "live"}, clear=True):
+            self.assertEqual(resolve_places_provider_mode(), "static")
 
-    def test_invalid_places_provider_does_not_mix_with_legacy_mode(self):
-        with patch.dict(
-            os.environ, {"PLACES_PROVIDER": "weird", "APIFY_DATA_MODE": "static"}
-        ):
-            self.assertEqual(resolve_places_provider_mode(), "rest")
+    def test_invalid_places_provider_raises(self):
+        with patch.dict(os.environ, {"PLACES_PROVIDER": "weird"}, clear=True):
+            with self.assertRaisesRegex(ValueError, "Unsupported PLACES_PROVIDER"):
+                resolve_places_provider_mode()
 
 
 class McpHelperTests(unittest.TestCase):

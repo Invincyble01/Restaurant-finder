@@ -6,12 +6,16 @@ import logging
 from urllib.parse import urlparse
 from typing import Any, Dict, List, Optional
 
-import httpx
 from langchain_oci import ChatOCIGenAI
 from langchain.messages import AIMessage, HumanMessage
 from dotenv import load_dotenv
 
 from agent.graph.struct import AgentConfig
+from agent.graph.places_providers import (
+    PlacesProvider,
+    create_places_provider,
+    resolve_places_provider_mode,
+)
 
 load_dotenv()
 
@@ -19,33 +23,24 @@ logger = logging.getLogger(__name__)
 
 
 class ApifyPlacesAgent:
-    """Direct Apify REST integration for compass/crawler-google-places.
-
-    Maps user queries to the actor inputs per official docs and calls the
-    run-sync-get-dataset-items endpoint. Returns ONLY the raw JSON array string
-    of items; downstream FormatterAgent handles normalization for the UI.
-    """
+    """Fetch raw restaurant data while preserving the formatter contract."""
 
     def __init__(self, config: Optional[AgentConfig] = None):
-        self.agent_name = (config.name if config else "apify_places_agent")
+        self.agent_name = config.name if config else "apify_places_agent"
         self.default_location = os.getenv("DEFAULT_LOCATION", "Austin, TX")
         self.actor_id = os.getenv("APIFY_ACTOR", "compass/crawler-google-places")
-        self.base_url = os.getenv("APIFY_BASE_URL", "https://api.apify.com")
-        self.token = (os.getenv("APIFY_TOKEN") or "").strip()
-        raw_mode = (os.getenv("APIFY_DATA_MODE", "live") or "live").strip().lower()
-        self.data_mode = raw_mode if raw_mode in ("live", "static") else "live"
-        if raw_mode not in ("live", "static"):
-            logger.warning(
-                "Unsupported APIFY_DATA_MODE='%s'. Falling back to 'live'.",
-                raw_mode,
-            )
-        self.static_dir = os.getenv("APIFY_STATIC_DIR", os.path.join(os.path.dirname(os.path.dirname(__file__)), "static_data", "apify"),)
-        self.static_file = os.getenv("APIFY_STATIC_FILE", "").strip()
-
-
+        self.provider_mode = resolve_places_provider_mode()
+        self.provider: PlacesProvider = create_places_provider(
+            actor_id=self.actor_id,
+            default_location=self.default_location,
+        )
 
     async def initialize(self):
+        await self.provider.initialize()
         return True
+
+    async def close(self):
+        await self.provider.close()
 
     async def __call__(self, state: Dict[str, Any]) -> Dict[str, Any]:
         user_text = str(state["messages"][0].content)
@@ -57,13 +52,28 @@ class ApifyPlacesAgent:
         if not actor_input:
             actor_input = self._map_query_to_actor_input(user_text)
 
-        actor_input = self._sanitize_actor_input(actor_input, count) or self._map_query_to_actor_input(user_text)
+        actor_input = self._sanitize_actor_input(
+            actor_input, count
+        ) or self._map_query_to_actor_input(user_text)
 
         # Call Apify and return RAW items so downstream FormatterAgent
         # can normalize while preserving coordinates (lat/lng) for the map.
-        items = await self._run_apify_actor(actor_input)
+        items = await self.provider.fetch_items(actor_input)
+        logger.info(
+            "ApifyPlacesAgent provider '%s' returned %s raw items before sampling.",
+            self.provider_mode,
+            len(items) if isinstance(items, list) else 0,
+        )
         items = self._sample_items(items, count)
-        return {"messages": state["messages"] + [AIMessage(content=json.dumps(items, ensure_ascii=False))]}
+        logger.info(
+            "ApifyPlacesAgent provider '%s' returned %s items after sampling.",
+            self.provider_mode,
+            len(items),
+        )
+        return {
+            "messages": state["messages"]
+            + [AIMessage(content=json.dumps(items, ensure_ascii=False))]
+        }
 
     @staticmethod
     def _sample_items(items: Any, count: int) -> List[Dict[str, Any]]:
@@ -130,13 +140,17 @@ class ApifyPlacesAgent:
             # Remove trailing ", <location>"
             t = re.sub(rf",\s*{loc_re}\s*$", "", t, flags=re.IGNORECASE)
             # Remove " in/near/around/at <location>" regardless of case
-            t = re.sub(rf"(?i)\b(?:in|near|around|at)\s+{loc_re}(?:\b|$)", "", t).strip()
+            t = re.sub(
+                rf"(?i)\b(?:in|near|around|at)\s+{loc_re}(?:\b|$)", "", t
+            ).strip()
         # Remove any generic trailing location phrase if it remains
         t = re.sub(r"(?i)\b(?:in|near|around|at)\s+[A-Za-z][^,;:.!?]*$", "", t).strip()
         # Collapse whitespace and stray punctuation
         t = re.sub(r"\s{2,}", " ", t).strip(" ,.-")
         # Ensure a place-type keyword exists (kept from previous behavior)
-        if not re.search(r"(?i)\b(restaurant|restaurants|cafe|cafes|coffee|bar|bistro)\b", t):
+        if not re.search(
+            r"(?i)\b(restaurant|restaurants|cafe|cafes|coffee|bar|bistro)\b", t
+        ):
             t = f"{t} restaurants" if t else "restaurants"
         return t
 
@@ -180,7 +194,9 @@ class ApifyPlacesAgent:
                 break
         return out
 
-    def _normalize_search_strings(self, value: Any, location: Optional[str]) -> List[str]:
+    def _normalize_search_strings(
+        self, value: Any, location: Optional[str]
+    ) -> List[str]:
         if isinstance(value, str):
             raw_terms: List[str] = [value]
         elif isinstance(value, list):
@@ -203,14 +219,20 @@ class ApifyPlacesAgent:
             return value
         return None
 
-    def _sanitize_actor_input(self, candidate: Dict[str, Any], count: int) -> Optional[Dict[str, Any]]:
+    def _sanitize_actor_input(
+        self, candidate: Dict[str, Any], count: int
+    ) -> Optional[Dict[str, Any]]:
         if not isinstance(candidate, dict):
             return None
 
-        safe_count = self._extract_count(str(candidate.get("maxCrawledPlacesPerSearch", count)), default=count)
+        safe_count = self._extract_count(
+            str(candidate.get("maxCrawledPlacesPerSearch", count)), default=count
+        )
         if "maxCrawledPlacesPerSearch" in candidate:
             try:
-                safe_count = max(1, min(50, int(candidate["maxCrawledPlacesPerSearch"])))
+                safe_count = max(
+                    1, min(50, int(candidate["maxCrawledPlacesPerSearch"]))
+                )
             except Exception:
                 safe_count = count
         elif "maxItems" in candidate:
@@ -251,7 +273,9 @@ class ApifyPlacesAgent:
             location = self.default_location
         location = location.strip()
 
-        search_strings = self._normalize_search_strings(candidate.get("searchStringsArray"), location)
+        search_strings = self._normalize_search_strings(
+            candidate.get("searchStringsArray"), location
+        )
 
         if start_urls:
             out["startUrls"] = start_urls
@@ -299,7 +323,9 @@ class ApifyPlacesAgent:
             auth_profile=os.getenv("AUTH_PROFILE"),
         )
 
-    async def _build_actor_input_llm(self, user_text: str, count: int) -> Optional[Dict[str, Any]]:
+    async def _build_actor_input_llm(
+        self, user_text: str, count: int
+    ) -> Optional[Dict[str, Any]]:
         """Use LLM to craft valid actor input JSON.
         - Prefer searchStringsArray with 1–3 optimized queries
         - If a Google Maps URL is present, use startUrls instead
@@ -325,7 +351,9 @@ class ApifyPlacesAgent:
             "Return JSON only."
         )
         try:
-            resp = await self._oci_llm(0.2).ainvoke([HumanMessage(content=guidelines + "\n\n" + prompt)])
+            resp = await self._oci_llm(0.2).ainvoke(
+                [HumanMessage(content=guidelines + "\n\n" + prompt)]
+            )
             text = str(resp.content).strip().strip("` ")
             if text.lower().startswith("json"):
                 text = text[4:].strip()
@@ -334,10 +362,14 @@ class ApifyPlacesAgent:
                 return None
             return self._sanitize_actor_input(data, count)
         except Exception as e:
-            logger.warning("LLM actor-input mapping failed; using heuristic. Error: %s", e)
+            logger.warning(
+                "LLM actor-input mapping failed; using heuristic. Error: %s", e
+            )
             return None
 
-    async def _summarize_places_llm(self, items: List[Dict[str, Any]], count: int) -> Optional[List[Dict[str, Any]]]:
+    async def _summarize_places_llm(
+        self, items: List[Dict[str, Any]], count: int
+    ) -> Optional[List[Dict[str, Any]]]:
         if not items:
             return []
         schema_hint = (
@@ -349,9 +381,7 @@ class ApifyPlacesAgent:
             "- imageUrl ← 'imageUrl' if present\n"
             "- infoLink ← 'website' else 'url' else 'searchPageUrl'\n"
         )
-        prompt = (
-            f"N={count}. {schema_hint} Return JSON only. RAW_ITEMS: {json.dumps(items)[:120000]}"
-        )
+        prompt = f"N={count}. {schema_hint} Return JSON only. RAW_ITEMS: {json.dumps(items)[:120000]}"
         try:
             resp = await self._oci_llm(0.2).ainvoke([HumanMessage(content=prompt)])
             text = str(resp.content).strip().strip("` ")
@@ -372,7 +402,9 @@ class ApifyPlacesAgent:
             logger.warning("LLM summarization failed; using fallback. Error: %s", e)
             return None
 
-    def _fallback_projection(self, items: List[Dict[str, Any]], count: int) -> List[Dict[str, Any]]:
+    def _fallback_projection(
+        self, items: List[Dict[str, Any]], count: int
+    ) -> List[Dict[str, Any]]:
         def stars(val: Optional[float]) -> str:
             try:
                 r = float(val)
@@ -393,121 +425,32 @@ class ApifyPlacesAgent:
         out: List[Dict[str, Any]] = []
         for it in items[:count]:
             name = it.get("title") or it.get("name") or "Unknown"
-            detail = it.get("categoryName") or (it.get("categories") or [None])[0] or it.get("description") or "Popular spot"
+            detail = (
+                it.get("categoryName")
+                or (it.get("categories") or [None])[0]
+                or it.get("description")
+                or "Popular spot"
+            )
             rating_s = stars(it.get("totalScore") or it.get("rating"))
-            address = it.get("address") or ", ".join([v for v in [it.get("city"), it.get("state")] if v]) or self.default_location
+            address = (
+                it.get("address")
+                or ", ".join([v for v in [it.get("city"), it.get("state")] if v])
+                or self.default_location
+            )
             image = it.get("imageUrl") or ""
             info = it.get("website") or it.get("url") or it.get("searchPageUrl") or ""
-            out.append({
-                "name": name,
-                "detail": detail,
-                "rating": rating_s,
-                "address": address,
-                "imageUrl": image,
-                "infoLink": info,
-            })
+            out.append(
+                {
+                    "name": name,
+                    "detail": detail,
+                    "rating": rating_s,
+                    "address": address,
+                    "imageUrl": image,
+                    "infoLink": info,
+                }
+            )
         i = 0
         while len(out) < count and out:
             out.append(out[i])
             i += 1
         return out
-
-    async def _run_apify_actor(self, actor_input: Dict[str, Any]) -> List[Dict[str, Any]]:
-        if self.data_mode == "static":
-            return self._load_static_items(actor_input)
-
-        if not self.token or self.token.startswith("<"):
-            logger.error("APIFY_TOKEN is missing or placeholder; live mode call skipped.")
-            return []
-
-        url = f"{self.base_url}/v2/acts/{self.actor_id.replace('/', '~')}/run-sync-get-dataset-items"
-        headers = {"Authorization": f"Bearer {self.token}", "X-Apify-Token": self.token}
-        logger.info("Running Apify actor '%s' with input: %s", self.actor_id, json.dumps(actor_input))
-
-        async with httpx.AsyncClient(timeout=120) as client:
-            try:
-                resp = await client.post(url, json=actor_input, headers=headers)
-                if resp.status_code >= 400:
-                    logger.error(
-                        "Apify REST call failed: %s %s — %s",
-                        resp.status_code,
-                        resp.reason_phrase,
-                        resp.text[:500],
-                    )
-                    return []
-                data = resp.json()
-                if isinstance(data, dict) and "items" in data:
-                    return data.get("items", [])
-                if isinstance(data, list):
-                    return data
-                return []
-            except httpx.RequestError as e:
-                logger.exception("Apify REST network error: %s", e)
-                return []
-            except Exception as e:
-                logger.exception("Apify REST unexpected error: %s", e)
-                return []
-
-    def _load_static_items(self, actor_input: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """
-        Load Apify-shaped JSON items from local fixtures.
-        Selection order:
-        1) APIFY_STATIC_FILE if provided
-        2) Heuristic based on searchStringsArray[0] and locationQuery
-        3) default.json
-        """
-        # 1) explicit override via APIFY_STATIC_FILE
-        if getattr(self, "static_file", ""):
-            path = os.path.join(getattr(self, "static_dir", os.getcwd()), self.static_file)
-            return self._read_json_list(path)
-
-        # 2) heuristic
-        query = "".join(actor_input.get("searchStringsArray", [])[:1]).lower()
-        location = str(actor_input.get("locationQuery", "")).lower().replace(",", "").strip()
-
-        def slug(*parts: str) -> str:
-            return "_".join([str(p).strip().replace(" ", "-") for p in parts if p]).lower() + ".json"
-
-        candidates: List[str] = []
-        if "chinese" in query and ("austin" in query or "austin" in location):
-            candidates.append(slug("chinese", "in", "austin"))
-        if "italian" in query and ("hyderabad" in query or "hyderabad" in location):
-            candidates.append(slug("italian", "in", "hyderabad"))
-        if "continental" in query and ("london" in query or "london" in location):
-            candidates.append(slug("continental", "in", "london"))
-        if "indian" in query and ("new york" in query or "new-york" in location or "nyc" in location):
-            candidates.append("7_indian_in_new-york.json")
-        if ("cafe" in query or "cafes" in query) and ("france" in query or "france" in location):
-            candidates.append(slug("cafes", "in", "france"))
-
-        if not candidates and query:
-            first = query.split()[0]
-            if location:
-                candidates.append(slug(first, "in", location))
-
-        for name in candidates:
-            path = os.path.join(getattr(self, "static_dir", os.getcwd()), name)
-            if os.path.exists(path):
-                return self._read_json_list(path)
-
-        # 3) fallback to default.json
-        default_path = os.path.join(getattr(self, "static_dir", os.getcwd()), "default.json")
-        if os.path.exists(default_path):
-            return self._read_json_list(default_path)
-
-        logger.warning("No matching static Apify fixture found. Returning empty list.")
-        return []
-
-
-    def _read_json_list(self, path: str) -> List[Dict[str, Any]]:
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-        except Exception as e:
-            logger.error("Failed reading static data file %s: %s", path, e)
-            return []
-        if isinstance(data, dict) and "items" in data:
-            return data.get("items", [])
-        if isinstance(data, list):
-            return data
-        return []

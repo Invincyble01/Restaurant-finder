@@ -225,3 +225,7 @@ class RestaurantGraphExecutor(AgentExecutor):
         self.current_config = copy.deepcopy(self.default_config)
         self._recreate_graphs()
         logger.info("Configuration reset to default")
+
+    async def close(self) -> None:
+        await self._ui_restaurant_graph.close()
+        await self._restaurant_graph.close()

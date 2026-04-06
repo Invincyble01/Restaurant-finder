@@ -19,7 +19,7 @@ cp .env.example .env
 For the easiest first run, use this minimal static setup in `.env`:
 
 ```env
-APIFY_DATA_MODE=static
+PLACES_PROVIDER=static
 DEFAULT_LOCATION=Austin, TX
 ```
 
@@ -31,7 +31,30 @@ You still must fill these OCI values:
 - `AUTH_PROFILE`
 - `SERVICE_ENDPOINT`
 
-Only add `APIFY_TOKEN`, `APIFY_ACTOR`, and `APIFY_BASE_URL` if you later switch to live Apify mode.
+## Provider Modes
+
+- `PLACES_PROVIDER=static` uses built-in fixtures.
+- `PLACES_PROVIDER=rest` uses the direct Apify REST actor endpoint.
+- `PLACES_PROVIDER=mcp` uses the hosted Apify MCP server and fetches full dataset items page by page.
+
+These modes stay isolated: `mcp` does not fall back to REST, and `rest` does not use MCP.
+
+For live modes, set `APIFY_TOKEN` and `APIFY_ACTOR`.
+
+For REST mode, also set:
+
+- `APIFY_BASE_URL`
+
+For MCP mode, also set:
+
+- `APIFY_MCP_URL`
+- `APIFY_MCP_TOOL_NAME`
+- `APIFY_MCP_PAGE_SIZE`
+
+If `PLACES_PROVIDER` is unset, the server still supports the old compatibility mapping:
+
+- `APIFY_DATA_MODE=static` -> `static`
+- `APIFY_DATA_MODE=live` -> `rest`
 
 ## Install Dependencies
 

@@ -126,7 +126,7 @@ COMPARTMENT_ID=<your-compartment-id>
 AUTH_PROFILE=<your-oci-profile-name>
 SERVICE_ENDPOINT=https://inference.generativeai.us-chicago-1.oci.oraclecloud.com
 
-APIFY_DATA_MODE=static
+PLACES_PROVIDER=static
 DEFAULT_LOCATION=Austin, TX
 ```
 
@@ -135,7 +135,7 @@ Notes:
 - Static mode is the easiest first run because it does not need an Apify token.
 - Even in static mode, the app still needs working OCI access.
 - In static mode, the server uses the built-in fixture defaults automatically.
-- You only need `APIFY_TOKEN`, `APIFY_ACTOR`, and `APIFY_BASE_URL` if you switch to live Apify mode later.
+- You can switch later to `PLACES_PROVIDER=rest` or `PLACES_PROVIDER=mcp` for live data.
 
 ### 8. Install Server Dependencies
 
@@ -232,17 +232,42 @@ npm run serve:shell
 
 Once the static setup works, you can switch to live data.
 
+`PLACES_PROVIDER` is the strict mode switch:
+
+- `static` reads built-in fixtures only
+- `rest` calls the Apify REST API only
+- `mcp` calls the Apify MCP server only
+
 Update `app/server/.env`:
 
 ```env
-APIFY_DATA_MODE=live
 APIFY_TOKEN=<your-apify-token>
 APIFY_ACTOR=compass/crawler-google-places
-APIFY_BASE_URL=https://api.apify.com
 DEFAULT_LOCATION=Austin, TX
 ```
 
+For direct REST mode:
+
+```env
+PLACES_PROVIDER=rest
+APIFY_BASE_URL=https://api.apify.com
+```
+
+For hosted Apify MCP mode:
+
+```env
+PLACES_PROVIDER=mcp
+APIFY_MCP_URL=https://mcp.apify.com?tools=compass/crawler-google-places
+APIFY_MCP_TOOL_NAME=compass--crawler-google-places
+APIFY_MCP_PAGE_SIZE=50
+```
+
 Then restart the demo.
+
+If `PLACES_PROVIDER` is unset, the older compatibility mapping still applies:
+
+- `APIFY_DATA_MODE=static` -> `static`
+- `APIFY_DATA_MODE=live` -> `rest`
 
 ## Troubleshooting
 

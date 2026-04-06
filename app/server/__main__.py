@@ -12,13 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import asyncio
 import logging
 import httpx
 
 import click
 from a2a.server.apps import A2AStarletteApplication
 from a2a.server.request_handlers import DefaultRequestHandler
-from a2a.server.tasks import InMemoryTaskStore, BasePushNotificationSender, InMemoryPushNotificationConfigStore
+from a2a.server.tasks import (
+    InMemoryTaskStore,
+    BasePushNotificationSender,
+    InMemoryPushNotificationConfigStore,
+)
 from a2a.types import AgentCapabilities, AgentCard, AgentSkill
 from a2ui.a2ui_extension import get_a2ui_agent_extension
 from starlette.applications import Starlette
@@ -30,6 +35,7 @@ from agent.graph_executor import RestaurantGraphExecutor
 from agent.graph.restaurant_graph import RestaurantGraph
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -44,6 +50,8 @@ class MissingAPIKeyError(Exception):
 @click.option("--host", default="localhost")
 @click.option("--port", default=10002)
 def main(host, port):
+    agent_executor = None
+    httpx_client = None
     try:
         capabilities = AgentCapabilities(
             streaming=True,
@@ -60,7 +68,7 @@ def main(host, port):
 
         base_url = f"http://{host}:{port}"
 
-        #region Agent executor setup
+        # region Agent executor setup
         agent_base_url = f"{base_url}/agent"
         agent_card = AgentCard(
             name="Restaurant Agent",
@@ -77,20 +85,21 @@ def main(host, port):
 
         httpx_client = httpx.AsyncClient()
         agent_push_config_store = InMemoryPushNotificationConfigStore()
-        agent_push_sender = BasePushNotificationSender(httpx_client=httpx_client,
-                        config_store=agent_push_config_store)
+        agent_push_sender = BasePushNotificationSender(
+            httpx_client=httpx_client, config_store=agent_push_config_store
+        )
         agent_request_handler = DefaultRequestHandler(
             agent_executor=agent_executor,
             task_store=InMemoryTaskStore(),
             push_config_store=agent_push_config_store,
-            push_sender=agent_push_sender
+            push_sender=agent_push_sender,
         )
         agent_server = A2AStarletteApplication(
             agent_card=agent_card, http_handler=agent_request_handler
         )
         agent_app = agent_server.build()
 
-        #region main app setup
+        # region main app setup
         main_app = Starlette()
 
         main_app.add_middleware(
@@ -101,7 +110,7 @@ def main(host, port):
             allow_headers=["*"],
         )
 
-        #region config endpoints
+        # region config endpoints
         async def get_config(request: Request):
             config = agent_executor.get_config()
             return JSONResponse(config)
@@ -111,17 +120,25 @@ def main(host, port):
                 data = await request.json()
                 success, error = agent_executor.update_config(data)
                 if success:
-                    return JSONResponse({"status": "success", "message": "Configuration updated"})
+                    return JSONResponse(
+                        {"status": "success", "message": "Configuration updated"}
+                    )
                 else:
-                    return JSONResponse({"status": "error", "message": error}, status_code=400)
+                    return JSONResponse(
+                        {"status": "error", "message": error}, status_code=400
+                    )
             except Exception as e:
-                return JSONResponse({"status": "error", "message": str(e)}, status_code=400)
+                return JSONResponse(
+                    {"status": "error", "message": str(e)}, status_code=400
+                )
 
         async def delete_config(request: Request):
             agent_executor.reset_config()
-            return JSONResponse({"status": "success", "message": "Configuration reset to default"})
+            return JSONResponse(
+                {"status": "success", "message": "Configuration reset to default"}
+            )
 
-        #region app mount
+        # region app mount
         main_app.add_route("/agent/config", get_config, methods=["GET"])
         main_app.add_route("/agent/config", post_config, methods=["POST"])
         main_app.add_route("/agent/config", delete_config, methods=["DELETE"])
@@ -130,6 +147,7 @@ def main(host, port):
         main_app.mount("/agent", agent_app)
 
         import uvicorn
+
         uvicorn.run(main_app, host=host, port=port)
     except MissingAPIKeyError as e:
         logger.error(f"Error: {e}")
@@ -137,6 +155,17 @@ def main(host, port):
     except Exception as e:
         logger.error(f"An error occurred during server startup: {e}")
         exit(1)
+    finally:
+        if agent_executor is not None:
+            try:
+                asyncio.run(agent_executor.close())
+            except Exception as e:
+                logger.warning(f"Failed to close agent executor cleanly: {e}")
+        if httpx_client is not None:
+            try:
+                asyncio.run(httpx_client.aclose())
+            except Exception as e:
+                logger.warning(f"Failed to close http client cleanly: {e}")
 
 
 if __name__ == "__main__":

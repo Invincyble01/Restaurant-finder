@@ -5,7 +5,7 @@ const agents = {
     model: "xai.grok-4-fast-non-reasoning",
     temperature: 0.3,
     name: "apify_places_agent",
-    systemPrompt: "You find restaurants and cafes using the Apify crawler-google-places schema. Prefer searchStringsArray + locationQuery (or startUrls/placeIds when present), set maxCrawledPlacesPerSearch from the user's count (default 5), and return only tool JSON.",
+    systemPrompt: "You find restaurants and cafes using the configured Apify data provider. Prefer searchStringsArray + locationQuery (or startUrls/placeIds when present), set maxCrawledPlacesPerSearch from the user's count (default 5), and return only raw JSON.",
     toolsEnabled: ["compass/crawler-google-places"]
   },
   "formatter_agent": {

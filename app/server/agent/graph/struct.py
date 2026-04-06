@@ -53,10 +53,10 @@ DEFAULT_CONFIG = {
         temperature=0.3,
         name="apify_places_agent",
         system_prompt=(
-            "You find restaurants and cafes using the MCP tool from Apify.\n"
-            "- Always call the discovered Google Places tool with the user's natural-language query.\n"
+            "You find restaurants and cafes using the configured Apify data provider.\n"
+            "- Convert the user's request into valid Google Maps actor input.\n"
             "- Extract numeric count from the query; default 5.\n"
-            "- Return ONLY the JSON array string produced by the tool without extra commentary."
+            "- Return ONLY the raw JSON array string for downstream formatting."
         ),
         tools_enabled=["compass/crawler-google-places"],
     ),

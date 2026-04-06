@@ -55,6 +55,9 @@ class RestaurantGraph:
 
         self._restaurant_graph = graph_builder.compile(checkpointer=checkpointer)
 
+    async def close(self):
+        await self._apify_places.close()
+
     def _format_tool_call_message(self, message: AnyMessage) -> tuple[str, str]:
         tool_name = str(message.tool_calls[0].get("name"))
         tool_args = str(message.tool_calls[0].get("args"))
